@@ -2239,13 +2239,13 @@ function productCard(p){
   } else {
     btnHtml='<button class="btn-add-cart" onclick="event.stopPropagation();quickAdd('+p.id+')">'+cartIcon()+'<span>'+(lang==='es'?'Agregar':'Add to Cart')+'</span></button>';
   }
-  return '<div class="product-card" onclick="openProduct('+p.id+')">'
+  return '<a href="products/'+p.handle+'.html" class="product-card" onclick="event.preventDefault();openProduct('+p.id+')">'
     +'<div class="product-card-img">'+imgHtml+saveBadge+tagHtml+'</div>'
     +'<div class="product-card-body">'
     +'<h3>'+p.name+'</h3>'
     +'<div class="product-card-price"><span class="price">'+fmtPrice(p.price)+'</span>'+compare+'<span class="unit">'+unit+'</span></div>'
     +btnHtml
-    +'</div></div>';
+    +'</div></a>';
 }
 
 function renderFeatured(){
