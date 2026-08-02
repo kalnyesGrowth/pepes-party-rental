@@ -2239,11 +2239,11 @@ function productCard(p){
   var hasVariants=p.variants&&p.variants.length>1;
   var btnHtml;
   if(hasVariants){
-    btnHtml='<button class="btn-select-opts" onclick="event.stopPropagation();openProduct('+p.id+')">'+(lang==='es'?'Ver Opciones':'Select Options')+'</button>';
+    btnHtml='<button class="btn-select-opts" onclick="event.preventDefault();event.stopPropagation();openProduct('+p.id+')">'+(lang==='es'?'Ver Opciones':'Select Options')+'</button>';
   } else {
-    btnHtml='<button class="btn-add-cart" onclick="event.stopPropagation();quickAdd('+p.id+')">'+cartIcon()+'<span>'+(lang==='es'?'Agregar':'Add to Cart')+'</span></button>';
+    btnHtml='<button class="btn-add-cart" onclick="event.preventDefault();event.stopPropagation();quickAdd('+p.id+')">'+cartIcon()+'<span>'+(lang==='es'?'Agregar':'Add to Cart')+'</span></button>';
   }
-  return '<a href="products/'+p.handle+'.html" class="product-card" onclick="event.preventDefault();openProduct('+p.id+')">'
+  return '<a href="products/'+p.handle+'.html" class="product-card">'
     +'<div class="product-card-img">'+imgHtml+saveBadge+tagHtml+'</div>'
     +'<div class="product-card-body">'
     +'<h3>'+p.name+'</h3>'
