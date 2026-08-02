@@ -968,6 +968,7 @@ input, select, textarea { font-family: inherit; font-size: 1rem; }
   .products-grid { grid-template-columns: repeat(2, 1fr); gap: 12px; }
   .product-card-body { padding: 12px; }
   .product-card-body h3 { font-size: 0.85rem; }
+  .product-card-img img, .cat-card img, .pkg-img img { max-width: 100%; height: auto; }
   .timeline-wrap { max-width: 100%; }
   .reviews-grid { grid-template-columns: 1fr; }
   .modal-body { grid-template-columns: 1fr; }
@@ -1316,7 +1317,7 @@ input, select, textarea { font-family: inherit; font-size: 1rem; }
 <nav class="nav at-top" id="mainNav">
   <div class="container">
     <a class="nav-logo" href="#" onclick="showPage('home')">
-      <img src="logo.png" alt="Pepe's Party Rental">
+      <img src="logo.png" alt="Pepe's Party Rental" width="44" height="44">
     </a>
     <div class="nav-links">
       <a href="#" onclick="showPage('home')">Home</a>
@@ -2228,7 +2229,7 @@ function renderCatGrid(){
 }
 
 function productCard(p){
-  var imgHtml=p.img?'<img src="'+esc(p.img)+'" alt="'+esc(p.name)+'" loading="lazy">':'';
+  var imgHtml=p.img?'<img src="'+esc(p.img)+'" alt="'+esc(p.name)+'" loading="lazy" width="300" height="300">':'';
   var saveBadge=p.cmp?'<div class="product-card-badge">'+(lang==='es'?'AHORRA':'SAVE')+' '+fmtPrice(p.cmp-p.price)+'</div>':'';
   var tagHtml='';
   if(POPULAR_IDS.indexOf(p.id)!==-1) tagHtml='<div class="product-card-tag popular">'+(lang==='es'?'Popular':'Popular')+'</div>';
