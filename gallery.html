@@ -1,0 +1,529 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Event Gallery | Stafford, VA | Pepe&#39;s Party Rental</title>
+<meta name="description" content="Browse photos from real events by Pepe's Party Rental in Stafford, VA. Bounce houses, water slides, tents, mechanical bull, and more. 13+ years serving Northern Virginia.">
+<meta name="keywords" content="party rental gallery, event photos Stafford VA, bounce house rental photos, party rental Northern Virginia, Pepe's Party Rental events">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://redesign-sepia.vercel.app/gallery.html">
+<meta property="og:title" content="Event Gallery | Stafford, VA | Pepe&#39;s Party Rental">
+<meta property="og:description" content="Browse photos from real events by Pepe's Party Rental in Stafford, VA. Bounce houses, water slides, tents, mechanical bull, and more. 13+ years serving Northern Virginia.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://redesign-sepia.vercel.app/gallery.html">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "ImageGallery",
+  "name": "Pepe's Party Rental Event Gallery",
+  "description": "Photos from real events set up by Pepe's Party Rental across Stafford, VA and Northern Virginia. Bounce houses, water slides, tents, mechanical bull, tables, chairs, and more.",
+  "url": "https://redesign-sepia.vercel.app/gallery.html",
+  "provider": {
+    "@type": "LocalBusiness",
+    "name": "Pepe's Party Rental",
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "94 Tacketts Mill Dr",
+      "addressLocality": "Stafford",
+      "addressRegion": "VA",
+      "postalCode": "22556"
+    },
+    "telephone": "+15712445255"
+  },
+  "numberOfItems": 27
+}
+</script>
+<style>
+:root {
+  --orange: #E8490F;
+  --orange-hover: #d13d08;
+  --orange-light: #ff6b35;
+  --orange-glow: #fff3ee;
+  --orange-subtle: #fef7f3;
+  --dark: #111827;
+  --text: #1f2937;
+  --text-secondary: #6b7280;
+  --text-light: #9ca3af;
+  --surface: #ffffff;
+  --bg: #fafaf8;
+  --border: #e5e7eb;
+  --border-light: #f3f4f6;
+  --success: #059669;
+  --radius: 14px;
+  --radius-sm: 8px;
+  --radius-lg: 20px;
+  --shadow-sm: 0 1px 3px rgba(0,0,0,0.06);
+  --shadow: 0 4px 20px rgba(0,0,0,0.08);
+  --shadow-lg: 0 12px 40px rgba(0,0,0,0.12);
+  --font: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --container: 1200px;
+  --nav-h: 72px;
+}
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+html, body { overflow-x: hidden; }
+html { scroll-behavior: smooth; }
+body { font-family: var(--font); color: var(--text); background: var(--bg); line-height: 1.6; -webkit-font-smoothing: antialiased; }
+img { max-width: 100%; height: auto; display: block; }
+a { color: inherit; text-decoration: none; }
+button { font-family: inherit; cursor: pointer; border: none; background: none; }
+.container { max-width: var(--container); margin: 0 auto; padding: 0 24px; }
+
+/* NAV */
+.nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+  height: var(--nav-h); display: flex; align-items: center;
+  background: rgba(17,24,39,0.97); box-shadow: 0 2px 20px rgba(0,0,0,0.15);
+}
+.nav .container { display: flex; align-items: center; justify-content: space-between; width: 100%; }
+.nav-logo { display: flex; align-items: center; gap: 10px; }
+.nav-logo img { height: 44px; width: auto; }
+.nav-logo-text { font-size: 1.25rem; font-weight: 800; color: #fff; letter-spacing: -0.02em; }
+.nav-logo-text span { color: var(--orange); }
+.nav-links { display: flex; gap: 28px; align-items: center; }
+.nav-links a { color: rgba(255,255,255,0.85); font-size: 0.9rem; font-weight: 500; transition: color 0.2s; }
+.nav-links a:hover { color: #fff; }
+.nav-links a.active { color: var(--orange); }
+.nav-phone { display: flex; align-items: center; gap: 6px; color: #fff; font-weight: 600; font-size: 0.9rem; }
+.nav-phone svg { width: 16px; height: 16px; }
+.nav-menu-btn { display: none; width: 40px; height: 40px; align-items: center; justify-content: center; }
+.nav-menu-btn span { display: block; width: 22px; height: 2px; background: #fff; position: relative; transition: 0.3s; }
+.nav-menu-btn span::before, .nav-menu-btn span::after { content: ''; position: absolute; width: 22px; height: 2px; background: #fff; transition: 0.3s; }
+.nav-menu-btn span::before { top: -7px; }
+.nav-menu-btn span::after { top: 7px; }
+
+/* MOBILE NAV */
+.mobile-nav { display: none; position: fixed; top: var(--nav-h); left: 0; right: 0; background: var(--dark); z-index: 99; padding: 20px 24px; flex-direction: column; gap: 16px; }
+.mobile-nav.open { display: flex; }
+.mobile-nav a { color: rgba(255,255,255,0.85); font-size: 1rem; font-weight: 500; padding: 8px 0; }
+.mobile-nav a.active { color: var(--orange); }
+
+/* GALLERY HERO */
+.gallery-hero {
+  padding: calc(var(--nav-h) + 60px) 0 48px;
+  text-align: center;
+}
+.gallery-hero h1 {
+  font-size: clamp(2rem, 5vw, 3rem);
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  margin-bottom: 16px;
+  color: var(--text);
+}
+.gallery-hero p {
+  font-size: 1.05rem;
+  color: var(--text-secondary);
+  max-width: 620px;
+  margin: 0 auto;
+  line-height: 1.7;
+}
+.gallery-hero-label {
+  display: inline-block;
+  font-size: 0.78rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--orange);
+  margin-bottom: 8px;
+}
+
+/* GALLERY GRID */
+.gallery-section { padding: 0 0 60px; }
+.gallery-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+}
+.gallery-card {
+  border-radius: var(--radius);
+  overflow: hidden;
+  cursor: pointer;
+  transition: transform 0.3s, box-shadow 0.3s;
+  background: linear-gradient(135deg, var(--orange-glow), #fde8d8);
+}
+.gallery-card:hover {
+  transform: scale(1.03);
+  box-shadow: var(--shadow-lg);
+}
+.gallery-card img {
+  width: 100%;
+  height: auto;
+  display: block;
+  transition: opacity 0.3s;
+}
+
+/* LIGHTBOX */
+.lightbox {
+  display: none;
+  position: fixed;
+  inset: 0;
+  z-index: 200;
+  background: rgba(0,0,0,0.92);
+  align-items: center;
+  justify-content: center;
+}
+.lightbox.open { display: flex; }
+.lightbox-img {
+  max-width: 90vw;
+  max-height: 85vh;
+  border-radius: var(--radius);
+  object-fit: contain;
+}
+.lightbox-close {
+  position: absolute;
+  top: 20px;
+  right: 24px;
+  width: 44px;
+  height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  font-size: 1.8rem;
+  font-weight: 300;
+  cursor: pointer;
+  background: rgba(255,255,255,0.1);
+  border-radius: 50%;
+  border: none;
+  transition: background 0.2s;
+  z-index: 201;
+}
+.lightbox-close:hover { background: rgba(255,255,255,0.2); }
+.lightbox-nav {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 48px;
+  height: 48px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  font-size: 1.5rem;
+  cursor: pointer;
+  background: rgba(255,255,255,0.1);
+  border-radius: 50%;
+  border: none;
+  transition: background 0.2s;
+  z-index: 201;
+}
+.lightbox-nav:hover { background: rgba(255,255,255,0.25); }
+.lightbox-prev { left: 20px; }
+.lightbox-next { right: 20px; }
+.lightbox-counter {
+  position: absolute;
+  bottom: 24px;
+  left: 50%;
+  transform: translateX(-50%);
+  color: rgba(255,255,255,0.6);
+  font-size: 0.88rem;
+  font-weight: 500;
+}
+
+/* CTA BANNER */
+.cta-banner { background: linear-gradient(135deg, var(--dark) 0%, #1a0a12 50%, #2d1008 100%); padding: 80px 24px; text-align: center; position: relative; overflow: hidden; }
+.cta-banner::before { content: ''; position: absolute; inset: 0; background: radial-gradient(ellipse 500px 400px at 50% 50%, rgba(232,73,15,0.12), transparent); }
+.cta-banner-inner { position: relative; z-index: 1; }
+.cta-banner h2 { font-size: clamp(1.8rem, 4vw, 2.6rem); font-weight: 800; color: #fff; letter-spacing: -0.02em; margin-bottom: 14px; text-wrap: balance; }
+.cta-banner p { color: rgba(255,255,255,0.65); font-size: 1.05rem; margin-bottom: 28px; }
+.cta-btn { display: inline-flex; align-items: center; gap: 10px; padding: 16px 36px; border-radius: 50px; border: 2px solid var(--orange); background: transparent; color: #fff; font-size: 1.05rem; font-weight: 700; transition: all 0.3s; }
+.cta-btn:hover { background: var(--orange); color: #fff; }
+
+/* FOOTER */
+.footer { background: var(--dark); color: rgba(255,255,255,0.7); padding: 64px 0 32px; }
+.footer-grid { display: grid; grid-template-columns: 1.5fr 1fr 1fr 1fr; gap: 40px; margin-bottom: 48px; }
+.footer h4 { color: #fff; font-size: 0.95rem; font-weight: 700; margin-bottom: 16px; }
+.footer p, .footer a { font-size: 0.88rem; line-height: 1.8; }
+.footer a:hover { color: var(--orange-light); }
+.footer-bottom { border-top: 1px solid rgba(255,255,255,0.1); padding-top: 24px; text-align: center; font-size: 0.82rem; color: rgba(255,255,255,0.4); }
+
+/* RESPONSIVE */
+@media (max-width: 1024px) {
+  .gallery-grid { grid-template-columns: repeat(2, 1fr); }
+  .footer-grid { grid-template-columns: repeat(2, 1fr); }
+}
+@media (max-width: 768px) {
+  .nav-links, .nav-phone { display: none; }
+  .nav-menu-btn { display: flex; }
+  .gallery-grid { grid-template-columns: repeat(2, 1fr); gap: 10px; }
+  .footer-grid { grid-template-columns: 1fr; gap: 28px; }
+  .gallery-hero { padding: calc(var(--nav-h) + 40px) 0 32px; }
+  .gallery-hero h1 { font-size: 1.8rem; }
+}
+@media (max-width: 480px) {
+  .gallery-grid { grid-template-columns: 1fr; gap: 12px; }
+  .lightbox-nav { width: 40px; height: 40px; font-size: 1.2rem; }
+  .lightbox-prev { left: 10px; }
+  .lightbox-next { right: 10px; }
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="nav">
+  <div class="container">
+    <a class="nav-logo" href="index.html">
+      <img src="logo.png" alt="Pepe's Party Rental" width="44" height="44">
+      <div class="nav-logo-text">Pepe's <span>Party Rental</span></div>
+    </a>
+    <div class="nav-links">
+      <a href="index.html">Home</a>
+      <a href="index.html#catalog">Catalog</a>
+      <a href="products/mechanical-bull.html" style="color:var(--orange-light)">The Beast</a>
+      <a href="index.html#packages">Packages</a>
+      <a href="gallery.html" class="active">Gallery</a>
+    </div>
+    <div style="display:flex;align-items:center;gap:16px">
+      <a class="nav-phone" href="tel:+15712445255">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+        (571) 244-5255
+      </a>
+      <button class="nav-menu-btn" onclick="document.getElementById('mobileNav').classList.toggle('open')"><span></span></button>
+    </div>
+  </div>
+</nav>
+<div class="mobile-nav" id="mobileNav">
+  <a href="index.html">Home</a>
+  <a href="index.html#catalog">All Rentals</a>
+  <a href="products/mechanical-bull.html" style="color:var(--orange-light)">The Beast</a>
+  <a href="index.html#packages">Packages</a>
+  <a href="gallery.html" class="active">Gallery</a>
+  <a href="tel:+15712445255">Call (571) 244-5255</a>
+</div>
+
+<!-- GALLERY HERO -->
+<section class="gallery-hero">
+  <div class="container">
+    <div class="gallery-hero-label">Real Events</div>
+    <h1>Our Work</h1>
+    <p>Browse photos from real events we have set up across Stafford, VA and Northern Virginia. 13+ years of making parties unforgettable.</p>
+  </div>
+</section>
+
+<!-- GALLERY GRID -->
+<section class="gallery-section">
+  <div class="container">
+    <div class="gallery-grid">
+      <div class="gallery-card" onclick="openLightbox(0)">
+        <img src="https://s3-media0.fl.yelpcdn.com/bphoto/sMOycj9V3CghZyqYaxtuhg/o.jpg" alt="Pepe's Party Rental bounce house setup at a backyard party in Stafford VA" loading="lazy">
+      </div>
+      <div class="gallery-card" onclick="openLightbox(1)">
+        <img src="https://s3-media0.fl.yelpcdn.com/bphoto/vNnLsr19CobwWgU_blMVLg/o.jpg" alt="Pepe's Party Rental event tent and table setup in Northern Virginia" loading="lazy">
+      </div>
+      <div class="gallery-card" onclick="openLightbox(2)">
+        <img src="https://s3-media0.fl.yelpcdn.com/bphoto/7TtjUM2D0sKo9vVC_4I80g/o.jpg" alt="Pepe's Party Rental inflatable rental for a birthday celebration" loading="lazy">
+      </div>
+      <div class="gallery-card" onclick="openLightbox(3)">
+        <img src="https://s3-media0.fl.yelpcdn.com/bphoto/bKLuZPswAkvr9l-bKS6Jvw/o.jpg" alt="Pepe's Party Rental mechanical bull ride at an outdoor event" loading="lazy">
+      </div>
+      <div class="gallery-card" onclick="openLightbox(4)">
+        <img src="https://s3-media0.fl.yelpcdn.com/bphoto/lr_yZWFdrkasp9X1dRD6cg/o.jpg" alt="Pepe's Party Rental water slide setup for a summer party" loading="lazy">
+      </div>
+      <div class="gallery-card" onclick="openLightbox(5)">
+        <img src="https://s3-media0.fl.yelpcdn.com/bphoto/C--Z87lDpK9QsqC1dEchMg/o.jpg" alt="Pepe's Party Rental tent and dance floor at a wedding reception" loading="lazy">
+      </div>
+      <div class="gallery-card" onclick="openLightbox(6)">
+        <img src="https://s3-media0.fl.yelpcdn.com/bphoto/4Kol06Pf8F4Oxl5NJTgNsg/o.jpg" alt="Pepe's Party Rental combo bounce house with slide in Fredericksburg VA" loading="lazy">
+      </div>
+      <div class="gallery-card" onclick="openLightbox(7)">
+        <img src="https://s3-media0.fl.yelpcdn.com/bphoto/-utU0Y-avDktd-bLK92msw/o.jpg" alt="Pepe's Party Rental full party setup with tables and chairs" loading="lazy">
+      </div>
+      <div class="gallery-card" onclick="openLightbox(8)">
+        <img src="https://s3-media0.fl.yelpcdn.com/bphoto/5EmUsVqH36Z3QzH6wMaE_g/o.jpg" alt="Pepe's Party Rental event setup for a community celebration" loading="lazy">
+      </div>
+      <div class="gallery-card" onclick="openLightbox(9)">
+        <img src="https://s3-media0.fl.yelpcdn.com/bphoto/RLdxE4llddzapa2ZE8CI5w/o.jpg" alt="Pepe's Party Rental bounce house at a kids birthday party" loading="lazy">
+      </div>
+      <div class="gallery-card" onclick="openLightbox(10)">
+        <img src="https://s3-media0.fl.yelpcdn.com/bphoto/AZGlfyfvqFBc6PNoVNdRDw/o.jpg" alt="Pepe's Party Rental tent setup for an outdoor graduation party" loading="lazy">
+      </div>
+      <div class="gallery-card" onclick="openLightbox(11)">
+        <img src="https://s3-media0.fl.yelpcdn.com/bphoto/hgi7QqNtU3if_WE4_RtZeg/o.jpg" alt="Pepe's Party Rental inflatable water slide in Woodbridge VA" loading="lazy">
+      </div>
+      <div class="gallery-card" onclick="openLightbox(12)">
+        <img src="https://s3-media0.fl.yelpcdn.com/bphoto/ASWnsaxnY61ahAfBK45ENA/o.jpg" alt="Pepe's Party Rental mechanical bull The Beast at a corporate event" loading="lazy">
+      </div>
+      <div class="gallery-card" onclick="openLightbox(13)">
+        <img src="https://s3-media0.fl.yelpcdn.com/bphoto/PIuOt9EDVUBq9TXN21JZ6g/o.jpg" alt="Pepe's Party Rental bounce house and tent combo setup" loading="lazy">
+      </div>
+      <div class="gallery-card" onclick="openLightbox(14)">
+        <img src="https://s3-media0.fl.yelpcdn.com/bphoto/yS7Ir8vlmnYymaWwyCA91g/o.jpg" alt="Pepe's Party Rental party supplies and cooler rental" loading="lazy">
+      </div>
+      <div class="gallery-card" onclick="openLightbox(15)">
+        <img src="https://s3-media0.fl.yelpcdn.com/bphoto/knU_zmBQGfGAfwtf9pEyFQ/o.jpg" alt="Pepe's Party Rental large event tent in Manassas VA" loading="lazy">
+      </div>
+      <div class="gallery-card" onclick="openLightbox(16)">
+        <img src="https://s3-media0.fl.yelpcdn.com/bphoto/CEQVs5_IpnHOLZgXSM7hgw/o.jpg" alt="Pepe's Party Rental chairs and tables at a quincea setup" loading="lazy">
+      </div>
+      <div class="gallery-card" onclick="openLightbox(17)">
+        <img src="https://s3-media0.fl.yelpcdn.com/bphoto/JANPJwV1ElWB51hXcBTMTA/o.jpg" alt="Pepe's Party Rental bounce house rental for a school event" loading="lazy">
+      </div>
+      <div class="gallery-card" onclick="openLightbox(18)">
+        <img src="https://s3-media0.fl.yelpcdn.com/bphoto/2GqYgD0lPJmSpU0IrkFuTg/o.jpg" alt="Pepe's Party Rental dance floor setup for an evening event" loading="lazy">
+      </div>
+      <div class="gallery-card" onclick="openLightbox(19)">
+        <img src="https://s3-media0.fl.yelpcdn.com/bphoto/HjBYhM6w4krwpQW_Y8TkKg/o.jpg" alt="Pepe's Party Rental outdoor heater and tent at a fall party" loading="lazy">
+      </div>
+      <div class="gallery-card" onclick="openLightbox(20)">
+        <img src="https://s3-media0.fl.yelpcdn.com/bphoto/djrMVgpSFcZ_bILRoZ9Iag/o.jpg" alt="Pepe's Party Rental bounce castle at a family reunion" loading="lazy">
+      </div>
+      <div class="gallery-card" onclick="openLightbox(21)">
+        <img src="https://s3-media0.fl.yelpcdn.com/bphoto/_fm_iq8fdkxgJIpSezKUhA/o.jpg" alt="Pepe's Party Rental full event setup with tent and inflatables" loading="lazy">
+      </div>
+      <div class="gallery-card" onclick="openLightbox(22)">
+        <img src="https://s3-media0.fl.yelpcdn.com/bphoto/tLDrFZJe5nOGKMX8yNtHFg/o.jpg" alt="Pepe's Party Rental combo slide at a backyard celebration" loading="lazy">
+      </div>
+      <div class="gallery-card" onclick="openLightbox(23)">
+        <img src="https://s3-media0.fl.yelpcdn.com/bphoto/cGZbH5AGNsRrJo2Z58o2iQ/o.jpg" alt="Pepe's Party Rental speaker and party equipment rental" loading="lazy">
+      </div>
+      <div class="gallery-card" onclick="openLightbox(24)">
+        <img src="https://s3-media0.fl.yelpcdn.com/bphoto/ZB241JYQv030fue2XKu7Ag/o.jpg" alt="Pepe's Party Rental inflatable setup for a church festival" loading="lazy">
+      </div>
+      <div class="gallery-card" onclick="openLightbox(25)">
+        <img src="https://s3-media0.fl.yelpcdn.com/bphoto/lxE36-x0Nd_iR0e3C4yFtw/o.jpg" alt="Pepe's Party Rental tent and table setup in Spotsylvania VA" loading="lazy">
+      </div>
+      <div class="gallery-card" onclick="openLightbox(26)">
+        <img src="https://s3-media0.fl.yelpcdn.com/bphoto/_NGflsBAteIjXxUqXGsabA/o.jpg" alt="Pepe's Party Rental party rental delivery and professional setup" loading="lazy">
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- LIGHTBOX -->
+<div class="lightbox" id="lightbox">
+  <button class="lightbox-close" onclick="closeLightbox()">&times;</button>
+  <button class="lightbox-nav lightbox-prev" onclick="navLightbox(-1)">
+    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 18l-6-6 6-6"/></svg>
+  </button>
+  <img class="lightbox-img" id="lightboxImg" src="" alt="">
+  <button class="lightbox-nav lightbox-next" onclick="navLightbox(1)">
+    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18l6-6-6-6"/></svg>
+  </button>
+  <div class="lightbox-counter" id="lightboxCounter"></div>
+</div>
+
+<!-- CTA BANNER -->
+<section class="cta-banner">
+  <div class="cta-banner-inner">
+    <h2>Ready to Book Your Party?</h2>
+    <p>Free delivery, setup and takedown. No deposit required. Serving Stafford, VA and 50-mile radius.</p>
+    <a href="https://pepespartyrentall.com" class="cta-btn" target="_blank" rel="noopener">
+      Browse All Rentals
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+    </a>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <h4>Pepe's Party Rental</h4>
+        <p>Family-owned party rental business serving Stafford, VA and surrounding areas for 13+ years. Bounce houses, water slides, mechanical bull, tents, tables, chairs, and more.</p>
+        <p style="margin-top:12px"><a href="tel:+15712445255">(571) 244-5255</a></p>
+        <p><a href="mailto:pepespartyr@gmail.com">pepespartyr@gmail.com</a></p>
+      </div>
+      <div>
+        <h4>Rentals</h4>
+        <p><a href="index.html#catalog">Bounce Houses</a></p>
+        <p><a href="index.html#catalog">Combo Slides</a></p>
+        <p><a href="index.html#catalog">Water Slides</a></p>
+        <p><a href="products/mechanical-bull.html">Mechanical Bull</a></p>
+        <p><a href="index.html#catalog">Event Tents</a></p>
+      </div>
+      <div>
+        <h4>More</h4>
+        <p><a href="index.html#catalog">Tables & Chairs</a></p>
+        <p><a href="index.html#catalog">Party Supplies</a></p>
+        <p><a href="index.html#packages">Packages</a></p>
+        <p><a href="gallery.html">Gallery</a></p>
+        <p><a href="index.html#faq">FAQ</a></p>
+      </div>
+      <div>
+        <h4>Service Area</h4>
+        <p>Stafford, VA (HQ)</p>
+        <p>Fredericksburg</p>
+        <p>Woodbridge</p>
+        <p>Manassas</p>
+        <p>Spotsylvania</p>
+        <p>+ 50 mile radius</p>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>&copy; 2026 Pepe's Party Rental. All rights reserved. | 94 Tacketts Mill Dr, Stafford, VA 22556</p>
+    </div>
+  </div>
+</footer>
+
+<script>
+var galleryImages = [
+  'https://s3-media0.fl.yelpcdn.com/bphoto/sMOycj9V3CghZyqYaxtuhg/o.jpg',
+  'https://s3-media0.fl.yelpcdn.com/bphoto/vNnLsr19CobwWgU_blMVLg/o.jpg',
+  'https://s3-media0.fl.yelpcdn.com/bphoto/7TtjUM2D0sKo9vVC_4I80g/o.jpg',
+  'https://s3-media0.fl.yelpcdn.com/bphoto/bKLuZPswAkvr9l-bKS6Jvw/o.jpg',
+  'https://s3-media0.fl.yelpcdn.com/bphoto/lr_yZWFdrkasp9X1dRD6cg/o.jpg',
+  'https://s3-media0.fl.yelpcdn.com/bphoto/C--Z87lDpK9QsqC1dEchMg/o.jpg',
+  'https://s3-media0.fl.yelpcdn.com/bphoto/4Kol06Pf8F4Oxl5NJTgNsg/o.jpg',
+  'https://s3-media0.fl.yelpcdn.com/bphoto/-utU0Y-avDktd-bLK92msw/o.jpg',
+  'https://s3-media0.fl.yelpcdn.com/bphoto/5EmUsVqH36Z3QzH6wMaE_g/o.jpg',
+  'https://s3-media0.fl.yelpcdn.com/bphoto/RLdxE4llddzapa2ZE8CI5w/o.jpg',
+  'https://s3-media0.fl.yelpcdn.com/bphoto/AZGlfyfvqFBc6PNoVNdRDw/o.jpg',
+  'https://s3-media0.fl.yelpcdn.com/bphoto/hgi7QqNtU3if_WE4_RtZeg/o.jpg',
+  'https://s3-media0.fl.yelpcdn.com/bphoto/ASWnsaxnY61ahAfBK45ENA/o.jpg',
+  'https://s3-media0.fl.yelpcdn.com/bphoto/PIuOt9EDVUBq9TXN21JZ6g/o.jpg',
+  'https://s3-media0.fl.yelpcdn.com/bphoto/yS7Ir8vlmnYymaWwyCA91g/o.jpg',
+  'https://s3-media0.fl.yelpcdn.com/bphoto/knU_zmBQGfGAfwtf9pEyFQ/o.jpg',
+  'https://s3-media0.fl.yelpcdn.com/bphoto/CEQVs5_IpnHOLZgXSM7hgw/o.jpg',
+  'https://s3-media0.fl.yelpcdn.com/bphoto/JANPJwV1ElWB51hXcBTMTA/o.jpg',
+  'https://s3-media0.fl.yelpcdn.com/bphoto/2GqYgD0lPJmSpU0IrkFuTg/o.jpg',
+  'https://s3-media0.fl.yelpcdn.com/bphoto/HjBYhM6w4krwpQW_Y8TkKg/o.jpg',
+  'https://s3-media0.fl.yelpcdn.com/bphoto/djrMVgpSFcZ_bILRoZ9Iag/o.jpg',
+  'https://s3-media0.fl.yelpcdn.com/bphoto/_fm_iq8fdkxgJIpSezKUhA/o.jpg',
+  'https://s3-media0.fl.yelpcdn.com/bphoto/tLDrFZJe5nOGKMX8yNtHFg/o.jpg',
+  'https://s3-media0.fl.yelpcdn.com/bphoto/cGZbH5AGNsRrJo2Z58o2iQ/o.jpg',
+  'https://s3-media0.fl.yelpcdn.com/bphoto/ZB241JYQv030fue2XKu7Ag/o.jpg',
+  'https://s3-media0.fl.yelpcdn.com/bphoto/lxE36-x0Nd_iR0e3C4yFtw/o.jpg',
+  'https://s3-media0.fl.yelpcdn.com/bphoto/_NGflsBAteIjXxUqXGsabA/o.jpg'
+];
+var currentIndex = 0;
+
+function openLightbox(idx) {
+  currentIndex = idx;
+  var lb = document.getElementById('lightbox');
+  var img = document.getElementById('lightboxImg');
+  img.src = galleryImages[idx];
+  img.alt = 'Pepe\'s Party Rental event photo ' + (idx + 1) + ' of ' + galleryImages.length;
+  document.getElementById('lightboxCounter').textContent = (idx + 1) + ' / ' + galleryImages.length;
+  lb.classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+
+function closeLightbox() {
+  document.getElementById('lightbox').classList.remove('open');
+  document.body.style.overflow = '';
+}
+
+function navLightbox(dir) {
+  currentIndex = (currentIndex + dir + galleryImages.length) % galleryImages.length;
+  var img = document.getElementById('lightboxImg');
+  img.src = galleryImages[currentIndex];
+  img.alt = 'Pepe\'s Party Rental event photo ' + (currentIndex + 1) + ' of ' + galleryImages.length;
+  document.getElementById('lightboxCounter').textContent = (currentIndex + 1) + ' / ' + galleryImages.length;
+}
+
+document.addEventListener('keydown', function(e) {
+  var lb = document.getElementById('lightbox');
+  if (!lb.classList.contains('open')) return;
+  if (e.key === 'Escape') closeLightbox();
+  if (e.key === 'ArrowLeft') navLightbox(-1);
+  if (e.key === 'ArrowRight') navLightbox(1);
+});
+
+document.getElementById('lightbox').addEventListener('click', function(e) {
+  if (e.target === this) closeLightbox();
+});
+</script>
+</body>
+</html>
