@@ -764,6 +764,15 @@ input, select, textarea { font-family: inherit; font-size: 1rem; }
 .cta-banner .hero-cta { border-color: var(--orange); }
 .cta-banner .hero-cta:hover { background: var(--orange); color: #fff; }
 
+/* ===== SMS CONSENT NOTICE ===== */
+.sms-notice { background: var(--surface); border-top: 1px solid rgba(255,255,255,0.06); padding: 40px 0; }
+.sms-notice-inner { max-width: 720px; margin: 0 auto; text-align: center; }
+.sms-notice-icon { display: inline-flex; align-items: center; justify-content: center; width: 44px; height: 44px; background: rgba(255,152,0,0.1); border-radius: 50%; margin-bottom: 16px; }
+.sms-notice-icon svg { width: 22px; height: 22px; color: var(--orange); }
+.sms-notice h4 { color: #fff; font-size: 1rem; font-weight: 700; margin-bottom: 10px; }
+.sms-notice p { font-size: 0.78rem; color: var(--text-secondary); line-height: 1.7; margin-bottom: 8px; }
+.sms-notice a { color: var(--orange); text-decoration: underline; }
+
 /* ===== FOOTER ===== */
 .footer { background: var(--dark); color: rgba(255,255,255,0.7); padding: 64px 0 32px; }
 .footer-grid { display: grid; grid-template-columns: 1.5fr 1fr 1fr 1fr; gap: 40px; margin-bottom: 48px; }
@@ -1829,6 +1838,20 @@ input, select, textarea { font-family: inherit; font-size: 1rem; }
             <p data-en="If lightning or severe storms hit your event day, we reschedule at zero cost. No questions. No fees. Your party happens." data-es="Si caen rayos o tormentas severas el dia de tu evento, reprogramamos sin costo. Sin preguntas. Sin cargos. Tu fiesta se hace.">If lightning or severe storms hit your event day, we reschedule at zero cost. No questions. No fees. Your party happens.</p>
           </div>
         </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SMS CONSENT NOTICE -->
+  <section class="sms-notice">
+    <div class="container">
+      <div class="sms-notice-inner">
+        <div class="sms-notice-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+        </div>
+        <h4 data-en="SMS Text Messaging" data-es="Mensajes de Texto SMS">SMS Text Messaging</h4>
+        <p data-en="By providing your phone number and booking with Pepe's Party Rental LLC, you agree to receive recurring automated text messages including booking confirmations, delivery reminders, and promotional offers. Message frequency varies. Message and data rates may apply. Reply STOP to opt out at any time. Reply HELP for help. Consent is not a condition of purchase. Carriers are not liable for delayed or undelivered messages." data-es="Al proporcionar su numero de telefono y reservar con Pepe's Party Rental LLC, usted acepta recibir mensajes de texto automatizados recurrentes incluyendo confirmaciones de reserva, recordatorios de entrega y ofertas promocionales. La frecuencia de mensajes varia. Pueden aplicarse tarifas de mensajes y datos. Responda STOP para cancelar en cualquier momento. Responda HELP para ayuda. El consentimiento no es condicion de compra. Los operadores no son responsables por mensajes retrasados o no entregados.">By providing your phone number and booking with Pepe's Party Rental LLC, you agree to receive recurring automated text messages including booking confirmations, delivery reminders, and promotional offers. Message frequency varies. Message and data rates may apply. Reply STOP to opt out at any time. Reply HELP for help. Consent is not a condition of purchase. Carriers are not liable for delayed or undelivered messages.</p>
+        <p><a href="privacy-policy.html" data-en="Privacy Policy" data-es="Politica de Privacidad">Privacy Policy</a> | <a href="terms.html" data-en="Terms of Service" data-es="Terminos de Servicio">Terms of Service</a> | <a href="sms-opt-in.html" data-en="SMS Opt-In Disclosure" data-es="Divulgacion de Consentimiento SMS">SMS Opt-In Disclosure</a></p>
       </div>
     </div>
   </section>

@@ -1,0 +1,91 @@
+# Pepe's Party Rental
+
+> Family-owned party rental company in Stafford, Virginia serving Northern Virginia since 2013. Rents bounce houses, water slides, a mechanical bull, event tents, tables, chairs, and party supplies with free delivery and professional setup within 50 miles.
+
+## Business Information
+- [Homepage](https://redesign-sepia.vercel.app/): Full product catalog, pricing, booking, service areas, and reviews
+- Phone: (571) 244-5255
+- Email: pepespartyr@gmail.com
+- Address: 94 Tacketts Mill Rd, Stafford, VA 22556
+- Hours: Monday-Sunday, 8:00 AM - 9:30 PM
+- Rating: 4.8 stars from 121 Google reviews
+- Insurance: $1 million liability coverage on every event
+- Founded: 2013
+
+## Service Area
+Stafford, Fredericksburg, Woodbridge, Manassas, Culpeper, King George, Spotsylvania, Dumfries, Warrenton, Colonial Beach, Northern Virginia, and Prince William County. Free delivery within 50 miles of Stafford, VA.
+
+## Bounce Houses
+- [Flower Castle Bounce House 15x15](https://redesign-sepia.vercel.app/products/flowers-castle.html): $185/day, 15x15 ft, ages 2-15, max 10 kids
+- [Pelotitas Bounce House 13x13](https://redesign-sepia.vercel.app/products/soccer-ball-bounce.html): $175/day, 13x13 ft, sports theme
+- [New Panel Bounce House](https://redesign-sepia.vercel.app/products/mixcolor-castle.html): $175/day, 13x13 ft, gender-neutral
+- [Girly Panel Bounce House 13x13](https://redesign-sepia.vercel.app/products/orchid-oasis.html): $175/day, pink/purple princess theme
+- [Crayon Bounce House 15x15](https://redesign-sepia.vercel.app/products/mini-crayon.html): $185/day, rainbow crayon theme
+- [Blue Castle Bounce House 13x13](https://redesign-sepia.vercel.app/products/ocean-castle.html): $175/day, blue castle theme
+- [Sports 'P' Bounce House 13x13](https://redesign-sepia.vercel.app/products/sport-p.html): $175/day, multi-sport panels
+
+## Combo Bounce Houses with Slides
+- [Sports Double Slide Combo](https://redesign-sepia.vercel.app/products/sports-double-slide-combo.html): $190/day, bounce + dual slides
+- [Pink Combo Bounce House 15x27](https://redesign-sepia.vercel.app/products/pink-star-slide.html): $210/day, bounce + climb + slide
+- [Flower Slide Combo](https://redesign-sepia.vercel.app/products/flowers-slide.html): $210/day, floral theme with slide
+- [Pink Double Slide Combo](https://redesign-sepia.vercel.app/products/bubblegum-blast.html): $220/day, TWO slides + bounce
+- [Orange Slide Combo](https://redesign-sepia.vercel.app/products/orange-slide.html): $190/day, bright orange theme
+- [Palm Tree Double Slide Combo](https://redesign-sepia.vercel.app/products/palmtree-doble-slide.html): $190/day, tropical theme
+- [Red Combo 14x32](https://redesign-sepia.vercel.app/products/tower-splash.html): $260/day, largest dry combo
+- [Orange Combo 14x32](https://redesign-sepia.vercel.app/products/carnival-castle.html): $280/day, carnival theme
+
+## Water Slides
+- [NASA Water Slide](https://redesign-sepia.vercel.app/products/nasa-water-slide.html): $480/day, space theme, splash pool
+- [T-Rex Water Slide](https://redesign-sepia.vercel.app/products/t-rex-water-slide.html): $480/day, dinosaur theme
+- [Tropical Water Slide](https://redesign-sepia.vercel.app/products/tropical.html): $450/day, palm tree/island theme
+- [WaveSplash Water Slide & Bounce](https://redesign-sepia.vercel.app/products/wavesplush.html): $480/day, water slide + bounce combo
+- [Sunshine Combo Water Slide](https://redesign-sepia.vercel.app/products/sunnysplash.html): $480/day, water slide + bounce
+
+## Mechanical Bull
+- [The Beast Mechanical Bull](https://redesign-sepia.vercel.app/products/mechanical-bull.html): Starting at $700 for 3 hours. Trained operator included. 16-foot inflatable safety ring. Safe for ages 6+ through adults. Extra hours $150 each. $1M liability insurance.
+
+## Event Tents
+- [10x20 Tent](https://redesign-sepia.vercel.app/products/tent-10x20.html): $200/day, seats 20-30
+- [15x15 Tent](https://redesign-sepia.vercel.app/products/tent-15x15.html): $200/day, seats 20-30
+- [20x20 Tent](https://redesign-sepia.vercel.app/products/tent-20x20.html): $330/day, seats 30-40
+- [20x30 Tent](https://redesign-sepia.vercel.app/products/tent-20x30.html): $420/day, seats 50-60
+- [High Peak 20x40 Tent](https://redesign-sepia.vercel.app/products/tent-20x40.html): $530/day, seats 80-100
+- [20x60 Tent](https://redesign-sepia.vercel.app/products/tent-20x60.html): $830/day, seats 120-150
+- [20x80 Tent](https://redesign-sepia.vercel.app/products/tent-20x80.html): $1,080/day, seats 160-200
+- [High Peak 30x30 Tent](https://redesign-sepia.vercel.app/products/tent-30x30.html): $680/day, seats 60-80
+
+## Tables and Chairs
+- [Folding Chair](https://redesign-sepia.vercel.app/products/chairs.html): $2/each, commercial-grade steel, 300 lb capacity
+- [White Resin Folding Chair](https://redesign-sepia.vercel.app/products/white-resin-folding-chair-rental.html): $4/each, premium for weddings, 500 lb capacity
+- [Premium Chiavari Chair](https://redesign-sepia.vercel.app/products/premium-chiavari-chair-rental.html): $5/each, gold with cushion, 500 lb capacity
+- [Rectangular Table 6ft/8ft](https://redesign-sepia.vercel.app/products/tables-6-ft.html): $8/each
+- [Round Table 48"/60"](https://redesign-sepia.vercel.app/products/round-tables.html): $10-$12/each
+- [Throne Chair](https://redesign-sepia.vercel.app/products/throne-chair.html): $175/day, gold or silver finish
+
+## Party Supplies
+- [Bluetooth Speaker](https://redesign-sepia.vercel.app/products/speakers.html): $65/day
+- [Party Cooler](https://redesign-sepia.vercel.app/products/coolers.html): $16/day, holds 100+ cans
+- [Portable Generator](https://redesign-sepia.vercel.app/products/generators.html): $80/day, gas included
+- [Outdoor Heater](https://redesign-sepia.vercel.app/products/heaters.html): $170/day, propane included
+- [Party Barrel](https://redesign-sepia.vercel.app/products/party-barrel-rental.html): $49.99/day, rustic accent
+- [LED String Lights 120ft](https://redesign-sepia.vercel.app/products/led-string-light-rental-120ft.html): $50/day
+- [Tent Sidewall 20ft Panel](https://redesign-sepia.vercel.app/products/tent-sidewall-rental-20ft-panel.html): $25/each, window or solid
+- [Dance Floor](https://redesign-sepia.vercel.app/products/dance-floor.html): $350-$550, 12x12 to 21x21
+
+## Party Packages (Save $81-$801)
+- [Summer Splash Party Package](https://redesign-sepia.vercel.app/products/summer-splash-party-package.html): $749 (save $81), water slide + tent + tables + chairs + speaker + cooler
+- [Double Splash Fiesta Package](https://redesign-sepia.vercel.app/products/double-splash-fiesta-package.html): $1,199 (save $231), 2 water slides + tent + tables + chairs
+- [Beast Mode VIP Package](https://redesign-sepia.vercel.app/products/beast-mode-vip-package.html): $1,799 (save $801), mechanical bull + 2 water slides + tent + tables + chairs
+- [Party Package #1](https://redesign-sepia.vercel.app/products/package-1.html): $480, tent + tables + chairs + cooler
+
+## Policies
+- No deposit required to book
+- Free delivery and setup within 50 miles
+- All-day rental (up to 8 hours)
+- Free rescheduling for severe weather
+- $1 million liability insurance on every event
+- All equipment professionally cleaned and inspected before each rental
+
+## Optional
+
+- [Sitemap](https://redesign-sepia.vercel.app/sitemap.xml): XML sitemap with all pages
