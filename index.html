@@ -9,7 +9,8 @@
 <!-- QA: 93/100 | 2026-08-02 | GO -->
 <title>Pepe's Party Rental | Bounce Houses & Water Slides | Stafford, VA</title>
 <meta name="description" content="Bounce houses, water slides, mechanical bull, tents, tables & chairs. Free delivery & setup in Stafford, VA and Northern Virginia. No deposit. Book today!">
-<link rel="canonical" href="https://redesign-sepia.vercel.app/">
+<link rel="canonical" href="https://pepespartyrentall.com/">
+<link rel="icon" href="logo.png" type="image/png">
 <link rel="preload" as="image" href="hero-poster.jpg">
 <meta property="og:title" content="Pepe's Party Rental | Bounce Houses & Water Slides | Stafford, VA">
 <meta property="og:description" content="Bounce houses, water slides, mechanical bull, tents, tables & chairs. Free delivery & setup in Stafford, VA and Northern Virginia. No deposit. Book today!">
@@ -2645,7 +2646,7 @@ function renderCart(){
       +'<span class="cart-item-remove" onclick="removeFromCart('+i+')">'+(lang==='es'?'Eliminar':'Remove')+'</span>'
       +'</div>';
     return '<div class="cart-item">'
-      +'<div class="cart-item-img">'+(item.img?'<img src="'+item.img+'" alt="">':'')+'</div>'
+      +'<div class="cart-item-img">'+(item.img?'<img src="'+item.img+'" alt="'+esc(item.name)+'">':'')+'</div>'
       +'<div class="cart-item-info">'
       +'<h4>'+esc(item.name)+'</h4>'
       +'<div class="item-price">'+priceHtml+'</div>'
@@ -2698,7 +2699,7 @@ function renderCartUpsells(){
       var isPerUnit=p.unit==='/each';
       if(isPerUnit){
         return '<div class="cart-upsell-item" style="cursor:default;flex-wrap:wrap" data-upsell-id="'+p.id+'">'
-          +'<div class="cart-upsell-thumb">'+(p.img?'<img src="'+esc(p.img)+'" alt="">':'')+'</div>'
+          +'<div class="cart-upsell-thumb">'+(p.img?'<img src="'+esc(p.img)+'" alt="'+esc(p.name)+'">':'')+'</div>'
           +'<div class="cart-upsell-info" style="flex:1;min-width:0"><strong>'+esc(p.name)+'</strong><span>'+fmtPrice(p.price)+' '+(lang==='es'?'c/u':'each')+'</span></div>'
           +'<div class="upsell-qty-row">'
           +'<div class="qty-stepper">'
@@ -2711,7 +2712,7 @@ function renderCartUpsells(){
           +'</div>';
       }
       return '<div class="cart-upsell-item" onclick="quickAdd('+p.id+')">'
-        +'<div class="cart-upsell-thumb">'+(p.img?'<img src="'+esc(p.img)+'" alt="">':'')+'</div>'
+        +'<div class="cart-upsell-thumb">'+(p.img?'<img src="'+esc(p.img)+'" alt="'+esc(p.name)+'">':'')+'</div>'
         +'<div class="cart-upsell-info"><strong>'+esc(p.name)+'</strong><span>'+fmtPrice(p.price)+'</span></div>'
         +'<div class="cart-upsell-add">'+(lang==='es'?'+ Agregar':'+ Add')+'</div>'
         +'</div>';
@@ -3294,7 +3295,7 @@ function addUpsells(){
   <div class="ppr-chat__window" id="ppr-chat-window" hidden>
     <div class="ppr-chat__header">
       <div class="ppr-header-avatar-wrap">
-        <img class="ppr-header-mascot" src="https://cdn.shopify.com/s/files/1/1005/0879/5163/files/YourEssence_4.png?v=1777436730" alt="" width="44" height="44">
+        <img class="ppr-header-mascot" src="https://cdn.shopify.com/s/files/1/1005/0879/5163/files/YourEssence_4.png?v=1777436730" alt="Pepe's Party Rental mascot" width="44" height="44">
         <span class="ppr-header-dot"></span>
       </div>
       <div class="ppr-chat__header-info">
