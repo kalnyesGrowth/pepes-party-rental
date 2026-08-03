@@ -967,6 +967,10 @@ input, select, textarea { font-family: inherit; font-size: 1rem; }
   margin-top: 12px; font-size: 0.78rem; color: var(--text-light);
 }
 .checkout-secure svg { width: 14px; height: 14px; }
+.sms-consent { margin: 16px 0 8px; }
+.sms-consent label { display: flex; gap: 10px; align-items: flex-start; font-size: 0.78rem; color: var(--text-secondary); line-height: 1.5; cursor: pointer; }
+.sms-consent input[type="checkbox"] { margin-top: 3px; flex-shrink: 0; width: 16px; height: 16px; accent-color: var(--orange); }
+.sms-consent a { color: var(--orange); text-decoration: underline; }
 
 /* ===== CART ICON PULSE ===== */
 @keyframes cartPulse {
@@ -2176,6 +2180,12 @@ input, select, textarea { font-family: inherit; font-size: 1rem; }
       <div class="checkout-field">
         <label data-en="Delivery Address" data-es="Direccion de Entrega">Delivery Address <span class="req">*</span></label>
         <input type="text" id="cAddress" placeholder="Full delivery address" required autocomplete="street-address" maxlength="200">
+      </div>
+      <div class="sms-consent">
+        <label>
+          <input type="checkbox" id="cSmsConsent">
+          <span data-en="I agree to receive automated text messages from Pepe's Party Rental LLC including booking confirmations, delivery reminders, and promotional offers. Message frequency varies. Message and data rates may apply. Reply STOP to opt out, HELP for help. Consent is not a condition of purchase. View our <a href='privacy-policy.html' target='_blank'>Privacy Policy</a> and <a href='terms.html' target='_blank'>Terms</a>." data-es="Acepto recibir mensajes de texto automatizados de Pepe's Party Rental LLC incluyendo confirmaciones de reserva, recordatorios de entrega y ofertas promocionales. La frecuencia de mensajes varia. Pueden aplicarse tarifas de mensajes y datos. Responda STOP para cancelar, HELP para ayuda. El consentimiento no es condicion de compra. Vea nuestra <a href='privacy-policy.html' target='_blank'>Politica de Privacidad</a> y <a href='terms.html' target='_blank'>Terminos</a>.">I agree to receive automated text messages from Pepe's Party Rental LLC including booking confirmations, delivery reminders, and promotional offers. Message frequency varies. Message and data rates may apply. Reply STOP to opt out, HELP for help. Consent is not a condition of purchase. View our <a href="privacy-policy.html" target="_blank">Privacy Policy</a> and <a href="terms.html" target="_blank">Terms</a>.</span>
+        </label>
       </div>
       <button class="btn-complete" onclick="completeBooking()">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
