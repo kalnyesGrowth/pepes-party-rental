@@ -7,7 +7,6 @@
 <meta http-equiv="Content-Security-Policy" content="default-src 'self' 'unsafe-inline' data:; img-src 'self' https://cdn.shopify.com https://pepespartyrentall.com https://images.pexels.com https://d8j0ntlcm91z4.cloudfront.net data:; font-src 'self' data:; script-src 'self' 'unsafe-inline' https://boddsbxlaytcrkpuckyn.supabase.co; connect-src 'self' https://boddsbxlaytcrkpuckyn.supabase.co; frame-src 'none'; frame-ancestors 'none'; object-src 'none'; base-uri 'self'; form-action 'self';">
 <meta name="referrer" content="strict-origin-when-cross-origin">
 <meta http-equiv="X-Content-Type-Options" content="nosniff">
-<!-- QA: 93/100 | 2026-08-02 | GO -->
 <title>Pepe's Party Rental | Bounce Houses & Water Slides | Stafford, VA</title>
 <meta name="description" content="Bounce houses, water slides, mechanical bull, tents, tables & chairs. Free delivery & setup in Stafford, VA and Northern Virginia. No deposit. Book today!">
 <link rel="canonical" href="https://pepespartyrentall.com/">
@@ -275,15 +274,15 @@ input, select, textarea { font-family: inherit; font-size: 1rem; }
   color: rgba(255,255,255,0.7); line-height: 1.6;
   max-width: 560px; margin: 0 auto 36px;
 }
-.hero-cta {
+.hero-cta, .section-cta {
   display: inline-flex; align-items: center; gap: 10px;
   padding: 16px 36px; border-radius: 50px;
   border: 2px solid rgba(255,255,255,0.9); background: transparent;
   color: #fff; font-size: 1.05rem; font-weight: 700;
   transition: all 0.3s;
 }
-.hero-cta:hover { background: #fff; color: var(--dark); }
-.hero-cta svg { width: 18px; height: 18px; }
+.hero-cta:hover, .section-cta:hover { background: #fff; color: var(--dark); }
+.hero-cta svg, .section-cta svg { width: 18px; height: 18px; }
 .hero-trust {
   display: flex; justify-content: center; gap: 32px;
   margin-top: 48px; flex-wrap: wrap;
@@ -762,8 +761,8 @@ input, select, textarea { font-family: inherit; font-size: 1rem; }
   margin-bottom: 14px; text-wrap: balance;
 }
 .cta-banner p { color: rgba(255,255,255,0.65); font-size: 1.05rem; margin-bottom: 28px; }
-.cta-banner .hero-cta { border-color: var(--orange); }
-.cta-banner .hero-cta:hover { background: var(--orange); color: #fff; }
+.cta-banner .section-cta { border-color: var(--orange); }
+.cta-banner .section-cta:hover { background: var(--orange); color: #fff; }
 
 /* ===== SMS CONSENT NOTICE ===== */
 .sms-notice { background: var(--surface); border-top: 1px solid rgba(255,255,255,0.06); padding: 40px 0; }
@@ -1579,7 +1578,7 @@ input, select, textarea { font-family: inherit; font-size: 1rem; }
       </div>
       <div class="products-grid" id="featuredGrid"></div>
       <div style="text-align:center;margin-top:36px">
-        <a class="hero-cta" href="#" onclick="showPage('catalog')" style="border-color:var(--orange);color:var(--orange);">
+        <a class="section-cta" href="#" onclick="showPage('catalog')" style="border-color:var(--orange);color:var(--orange);">
           <span data-en="View All Rentals" data-es="Ver Todos los Alquileres">View All Rentals</span>
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:16px;height:16px"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
         </a>
@@ -1605,7 +1604,7 @@ input, select, textarea { font-family: inherit; font-size: 1rem; }
             <span data-en="Book The Beast" data-es="Reservar The Beast">Book The Beast</span>
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="18" height="18"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
           </a>
-          <a class="hero-cta" href="#" onclick="showPage('bull');event.preventDefault()" style="border-color:rgba(255,255,255,0.3);font-size:0.92rem;padding:12px 24px">
+          <a class="section-cta" href="#" onclick="showPage('bull');event.preventDefault()" style="border-color:rgba(255,255,255,0.3);font-size:0.92rem;padding:12px 24px">
             <span data-en="Learn More" data-es="Ver Mas">Learn More</span>
           </a>
         </div>
@@ -1856,7 +1855,7 @@ input, select, textarea { font-family: inherit; font-size: 1rem; }
     <div class="cta-banner-inner">
       <h2 data-en="Ready to Throw the Best Party in Town?" data-es="Listo Para Hacer La Mejor Fiesta Del Pueblo?">Ready to Throw the Best Party in Town?</h2>
       <p data-en="Weekends book 2-3 weeks out. Reserve your date today." data-es="Los fines de semana se reservan con 2-3 semanas de anticipacion. Reserva tu fecha hoy.">Weekends book 2-3 weeks out. Reserve your date today.</p>
-      <a class="hero-cta" href="tel:+15712445255">
+      <a class="section-cta" href="tel:+15712445255">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:18px;height:18px"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
         <span data-en="Call (571) 244-5255" data-es="Llamar (571) 244-5255">Call (571) 244-5255</span>
       </a>
@@ -1892,7 +1891,7 @@ input, select, textarea { font-family: inherit; font-size: 1rem; }
               <span data-en="Book The Beast" data-es="Reservar The Beast">Book The Beast</span>
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="18" height="18"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
             </a>
-            <a class="hero-cta" href="tel:+15712445255" style="border-color:rgba(255,255,255,0.3)">
+            <a class="section-cta" href="tel:+15712445255" style="border-color:rgba(255,255,255,0.3)">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:18px;height:18px"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
               <span data-en="Call Us" data-es="Llamanos">Call Us</span>
             </a>
@@ -2105,7 +2104,7 @@ input, select, textarea { font-family: inherit; font-size: 1rem; }
           <span data-en="Book The Beast" data-es="Reservar The Beast">Book The Beast</span>
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="18" height="18"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
         </a>
-        <a class="hero-cta" href="tel:+15712445255" style="border-color:var(--orange)">
+        <a class="section-cta" href="tel:+15712445255" style="border-color:var(--orange)">
           <span data-en="Call (571) 244-5255" data-es="Llamar (571) 244-5255">Call (571) 244-5255</span>
         </a>
       </div>
