@@ -48,7 +48,8 @@ const PRODUCTS = [
   {id:50,name:"Summer Splash Party Package",handle:"summer-splash-party-package",price:749,cmp:830,cat:"packages",img:"https://cdn.shopify.com/s/files/1/1005/0879/5163/files/hf_20260601_082135_3145a3ee-d89a-4975-ad31-4c2b70d50e15.png?width=600",desc:"Everything you need for the perfect summer party in one package. Includes a water slide, 10x20 event tent, 4 rectangular tables, 24 folding chairs, Bluetooth speaker, and party cooler. Save $81 compared to renting each item separately. The most popular package for backyard summer birthday parties.",includes:["1 Water Slide","Event Tent 10x20","4 Rectangular Tables","24 Folding Chairs","Bluetooth Speaker","Party Cooler"],specs:["Complete party setup","Water slide included","10x20 tent coverage","Seating for 24","Music + drinks covered","Save $81 vs. separate"]},
   {id:51,name:"Double Splash Fiesta Package",handle:"double-splash-fiesta-package",price:1199,cmp:1430,cat:"packages",img:"https://cdn.shopify.com/s/files/1/1005/0879/5163/files/hf_20260601_082138_c4c9e8f5-0ebc-45d5-a184-4b4f661a0f46.png?width=600",desc:"Double the water slides, bigger tent, more tables. This package is built for larger summer parties with 30+ guests. Includes TWO water slides, a 20x20 event tent, 6 rectangular tables, 36 folding chairs, Bluetooth speaker, and party cooler. Save $231 over individual rentals.",includes:["2 Water Slides","Event Tent 20x20","6 Rectangular Tables","36 Folding Chairs","Bluetooth Speaker","Party Cooler"],specs:["2 water slides","20x20 tent coverage","Seating for 36","Music + drinks covered","Perfect for 30+ guests","Save $231 vs. separate"]},
   {id:52,name:"Beast Mode VIP Package",handle:"beast-mode-vip-package",price:1799,cmp:2600,cat:"packages",img:"https://cdn.shopify.com/s/files/1/1005/0879/5163/files/hf_20260601_082142_cc85d853-0898-43da-a840-6a3437358115.png?width=600",desc:"The ultimate party package. The Beast mechanical bull, TWO water slides, a 20x20 tent, 8 tables, and 48 chairs. This is the package that makes your event legendary. Save $801 compared to booking everything individually. Perfect for milestone birthdays, graduation blowouts, and community events that want to go all out.",includes:["The Beast Mechanical Bull (3hr)","2 Water Slides","Event Tent 20x20","8 Rectangular Tables","48 Folding Chairs"],specs:["Mechanical bull + operator","2 water slides","20x20 tent coverage","Seating for 48","The ultimate party","Save $801 vs. separate"]},
-  {id:53,name:"Party Package #1 - Tent + Tables & Chairs",handle:"package-1",price:480,cat:"packages",img:"https://cdn.shopify.com/s/files/1/1005/0879/5163/files/rn-image_picker_lib_temp_ca8c4f45-e3bb-4eb8-acb7-cdd9eff0ad2b.png?width=600",desc:"Our starter party package with everything you need for a covered outdoor event. Includes a 20x20 event tent, 6 rectangular tables, 48 folding chairs, and a party cooler. Perfect for graduation parties, baby showers, cookouts, and family reunions where you need shade and seating without the inflatables.",includes:["Event Tent 20x20","6 Rectangular Tables","48 Folding Chairs","Party Cooler"],specs:["20x20 tent coverage","Seating for 48","Cooler included","No inflatables needed","Perfect starter package","Great for formal events"]}
+  {id:53,name:"Party Package #1 - Tent + Tables & Chairs",handle:"package-1",price:480,cat:"packages",img:"https://cdn.shopify.com/s/files/1/1005/0879/5163/files/rn-image_picker_lib_temp_ca8c4f45-e3bb-4eb8-acb7-cdd9eff0ad2b.png?width=600",desc:"Our starter party package with everything you need for a covered outdoor event. Includes a 20x20 event tent, 6 rectangular tables, 48 folding chairs, and a party cooler. Perfect for graduation parties, baby showers, cookouts, and family reunions where you need shade and seating without the inflatables.",includes:["Event Tent 20x20","6 Rectangular Tables","48 Folding Chairs","Party Cooler"],specs:["20x20 tent coverage","Seating for 48","Cooler included","No inflatables needed","Perfect starter package","Great for formal events"]},
+  {id:54,name:"Bobcat MT100 Mini Track Loader",handle:"bobcat-mt100-mini-track-loader",price:249,cat:"equipment",img:"/images/bobcat-mt100.jpg",desc:"Real digging, grading, and hauling power in a machine that fits through a 36-inch gate. The Bobcat MT100 mini track loader packs a 24.8 hp diesel engine and 1,000 lb rated operating capacity into a compact frame with simple joystick controls. Move gravel and mulch in minutes instead of hours, regrade your yard, dig trenches, and clear debris. Rent it for the day and skip the big-box rental counter. Standard bucket included, delivered fueled and ready to work.",specs:["35.6 in wide - fits through 36 in gates","24.8 hp diesel engine","1,000 lb rated operating capacity","3,390 lb operating weight","Standard bucket included","Delivered fueled and ready"]}
 ];
 
 const CATS = {
@@ -59,7 +60,8 @@ const CATS = {
   tents: {name:"Event Tents",singular:"Event Tent"},
   tables: {name:"Tables & Chairs",singular:"Table & Chair"},
   supplies: {name:"Party Supplies",singular:"Party Supply"},
-  packages: {name:"Party Packages",singular:"Party Package"}
+  packages: {name:"Party Packages",singular:"Party Package"},
+  equipment: {name:"Equipment Rentals",singular:"Mini Track Loader"}
 };
 
 const SERVICE_AREAS = [
@@ -76,7 +78,8 @@ const CAT_KEYWORDS = {
   tents: ["event tent rental","party tent rental","wedding tent rental","canopy rental","outdoor tent rental","tent rental for events"],
   tables: ["table and chair rental","party furniture rental","folding chair rental","table rental for events","wedding chair rental"],
   supplies: ["party equipment rental","party supply rental","event equipment rental","party accessory rental"],
-  packages: ["party package rental","all-inclusive party rental","party bundle rental","complete party rental package"]
+  packages: ["party package rental","all-inclusive party rental","party bundle rental","complete party rental package"],
+  equipment: ["mini track loader rental","bobcat mt100 rental","skid steer rental","compact track loader rental","bobcat rental stafford va","equipment rental near me"]
 };
 
 const GENERAL_FAQS = [
@@ -144,6 +147,13 @@ const CAT_FAQS = {
     {q:"Do packages include delivery and setup?",a:"Yes. Every package includes free delivery, professional setup, and takedown within 50 miles of Stafford, VA. Our crew handles all equipment. For packages with mechanical bull, a trained operator is included for the full rental period."},
     {q:"Can I add items to a package?",a:"Absolutely. You can add any individual rental to a package at its regular price. Popular add-ons include LED string lights ($50), extra coolers ($16), heaters for evening events ($150), and dance floor panels (starting at $350)."},
     {q:"Which package is right for my event?",a:"Party Package #1 (tent + tables + chairs, $480) is great for graduations and showers. Summer Splash ($749) adds a water slide. Double Splash ($1,199) is built for 30+ guests. Beast Mode VIP ($1,799) is the ultimate with mechanical bull + 2 water slides."}
+  ],
+  equipment: [
+    {q:"Do I need experience to operate the Bobcat MT100?",a:"No heavy-equipment license is required. The MT100 uses simple joystick controls, and we walk you through operation and safety basics at delivery. Most first-time renters are moving dirt within 15 minutes. You must be 18 or older to operate it."},
+    {q:"What can the MT100 actually do?",a:"The MT100 digs, grades, hauls, and clears. Renters use it for moving gravel and mulch, regrading yards, trenching, tearing out old landscaping, hauling debris, and prepping ground for patios, fences, and decks. The 24.8 hp diesel engine and 1,000 lb rated operating capacity handle jobs that would take a full weekend with a wheelbarrow."},
+    {q:"Will it fit through my backyard gate?",a:"In most cases, yes. The MT100 is 35.6 inches wide, so it fits through a standard 36-inch gate opening. Measure your narrowest access point before booking and we will confirm clearance."},
+    {q:"Does the rental include fuel and a bucket?",a:"The machine arrives with the standard bucket attached and a full tank of diesel. If you run low during a big job, refuel with standard diesel. Return-day fuel top-offs are billed at cost."},
+    {q:"Will the tracks damage my lawn or driveway?",a:"The MT100 rides on rubber tracks that are much gentler than steel and spread the machine's weight evenly. Normal operation on concrete, asphalt, and firm ground is safe. On soft, wet lawns, some track marks are possible, as with any tracked machine. We recommend working when the ground is dry."}
   ]
 };
 
@@ -164,7 +174,8 @@ function buildSeoContent(product) {
     tents: "outdoor weddings, reception dinners, graduation parties, corporate picnics, family reunions, quinceañeras, baby showers, and memorial services",
     tables: "weddings, quinceañeras, graduation parties, corporate events, banquets, family reunions, church events, and community gatherings",
     supplies: "outdoor parties, tent events, evening celebrations, backyard gatherings, corporate picnics, and large-scale community events",
-    packages: "birthday parties, graduation celebrations, summer cookouts, family reunions, block parties, quinceañeras, and community events"
+    packages: "birthday parties, graduation celebrations, summer cookouts, family reunions, block parties, quinceañeras, and community events",
+    equipment: "landscaping projects, yard regrading, trenching, gravel and mulch moving, debris cleanup, fence and deck prep, and DIY outdoor renovations"
   };
 
   const setupInfo = {
@@ -175,7 +186,8 @@ function buildSeoContent(product) {
     tents: "Tent installation is handled by our experienced crew and takes 2-3 hours depending on the tent size. We stake or weight the frame, install the vinyl canopy, and add any sidewalls or lighting you have ordered. Our crew will work with you on positioning to maximize your event layout.",
     tables: "Tables and chairs are delivered and set up at your venue. Tell us your preferred layout (rows, rounds, U-shape, classroom style) and we arrange everything. Setup for 50 chairs and 6 tables takes approximately 30-45 minutes. We return after your event for pickup.",
     supplies: "Party supply items are delivered with your main rental order. Generators are fueled, tested, and positioned near your inflatables. Speakers are charged and paired with your phone before we leave. Coolers are placed where you need them. Heaters are positioned and tested for safe operation.",
-    packages: "Package delivery and setup is coordinated so everything arrives together and is ready before your event. Our crew handles the complete setup: tent installation, table and chair arrangement, inflatable inflation, and equipment positioning. One delivery, one crew, everything done."
+    packages: "Package delivery and setup is coordinated so everything arrives together and is ready before your event. Our crew handles the complete setup: tent installation, table and chair arrangement, inflatable inflation, and equipment positioning. One delivery, one crew, everything done.",
+    equipment: "We trailer the MT100 to your driveway or job site, unload it, and walk you through the controls and safety basics before we leave. The machine arrives fueled with the bucket attached, ready to work. Keep a clear, level spot available for trailer unloading. When your rental day is done, we come back and haul it away."
   };
 
   const overview = `<section class="seo-section">
@@ -245,7 +257,8 @@ function buildSeoContent(product) {
     tents: `${esc(nameTheUp)} provides shade and shelter for outdoor birthday parties. Guests stay comfortable while the kids play, and the setup looks polished and professional.`,
     tables: `${esc(nameTheUp)} provides comfortable seating for birthday party guests. Proper tables and chairs make dining, cake cutting, and gift opening organized and enjoyable.`,
     supplies: `${esc(nameTheUp)} is a popular add-on for birthday parties. The right equipment makes your outdoor celebration run smoothly from start to finish.`,
-    packages: `${esc(nameTheUp)} is our most popular choice for birthday parties. Everything arrives together, fully set up, so you can focus on celebrating.`
+    packages: `${esc(nameTheUp)} is our most popular choice for birthday parties. Everything arrives together, fully set up, so you can focus on celebrating.`,
+    equipment: `${esc(nameTheUp)} gets your yard event-ready fast. Regrade the lawn, clear old landscaping, and haul in gravel or mulch before the big day, in hours instead of weekends.`
   };
 
   const eventUses = `<section class="seo-section">

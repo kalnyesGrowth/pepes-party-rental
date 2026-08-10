@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<!-- QA: 92/100 | 2026-08-03 | GO -->
+<!-- QA: 90/100 | 2026-08-10 | GO -->
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta http-equiv="Content-Security-Policy" content="default-src 'self' 'unsafe-inline' data:; img-src 'self' https://cdn.shopify.com https://pepespartyrentall.com https://images.pexels.com https://d8j0ntlcm91z4.cloudfront.net data:; font-src 'self' data:; script-src 'self' 'unsafe-inline' https://boddsbxlaytcrkpuckyn.supabase.co; connect-src 'self' https://boddsbxlaytcrkpuckyn.supabase.co; frame-src 'none'; frame-ancestors 'none'; object-src 'none'; base-uri 'self'; form-action 'self';">
@@ -884,6 +884,35 @@ input, select, textarea { font-family: inherit; font-size: 1rem; }
 }
 .product-card-tag.popular { background: #fef3c7; color: #92400e; }
 .product-card-tag.hot { background: #fee2e2; color: #991b1b; }
+.product-card-tag.new { background: #dcfce7; color: #166534; }
+
+/* ===== NEW ADDITION SPOTLIGHT ===== */
+.special-spotlight { background: var(--bg-alt, #f8f7f5); }
+.special-card {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 40px; align-items: center;
+  background: #fff; border: 1px solid var(--border, #e8e5e0); border-radius: 20px;
+  padding: 36px; box-shadow: var(--shadow-sm, 0 2px 12px rgba(0,0,0,0.05));
+}
+.special-img { position: relative; border-radius: 14px; overflow: hidden; background: #f4f3f1; }
+.special-img img { width: 100%; height: auto; display: block; }
+.special-img .special-badge {
+  position: absolute; top: 14px; left: 14px; background: #166534; color: #fff;
+  padding: 6px 12px; border-radius: 8px; font-size: 0.72rem; font-weight: 800;
+  text-transform: uppercase; letter-spacing: 0.05em;
+}
+.special-content h3 { font-size: clamp(1.4rem, 3vw, 2rem); font-weight: 800; margin: 10px 0 12px; }
+.special-content .special-kicker { color: var(--orange); font-weight: 800; font-size: 0.78rem; text-transform: uppercase; letter-spacing: 0.08em; }
+.special-content p { color: var(--text-secondary, #666); line-height: 1.65; margin-bottom: 16px; }
+.special-specs { list-style: none; padding: 0; margin: 0 0 20px; display: grid; grid-template-columns: 1fr 1fr; gap: 8px 16px; }
+.special-specs li { font-size: 0.86rem; color: var(--text-secondary, #555); display: flex; align-items: center; gap: 8px; }
+.special-specs li::before { content: ""; width: 6px; height: 6px; border-radius: 50%; background: var(--orange); flex-shrink: 0; }
+.special-price { display: flex; align-items: baseline; gap: 6px; margin-bottom: 20px; }
+.special-price .price { font-size: 2rem; font-weight: 800; color: var(--orange); }
+.special-price .unit { color: var(--text-secondary, #777); font-size: 0.95rem; }
+@media (max-width: 860px) {
+  .special-card { grid-template-columns: 1fr; padding: 22px; gap: 22px; }
+  .special-specs { grid-template-columns: 1fr; }
+}
 
 /* ===== ADD TO CART BUTTON ===== */
 .btn-add-cart {
@@ -1582,6 +1611,39 @@ input, select, textarea { font-family: inherit; font-size: 1rem; }
           <span data-en="View All Rentals" data-es="Ver Todos los Alquileres">View All Rentals</span>
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:16px;height:16px"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
         </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- NEW ADDITION SPOTLIGHT -->
+  <section class="section special-spotlight">
+    <div class="container">
+      <div class="section-header">
+        <div class="section-label" data-en="NEW ADDITION" data-es="NUEVA ADICION">NEW ADDITION</div>
+        <h2 class="section-title" data-en="Now Renting: Bobcat MT100 Mini Track Loader" data-es="Ahora en Alquiler: Bobcat MT100 Mini Cargador de Orugas">Now Renting: Bobcat MT100 Mini Track Loader</h2>
+        <p class="section-desc" data-en="Same-day yard projects without the big-box rental counter. Dig, grade, and haul with real Bobcat power." data-es="Proyectos de patio el mismo dia sin filas de tiendas grandes. Excava, nivela y transporta con la potencia real de Bobcat.">Same-day yard projects without the big-box rental counter. Dig, grade, and haul with real Bobcat power.</p>
+      </div>
+      <div class="special-card">
+        <div class="special-img">
+          <div class="special-badge" data-en="Special" data-es="Especial">Special</div>
+          <img src="images/bobcat-mt100.jpg" alt="Bobcat MT100 Mini Track Loader rental" loading="lazy" width="900" height="900">
+        </div>
+        <div class="special-content">
+          <div class="special-kicker" data-en="EQUIPMENT RENTAL" data-es="ALQUILER DE EQUIPO">EQUIPMENT RENTAL</div>
+          <h3 data-en="Bobcat MT100 Mini Track Loader" data-es="Bobcat MT100 Mini Cargador de Orugas">Bobcat MT100 Mini Track Loader</h3>
+          <p data-en="Move gravel in minutes instead of hours. The MT100 fits through a 36-inch gate and digs, grades, and hauls like a machine three times its size. Simple joystick controls, walk-through at delivery, no experience needed." data-es="Mueve grava en minutos en vez de horas. El MT100 pasa por una puerta de 36 pulgadas y excava, nivela y transporta como una maquina tres veces su tamano. Controles de joystick simples, orientacion al entregar, no se necesita experiencia.">Move gravel in minutes instead of hours. The MT100 fits through a 36-inch gate and digs, grades, and hauls like a machine three times its size. Simple joystick controls, walk-through at delivery, no experience needed.</p>
+          <ul class="special-specs">
+            <li data-en="24.8 hp diesel engine" data-es="Motor diesel de 24.8 hp">24.8 hp diesel engine</li>
+            <li data-en="1,000 lb operating capacity" data-es="Capacidad operativa de 1,000 lb">1,000 lb operating capacity</li>
+            <li data-en="Fits through 36-inch gates" data-es="Pasa por puertas de 36 pulgadas">Fits through 36-inch gates</li>
+            <li data-en="Bucket included, delivered fueled" data-es="Cucharon incluido, entregado con combustible">Bucket included, delivered fueled</li>
+          </ul>
+          <div class="special-price"><span class="price">$249</span><span class="unit" data-en="/day" data-es="/dia">/day</span></div>
+          <a class="section-cta" href="products/bobcat-mt100-mini-track-loader.html" style="border-color:var(--orange);color:var(--orange);">
+            <span data-en="View Details &amp; Book" data-es="Ver Detalles y Reservar">View Details &amp; Book</span>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:16px;height:16px"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </a>
+        </div>
       </div>
     </div>
   </section>
@@ -2329,7 +2391,8 @@ var P = [
   {id:50,name:"Summer Splash Party Package",handle:"summer-splash-party-package",price:749,cmp:830,cat:"packages",img:"https://cdn.shopify.com/s/files/1/1005/0879/5163/files/hf_20260601_082135_3145a3ee-d89a-4975-ad31-4c2b70d50e15.png?width=600",desc:"Water slide + 10x20 tent + tables + chairs + speaker + cooler.",includes:["1 Water Slide","Event Tent 10x20","4 Rectangular Tables","24 Folding Chairs","Bluetooth Speaker","Party Cooler"]},
   {id:51,name:"Double Splash Fiesta Package",handle:"double-splash-fiesta-package",price:1199,cmp:1430,cat:"packages",img:"https://cdn.shopify.com/s/files/1/1005/0879/5163/files/hf_20260601_082138_c4c9e8f5-0ebc-45d5-a184-4b4f661a0f46.png?width=600",desc:"Two water slides + tent + full table setup with speaker and cooler.",includes:["2 Water Slides","Event Tent 20x20","6 Rectangular Tables","36 Folding Chairs","Bluetooth Speaker","Party Cooler"]},
   {id:52,name:"Beast Mode VIP Package",handle:"beast-mode-vip-package",price:1799,cmp:2600,cat:"packages",img:"https://cdn.shopify.com/s/files/1/1005/0879/5163/files/hf_20260601_082142_cc85d853-0898-43da-a840-6a3437358115.png?width=600",desc:"Mechanical bull + 2 water slides + full tent setup. The ultimate party.",includes:["The Beast Mechanical Bull (3hr)","2 Water Slides","Event Tent 20x20","8 Rectangular Tables","48 Folding Chairs"]},
-  {id:53,name:"Party Package #1 - Tent + Tables & Chairs",handle:"package-1",price:480,cat:"packages",img:"https://cdn.shopify.com/s/files/1/1005/0879/5163/files/rn-image_picker_lib_temp_ca8c4f45-e3bb-4eb8-acb7-cdd9eff0ad2b.png?width=600",desc:"Tent, 6 tables, 48 chairs, and cooler. Free delivery and setup.",includes:["Event Tent 20x20","6 Rectangular Tables","48 Folding Chairs","Party Cooler"]}
+  {id:53,name:"Party Package #1 - Tent + Tables & Chairs",handle:"package-1",price:480,cat:"packages",img:"https://cdn.shopify.com/s/files/1/1005/0879/5163/files/rn-image_picker_lib_temp_ca8c4f45-e3bb-4eb8-acb7-cdd9eff0ad2b.png?width=600",desc:"Tent, 6 tables, 48 chairs, and cooler. Free delivery and setup.",includes:["Event Tent 20x20","6 Rectangular Tables","48 Folding Chairs","Party Cooler"]},
+  {id:54,name:"Bobcat MT100 Mini Track Loader",handle:"bobcat-mt100-mini-track-loader",price:249,cat:"equipment",img:"images/bobcat-mt100.jpg"}
 ];
 
 var CATS = [
@@ -2340,7 +2403,8 @@ var CATS = [
   {key:"tents",name:"Event Tents",nameEs:"Carpas para Eventos",count:8,img:"https://pepespartyrentall.com/cdn/shop/files/hf_20260223_045345_044fd21c-5b1a-44bf-84aa-e6e42dbe833d.png?v=1771822533&width=600"},
   {key:"tables",name:"Tables & Chairs",nameEs:"Mesas y Sillas",count:6,img:"https://pepespartyrentall.com/cdn/shop/files/hf_20260223_045149_62d3ef2c-d454-4238-b680-deae80bf130c.png?v=1771822652&width=600"},
   {key:"supplies",name:"Party Supplies",nameEs:"Suministros de Fiesta",count:10,img:"https://pepespartyrentall.com/cdn/shop/files/Screenshot_2026-02-22_at_11.54.25_PM.png?v=1771822499&width=600"},
-  {key:"packages",name:"Summer Packages",nameEs:"Paquetes de Verano",count:4,img:"https://pepespartyrentall.com/cdn/shop/files/hf_20260223_044627_5c13b09d-3184-4abc-88ed-343be3915ebc.png?v=1771822094&width=600"}
+  {key:"packages",name:"Summer Packages",nameEs:"Paquetes de Verano",count:4,img:"https://pepespartyrentall.com/cdn/shop/files/hf_20260223_044627_5c13b09d-3184-4abc-88ed-343be3915ebc.png?v=1771822094&width=600"},
+  {key:"equipment",name:"Equipment Rentals",nameEs:"Alquiler de Equipo",count:1,img:"images/bobcat-mt100.jpg"}
 ];
 
 var REVIEWS = [
@@ -2377,6 +2441,7 @@ var currentFilter = 'all';
 var currentProduct = null;
 var POPULAR_IDS = [16,21,50,52];
 var HOT_IDS = [19,14,11];
+var NEW_IDS = [54];
 var FREE_DELIVERY_MIN = 150;
 
 var UPSELL_RULES = [
@@ -2420,7 +2485,8 @@ function productCard(p){
   var imgHtml=p.img?'<img src="'+esc(p.img)+'" alt="'+esc(p.name)+'" loading="lazy" width="300" height="300">':'';
   var saveBadge=p.cmp?'<div class="product-card-badge">'+(lang==='es'?'AHORRA':'SAVE')+' '+fmtPrice(p.cmp-p.price)+'</div>':'';
   var tagHtml='';
-  if(POPULAR_IDS.indexOf(p.id)!==-1) tagHtml='<div class="product-card-tag popular">'+(lang==='es'?'Popular':'Popular')+'</div>';
+  if(NEW_IDS.indexOf(p.id)!==-1) tagHtml='<div class="product-card-tag new">'+(lang==='es'?'Nuevo':'New')+'</div>';
+  else if(POPULAR_IDS.indexOf(p.id)!==-1) tagHtml='<div class="product-card-tag popular">'+(lang==='es'?'Popular':'Popular')+'</div>';
   else if(HOT_IDS.indexOf(p.id)!==-1) tagHtml='<div class="product-card-tag hot">'+(lang==='es'?'En Demanda':'Hot')+'</div>';
   var unit=p.unit||'/day';
   var compare=p.cmp?'<span class="compare">'+fmtPrice(p.cmp)+'</span>':'';
@@ -2441,7 +2507,7 @@ function productCard(p){
 }
 
 function renderFeatured(){
-  var featured=[16,21,8,11,19,24,50,52];
+  var featured=[54,16,21,8,11,19,24,50];
   var items=featured.map(function(id){return P.find(function(p){return p.id===id});}).filter(Boolean);
   var g=document.getElementById('featuredGrid');
   g.innerHTML=items.map(productCard).join('');
