@@ -1,0 +1,545 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Pepe's Party Rental - Directory Signup Info</title>
+<style>
+html, body { overflow-x: hidden; }
+* { margin:0; padding:0; box-sizing:border-box; }
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  background: #F5F5F5; color: #222; line-height: 1.6;
+}
+.header {
+  background: linear-gradient(135deg, #E8612D, #D4541F);
+  color: #fff; text-align: center; padding: 32px 20px;
+}
+.header h1 { font-size: 1.6rem; margin-bottom: 6px; }
+.header p { opacity: 0.9; font-size: 0.95rem; max-width: 500px; margin: 0 auto; }
+.lang-toggle {
+  position: fixed; top: 12px; right: 12px; z-index: 100;
+  background: #fff; border: 2px solid #E8612D; border-radius: 50px;
+  padding: 6px 16px; font-weight: 700; font-size: 0.85rem;
+  color: #E8612D; cursor: pointer;
+}
+.container { max-width: 700px; margin: 0 auto; padding: 24px 16px 120px; }
+
+.section-label {
+  display: flex; align-items: center; gap: 10px;
+  margin: 28px 0 14px; font-weight: 700; font-size: 1.1rem;
+}
+.badge-have {
+  background: #DCFCE7; color: #166534; padding: 3px 12px;
+  border-radius: 50px; font-size: 0.75rem; font-weight: 700;
+}
+.badge-need {
+  background: #FEF3C7; color: #92400E; padding: 3px 12px;
+  border-radius: 50px; font-size: 0.75rem; font-weight: 700;
+}
+.badge-action {
+  background: #FEE2E2; color: #991B1B; padding: 3px 12px;
+  border-radius: 50px; font-size: 0.75rem; font-weight: 700;
+}
+
+.card {
+  background: #fff; border-radius: 12px; padding: 20px;
+  margin-bottom: 12px; box-shadow: 0 1px 4px rgba(0,0,0,0.08);
+}
+.card.readonly { background: #F0FDF4; border: 1px solid #BBF7D0; }
+.card.needed { border: 2px solid #FCD34D; }
+.card.action { border: 2px solid #FCA5A5; }
+
+.field-row {
+  display: flex; justify-content: space-between; align-items: center;
+  padding: 8px 0; border-bottom: 1px solid #F0F0F0;
+}
+.field-row:last-child { border-bottom: none; }
+.field-label { font-size: 0.85rem; color: #666; flex-shrink: 0; }
+.field-value { font-weight: 600; text-align: right; font-size: 0.95rem; word-break: break-word; }
+
+.form-group { margin-bottom: 18px; }
+.form-group label {
+  display: block; font-weight: 600; margin-bottom: 6px; font-size: 0.9rem;
+}
+.form-group .hint {
+  font-size: 0.8rem; color: #888; margin-bottom: 8px; font-weight: 400;
+}
+.form-group input, .form-group textarea, .form-group select {
+  width: 100%; padding: 12px 14px; border: 1.5px solid #DDD;
+  border-radius: 8px; font-size: 1rem; font-family: inherit;
+  transition: border-color 0.2s;
+}
+.form-group input:focus, .form-group textarea:focus, .form-group select:focus {
+  outline: none; border-color: #E8612D;
+}
+.form-group textarea { min-height: 80px; resize: vertical; }
+
+.check-item {
+  display: flex; align-items: flex-start; gap: 10px;
+  padding: 10px 0; border-bottom: 1px solid #F0F0F0;
+}
+.check-item:last-child { border-bottom: none; }
+.check-num {
+  background: #E8612D; color: #fff; width: 26px; height: 26px;
+  border-radius: 50%; display: flex; align-items: center; justify-content: center;
+  font-size: 0.8rem; font-weight: 700; flex-shrink: 0; margin-top: 2px;
+}
+.check-text { font-size: 0.9rem; }
+.check-text strong { display: block; margin-bottom: 2px; }
+
+.progress-bar {
+  background: #E5E7EB; border-radius: 50px; height: 10px;
+  margin: 16px 0 8px; overflow: hidden;
+}
+.progress-fill {
+  background: linear-gradient(90deg, #E8612D, #22C55E);
+  height: 100%; border-radius: 50px; transition: width 0.5s;
+}
+.progress-text { font-size: 0.8rem; color: #888; text-align: center; }
+
+.btn-row {
+  position: fixed; bottom: 0; left: 0; right: 0;
+  background: #fff; border-top: 1px solid #E5E7EB;
+  padding: 12px 16px; display: flex; gap: 10px;
+  justify-content: center; z-index: 50;
+}
+.btn {
+  padding: 14px 28px; border-radius: 50px; font-weight: 700;
+  font-size: 0.95rem; cursor: pointer; border: none;
+  transition: transform 0.15s, opacity 0.15s;
+}
+.btn:active { transform: scale(0.97); }
+.btn-primary { background: #E8612D; color: #fff; }
+.btn-secondary { background: #F3F4F6; color: #222; }
+.btn-save { background: #22C55E; color: #fff; }
+
+.toast {
+  position: fixed; bottom: 80px; left: 50%; transform: translateX(-50%);
+  background: #222; color: #fff; padding: 10px 24px; border-radius: 50px;
+  font-size: 0.85rem; font-weight: 600; opacity: 0; transition: opacity 0.3s;
+  z-index: 200; pointer-events: none;
+}
+.toast.show { opacity: 1; }
+
+.directory-list {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 6px;
+  margin-top: 12px;
+}
+.dir-item {
+  font-size: 0.82rem; padding: 6px 10px; border-radius: 6px;
+  display: flex; align-items: center; gap: 6px;
+}
+.dir-done { background: #DCFCE7; color: #166534; }
+.dir-pending { background: #FEF3C7; color: #92400E; }
+.dir-missing { background: #FEE2E2; color: #991B1B; }
+
+@media(max-width:500px) {
+  .field-row { flex-direction: column; align-items: flex-start; gap: 2px; }
+  .field-value { text-align: left; }
+  .directory-list { grid-template-columns: 1fr; }
+}
+</style>
+</head>
+<body>
+
+<button class="lang-toggle" onclick="toggleLang()" id="langBtn">ES</button>
+
+<div class="header">
+  <h1 id="title" data-en="Pepe's Party Rental" data-es="Pepe's Party Rental">Pepe's Party Rental</h1>
+  <p id="subtitle" data-en="Directory Signup Form -- We need a few things from you to get your business listed on 22+ directories for more customers and better Google ranking." data-es="Formulario de Directorios -- Necesitamos algunas cosas de ti para registrar tu negocio en 22+ directorios para mas clientes y mejor posicion en Google.">Directory Signup Form -- We need a few things from you to get your business listed on 22+ directories for more customers and better Google ranking.</p>
+</div>
+
+<div class="container">
+
+  <!-- PROGRESS -->
+  <div class="card">
+    <div style="font-weight:700; margin-bottom:4px;" data-en="Directory Progress" data-es="Progreso de Directorios">Directory Progress</div>
+    <div class="progress-bar"><div class="progress-fill" style="width:20%"></div></div>
+    <div class="progress-text" data-en="6 of 30 directories done (20%)" data-es="6 de 30 directorios completados (20%)">6 of 30 directories done (20%)</div>
+    <div class="directory-list">
+      <div class="dir-item dir-done">&#10003; Google Business</div>
+      <div class="dir-item dir-done">&#10003; Yelp</div>
+      <div class="dir-item dir-done">&#10003; Thumbtack</div>
+      <div class="dir-item dir-done">&#10003; Nextdoor</div>
+      <div class="dir-item dir-done">&#10003; Foursquare</div>
+      <div class="dir-item dir-done">&#10003; Bing Places</div>
+      <div class="dir-item dir-pending">&#9888; Angi (pending)</div>
+      <div class="dir-item dir-pending">&#9888; Apple Maps (pending)</div>
+      <div class="dir-item dir-pending">&#9888; Manta (pending)</div>
+      <div class="dir-item dir-missing">&#10007; Facebook</div>
+      <div class="dir-item dir-missing">&#10007; BBB</div>
+      <div class="dir-item dir-missing">&#10007; Yellow Pages</div>
+      <div class="dir-item dir-missing">&#10007; The Knot</div>
+      <div class="dir-item dir-missing">&#10007; WeddingWire</div>
+      <div class="dir-item dir-missing">&#10007; Eventective</div>
+      <div class="dir-item dir-missing">&#10007; MapQuest</div>
+      <div class="dir-item dir-missing">&#10007; +12 more</div>
+    </div>
+  </div>
+
+  <!-- SECTION: WHAT WE HAVE -->
+  <div class="section-label">
+    <span data-en="What We Already Have" data-es="Lo Que Ya Tenemos">What We Already Have</span>
+    <span class="badge-have" data-en="COMPLETE" data-es="COMPLETO">COMPLETE</span>
+  </div>
+
+  <div class="card readonly">
+    <div class="field-row">
+      <span class="field-label" data-en="Business Name" data-es="Nombre del Negocio">Business Name</span>
+      <span class="field-value">Pepe's Party Rental</span>
+    </div>
+    <div class="field-row">
+      <span class="field-label" data-en="Owner" data-es="Dueno">Owner</span>
+      <span class="field-value">Jose Lizandro Morales Coca</span>
+    </div>
+    <div class="field-row">
+      <span class="field-label" data-en="Address" data-es="Direccion">Address</span>
+      <span class="field-value">94 Tacketts Mill Rd, Stafford, VA 22556</span>
+    </div>
+    <div class="field-row">
+      <span class="field-label" data-en="Phone" data-es="Telefono">Phone</span>
+      <span class="field-value">(571) 244-5255</span>
+    </div>
+    <div class="field-row">
+      <span class="field-label" data-en="Email" data-es="Correo">Email</span>
+      <span class="field-value">pepespartyr@gmail.com</span>
+    </div>
+    <div class="field-row">
+      <span class="field-label" data-en="Website" data-es="Sitio Web">Website</span>
+      <span class="field-value">pepespartyrentall.com</span>
+    </div>
+    <div class="field-row">
+      <span class="field-label" data-en="Hours" data-es="Horario">Hours</span>
+      <span class="field-value" data-en="Mon-Sun 8AM - 9:30PM" data-es="Lun-Dom 8AM - 9:30PM">Mon-Sun 8AM - 9:30PM</span>
+    </div>
+    <div class="field-row">
+      <span class="field-label" data-en="Category" data-es="Categoria">Category</span>
+      <span class="field-value" data-en="Party Equipment Rental Service" data-es="Servicio de Alquiler de Equipos para Fiestas">Party Equipment Rental Service</span>
+    </div>
+    <div class="field-row">
+      <span class="field-label" data-en="Year Founded" data-es="Ano de Fundacion">Year Founded</span>
+      <span class="field-value">2013</span>
+    </div>
+    <div class="field-row">
+      <span class="field-label" data-en="Google Rating" data-es="Calificacion Google">Google Rating</span>
+      <span class="field-value">4.8 stars (121 reviews)</span>
+    </div>
+    <div class="field-row">
+      <span class="field-label" data-en="Insurance" data-es="Seguro">Insurance</span>
+      <span class="field-value" data-en="$1M Liability" data-es="$1M Responsabilidad">$1M Liability</span>
+    </div>
+    <div class="field-row">
+      <span class="field-label" data-en="Languages" data-es="Idiomas">Languages</span>
+      <span class="field-value" data-en="English & Spanish" data-es="Ingles y Espanol">English & Spanish</span>
+    </div>
+    <div class="field-row">
+      <span class="field-label" data-en="Service Area" data-es="Area de Servicio">Service Area</span>
+      <span class="field-value" data-en="120 miles from Stafford, VA (free under 25 miles)" data-es="120 millas desde Stafford, VA (gratis a menos de 25 millas)">120 miles from Stafford, VA (free under 25 miles)</span>
+    </div>
+  </div>
+
+  <!-- SECTION: WHAT WE NEED -->
+  <div class="section-label">
+    <span data-en="What We Need From You" data-es="Lo Que Necesitamos de Ti">What We Need From You</span>
+    <span class="badge-need" data-en="PLEASE FILL" data-es="POR FAVOR LLENA">PLEASE FILL</span>
+  </div>
+
+  <!-- 1. Email Password -->
+  <div class="card needed">
+    <div class="form-group">
+      <label data-en="1. Password for pepespartyr@gmail.com" data-es="1. Contrasena de pepespartyr@gmail.com">1. Password for pepespartyr@gmail.com</label>
+      <div class="hint" data-en="We need this to finish signing up on Angi and verify other directories. We will NOT change it." data-es="Necesitamos esto para terminar de registrarte en Angi y verificar otros directorios. NO la cambiaremos.">We need this to finish signing up on Angi and verify other directories. We will NOT change it.</div>
+      <input type="password" id="email_password" placeholder="..." oninput="autoSave()">
+    </div>
+  </div>
+
+  <!-- 2. Apple ID -->
+  <div class="card needed">
+    <div class="form-group">
+      <label data-en="2. Apple ID" data-es="2. Apple ID">2. Apple ID</label>
+      <div class="hint" data-en="Do you have an Apple ID with moralestransportco@gmail.com? If yes, write the password. If no, write 'NO' and we will create one together." data-es="Tienes un Apple ID con moralestransportco@gmail.com? Si si, escribe la contrasena. Si no, escribe 'NO' y lo crearemos juntos.">Do you have an Apple ID with moralestransportco@gmail.com? If yes, write the password. If no, write 'NO' and we will create one together.</div>
+      <input type="text" id="apple_id" placeholder="Password or NO" oninput="autoSave()">
+    </div>
+  </div>
+
+  <!-- 3. EIN / Tax ID -->
+  <div class="card needed">
+    <div class="form-group">
+      <label data-en="3. EIN / Tax ID Number" data-es="3. Numero de EIN / Tax ID">3. EIN / Tax ID Number</label>
+      <div class="hint" data-en="Your business tax ID number (9 digits, like XX-XXXXXXX). Needed for BBB and Chamber of Commerce." data-es="Tu numero de identificacion fiscal del negocio (9 digitos, como XX-XXXXXXX). Necesario para BBB y Camara de Comercio.">Your business tax ID number (9 digits, like XX-XXXXXXX). Needed for BBB and Chamber of Commerce.</div>
+      <input type="text" id="ein" placeholder="XX-XXXXXXX" oninput="autoSave()">
+    </div>
+  </div>
+
+  <!-- 4. Business Entity Type -->
+  <div class="card needed">
+    <div class="form-group">
+      <label data-en="4. Business Type" data-es="4. Tipo de Negocio">4. Business Type</label>
+      <div class="hint" data-en="How is Pepe's Party Rental registered?" data-es="Como esta registrado Pepe's Party Rental?">How is Pepe's Party Rental registered?</div>
+      <select id="entity_type" oninput="autoSave()">
+        <option value="" data-en="Select one..." data-es="Selecciona uno...">Select one...</option>
+        <option value="sole_prop" data-en="Sole Proprietorship (just me)" data-es="Propietario Unico (solo yo)">Sole Proprietorship (just me)</option>
+        <option value="llc" data-en="LLC" data-es="LLC">LLC</option>
+        <option value="corporation" data-en="Corporation" data-es="Corporacion">Corporation</option>
+        <option value="partnership" data-en="Partnership" data-es="Sociedad">Partnership</option>
+        <option value="not_sure" data-en="Not sure" data-es="No estoy seguro">Not sure</option>
+      </select>
+    </div>
+  </div>
+
+  <!-- 5. Insurance Certificate -->
+  <div class="card needed">
+    <div class="form-group">
+      <label data-en="5. Insurance Certificate" data-es="5. Certificado de Seguro">5. Insurance Certificate</label>
+      <div class="hint" data-en="We need a copy of your $1M liability insurance certificate (PDF or photo). The Knot and WeddingWire require proof of insurance. Please text or email it to JJ." data-es="Necesitamos una copia de tu certificado de seguro de responsabilidad de $1M (PDF o foto). The Knot y WeddingWire requieren prueba de seguro. Por favor envialo por texto o email a JJ.">We need a copy of your $1M liability insurance certificate (PDF or photo). The Knot and WeddingWire require proof of insurance. Please text or email it to JJ.</div>
+      <select id="insurance_cert" oninput="autoSave()">
+        <option value="" data-en="Select one..." data-es="Selecciona uno...">Select one...</option>
+        <option value="will_send" data-en="I will text/email it to JJ" data-es="Lo enviare por texto/email a JJ">I will text/email it to JJ</option>
+        <option value="need_help" data-en="I need help getting it from my insurance company" data-es="Necesito ayuda para obtenerlo de mi compania de seguros">I need help getting it from my insurance company</option>
+        <option value="no_insurance" data-en="I don't have insurance right now" data-es="No tengo seguro ahora mismo">I don't have insurance right now</option>
+      </select>
+    </div>
+    <div class="form-group">
+      <label data-en="Insurance Company Name" data-es="Nombre de la Compania de Seguros">Insurance Company Name</label>
+      <input type="text" id="insurance_company" placeholder="State Farm, GEICO, etc." oninput="autoSave()">
+    </div>
+  </div>
+
+  <!-- 6. Social Media -->
+  <div class="card needed">
+    <div class="form-group">
+      <label data-en="6. Social Media Accounts" data-es="6. Cuentas de Redes Sociales">6. Social Media Accounts</label>
+      <div class="hint" data-en="Write the links or usernames. Write 'NONE' if you don't have one." data-es="Escribe los enlaces o nombres de usuario. Escribe 'NONE' si no tienes.">Write the links or usernames. Write 'NONE' if you don't have one.</div>
+    </div>
+    <div class="form-group">
+      <label>Facebook</label>
+      <input type="text" id="facebook" placeholder="facebook.com/... or NONE" oninput="autoSave()">
+    </div>
+    <div class="form-group">
+      <label>Instagram</label>
+      <input type="text" id="instagram" placeholder="@username or NONE" oninput="autoSave()">
+    </div>
+    <div class="form-group">
+      <label>TikTok</label>
+      <input type="text" id="tiktok" placeholder="@username or NONE" oninput="autoSave()">
+    </div>
+  </div>
+
+  <!-- 7. Payment Methods -->
+  <div class="card needed">
+    <div class="form-group">
+      <label data-en="7. Payment Methods Accepted" data-es="7. Metodos de Pago Aceptados">7. Payment Methods Accepted</label>
+      <div class="hint" data-en="Check all that apply / Marca todos los que apliquen" data-es="Marca todos los que apliquen">Check all that apply</div>
+      <div style="display:flex; flex-wrap:wrap; gap:8px; margin-top:8px;">
+        <label style="display:flex;align-items:center;gap:6px;font-weight:400;font-size:0.9rem;background:#F9FAFB;padding:8px 14px;border-radius:8px;cursor:pointer;">
+          <input type="checkbox" id="pay_cash" onchange="autoSave()"> Cash
+        </label>
+        <label style="display:flex;align-items:center;gap:6px;font-weight:400;font-size:0.9rem;background:#F9FAFB;padding:8px 14px;border-radius:8px;cursor:pointer;">
+          <input type="checkbox" id="pay_credit" onchange="autoSave()"> Credit Card
+        </label>
+        <label style="display:flex;align-items:center;gap:6px;font-weight:400;font-size:0.9rem;background:#F9FAFB;padding:8px 14px;border-radius:8px;cursor:pointer;">
+          <input type="checkbox" id="pay_debit" onchange="autoSave()"> Debit Card
+        </label>
+        <label style="display:flex;align-items:center;gap:6px;font-weight:400;font-size:0.9rem;background:#F9FAFB;padding:8px 14px;border-radius:8px;cursor:pointer;">
+          <input type="checkbox" id="pay_zelle" onchange="autoSave()"> Zelle
+        </label>
+        <label style="display:flex;align-items:center;gap:6px;font-weight:400;font-size:0.9rem;background:#F9FAFB;padding:8px 14px;border-radius:8px;cursor:pointer;">
+          <input type="checkbox" id="pay_venmo" onchange="autoSave()"> Venmo
+        </label>
+        <label style="display:flex;align-items:center;gap:6px;font-weight:400;font-size:0.9rem;background:#F9FAFB;padding:8px 14px;border-radius:8px;cursor:pointer;">
+          <input type="checkbox" id="pay_cashapp" onchange="autoSave()"> Cash App
+        </label>
+        <label style="display:flex;align-items:center;gap:6px;font-weight:400;font-size:0.9rem;background:#F9FAFB;padding:8px 14px;border-radius:8px;cursor:pointer;">
+          <input type="checkbox" id="pay_check" onchange="autoSave()"> Check
+        </label>
+      </div>
+    </div>
+  </div>
+
+  <!-- 8. Photos -->
+  <div class="card needed">
+    <div class="form-group">
+      <label data-en="8. Event Photos (10-20 photos)" data-es="8. Fotos de Eventos (10-20 fotos)">8. Event Photos (10-20 photos)</label>
+      <div class="hint" data-en="We need real photos from your events for the directory profiles. Please text or AirDrop them to JJ. Best photos to send:" data-es="Necesitamos fotos reales de tus eventos para los perfiles de directorio. Por favor envialas por texto o AirDrop a JJ. Mejores fotos para enviar:">We need real photos from your events for the directory profiles. Please text or AirDrop them to JJ. Best photos to send:</div>
+      <div style="margin-top:8px; font-size:0.88rem; color:#555; line-height:1.8;">
+        <span data-en="&#10003; Bounce houses set up at events" data-es="&#10003; Casas de brinco montadas en eventos">&#10003; Bounce houses set up at events</span><br>
+        <span data-en="&#10003; Water slides in action (kids playing)" data-es="&#10003; Toboganes de agua en accion (ninos jugando)">&#10003; Water slides in action (kids playing)</span><br>
+        <span data-en="&#10003; The Beast mechanical bull at a party" data-es="&#10003; The Beast toro mecanico en una fiesta">&#10003; The Beast mechanical bull at a party</span><br>
+        <span data-en="&#10003; Tent setups with tables and chairs" data-es="&#10003; Montajes de carpas con mesas y sillas">&#10003; Tent setups with tables and chairs</span><br>
+        <span data-en="&#10003; Your team setting up equipment" data-es="&#10003; Tu equipo montando equipo">&#10003; Your team setting up equipment</span><br>
+        <span data-en="&#10003; Happy families at events" data-es="&#10003; Familias felices en eventos">&#10003; Happy families at events</span><br>
+        <span data-en="&#10003; Your headshot / portrait photo" data-es="&#10003; Tu foto de perfil / retrato">&#10003; Your headshot / portrait photo</span>
+      </div>
+      <select id="photos_status" oninput="autoSave()" style="margin-top:12px;">
+        <option value="" data-en="Select one..." data-es="Selecciona uno...">Select one...</option>
+        <option value="will_send" data-en="I will send photos to JJ" data-es="Enviare fotos a JJ">I will send photos to JJ</option>
+        <option value="on_phone" data-en="I have photos on my phone, need help choosing" data-es="Tengo fotos en mi telefono, necesito ayuda eligiendo">I have photos on my phone, need help choosing</option>
+        <option value="no_photos" data-en="I don't have good event photos" data-es="No tengo buenas fotos de eventos">I don't have good event photos</option>
+      </select>
+    </div>
+  </div>
+
+  <!-- 9. Business License -->
+  <div class="card needed">
+    <div class="form-group">
+      <label data-en="9. Stafford County Business License Number (optional)" data-es="9. Numero de Licencia de Negocio del Condado de Stafford (opcional)">9. Stafford County Business License Number (optional)</label>
+      <div class="hint" data-en="If you have a local business license number, write it here. The Chamber of Commerce may ask for it." data-es="Si tienes un numero de licencia de negocio local, escribelo aqui. La Camara de Comercio puede pedirlo.">If you have a local business license number, write it here. The Chamber of Commerce may ask for it.</div>
+      <input type="text" id="biz_license" placeholder="License number or N/A" oninput="autoSave()">
+    </div>
+  </div>
+
+  <!-- ANYTHING ELSE -->
+  <div class="section-label">
+    <span data-en="Anything Else" data-es="Algo Mas">Anything Else</span>
+  </div>
+  <div class="card">
+    <div class="form-group">
+      <label data-en="Questions or notes for JJ" data-es="Preguntas o notas para JJ">Questions or notes for JJ</label>
+      <textarea id="notes" placeholder="..." oninput="autoSave()"></textarea>
+    </div>
+  </div>
+
+</div>
+
+<!-- BUTTONS -->
+<div class="btn-row">
+  <button class="btn btn-secondary" onclick="copyAnswers()" data-en="Copy Answers" data-es="Copiar Respuestas">Copy Answers</button>
+  <button class="btn btn-primary" onclick="downloadAnswers()" data-en="Download Answers" data-es="Descargar Respuestas">Download Answers</button>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<script>
+var lang = 'en';
+
+function toggleLang() {
+  lang = lang === 'en' ? 'es' : 'en';
+  document.getElementById('langBtn').textContent = lang === 'en' ? 'ES' : 'EN';
+  document.querySelectorAll('[data-en]').forEach(function(el) {
+    if (el.tagName === 'INPUT' || el.tagName === 'TEXTAREA') {
+      el.placeholder = el.getAttribute('data-' + lang) || el.placeholder;
+    } else if (el.tagName === 'OPTION') {
+      el.textContent = el.getAttribute('data-' + lang) || el.textContent;
+    } else {
+      el.innerHTML = el.getAttribute('data-' + lang) || el.innerHTML;
+    }
+  });
+}
+
+function autoSave() {
+  var data = {};
+  var fields = ['email_password','apple_id','ein','entity_type','insurance_cert',
+    'insurance_company','facebook','instagram','tiktok','photos_status','biz_license','notes'];
+  fields.forEach(function(f) {
+    var el = document.getElementById(f);
+    if (el) data[f] = el.value;
+  });
+  var checks = ['pay_cash','pay_credit','pay_debit','pay_zelle','pay_venmo','pay_cashapp','pay_check'];
+  checks.forEach(function(c) {
+    var el = document.getElementById(c);
+    if (el) data[c] = el.checked;
+  });
+  localStorage.setItem('pepes_directory_form', JSON.stringify(data));
+}
+
+function loadSaved() {
+  try {
+    var raw = localStorage.getItem('pepes_directory_form');
+    if (!raw) return;
+    var data = JSON.parse(raw);
+    Object.keys(data).forEach(function(k) {
+      var el = document.getElementById(k);
+      if (!el) return;
+      if (el.type === 'checkbox') el.checked = data[k];
+      else el.value = data[k];
+    });
+  } catch(e) {}
+}
+
+function getAnswersText() {
+  var lines = [];
+  lines.push('=== PEPE\'S PARTY RENTAL - DIRECTORY INFO ===');
+  lines.push('Date: ' + new Date().toLocaleDateString());
+  lines.push('');
+  lines.push('--- ALREADY ON FILE ---');
+  lines.push('Business: Pepe\'s Party Rental');
+  lines.push('Owner: Jose Lizandro Morales Coca');
+  lines.push('Address: 94 Tacketts Mill Rd, Stafford, VA 22556');
+  lines.push('Phone: (571) 244-5255');
+  lines.push('Email: pepespartyr@gmail.com');
+  lines.push('Website: pepespartyrentall.com');
+  lines.push('Hours: Mon-Sun 8AM-9:30PM');
+  lines.push('Founded: 2013');
+  lines.push('Rating: 4.8 stars, 121 reviews');
+  lines.push('');
+  lines.push('--- NEW INFORMATION ---');
+  lines.push('');
+
+  var v = function(id) { return (document.getElementById(id) || {}).value || '(not answered)'; };
+  var c = function(id) { return (document.getElementById(id) || {}).checked ? 'YES' : 'no'; };
+
+  lines.push('1. Email Password (pepespartyr@gmail.com): ' + (v('email_password') ? '(provided)' : '(not answered)'));
+  lines.push('2. Apple ID: ' + v('apple_id'));
+  lines.push('3. EIN / Tax ID: ' + v('ein'));
+  lines.push('4. Business Type: ' + v('entity_type'));
+  lines.push('5. Insurance Certificate: ' + v('insurance_cert'));
+  lines.push('   Insurance Company: ' + v('insurance_company'));
+  lines.push('6. Facebook: ' + v('facebook'));
+  lines.push('   Instagram: ' + v('instagram'));
+  lines.push('   TikTok: ' + v('tiktok'));
+  lines.push('7. Payment Methods:');
+  lines.push('   Cash: ' + c('pay_cash'));
+  lines.push('   Credit Card: ' + c('pay_credit'));
+  lines.push('   Debit Card: ' + c('pay_debit'));
+  lines.push('   Zelle: ' + c('pay_zelle'));
+  lines.push('   Venmo: ' + c('pay_venmo'));
+  lines.push('   Cash App: ' + c('pay_cashapp'));
+  lines.push('   Check: ' + c('pay_check'));
+  lines.push('8. Photos Status: ' + v('photos_status'));
+  lines.push('9. Business License: ' + v('biz_license'));
+  lines.push('');
+  lines.push('Notes: ' + v('notes'));
+
+  return lines.join('\n');
+}
+
+function downloadAnswers() {
+  var text = getAnswersText();
+  var blob = new Blob([text], {type:'text/plain'});
+  var a = document.createElement('a');
+  a.href = URL.createObjectURL(blob);
+  a.download = 'pepes-directory-info.txt';
+  a.click();
+  URL.revokeObjectURL(a.href);
+  showToast(lang === 'en' ? 'Downloaded!' : 'Descargado!');
+}
+
+function copyAnswers() {
+  var text = getAnswersText();
+  if (navigator.clipboard) {
+    navigator.clipboard.writeText(text).then(function() {
+      showToast(lang === 'en' ? 'Copied to clipboard!' : 'Copiado!');
+    });
+  } else {
+    var ta = document.createElement('textarea');
+    ta.value = text;
+    document.body.appendChild(ta);
+    ta.select();
+    document.execCommand('copy');
+    document.body.removeChild(ta);
+    showToast(lang === 'en' ? 'Copied!' : 'Copiado!');
+  }
+}
+
+function showToast(msg) {
+  var t = document.getElementById('toast');
+  t.textContent = msg;
+  t.classList.add('show');
+  setTimeout(function() { t.classList.remove('show'); }, 2000);
+}
+
+loadSaved();
+</script>
+</body>
+</html>

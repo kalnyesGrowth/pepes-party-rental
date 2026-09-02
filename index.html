@@ -101,7 +101,7 @@
   "mainEntity": [
     {"@type":"Question","name":"Do I need to pay a deposit?","acceptedAnswer":{"@type":"Answer","text":"No deposit required! Book online and pay the full amount at checkout. We accept all major credit cards."}},
     {"@type":"Question","name":"How far in advance should I book?","acceptedAnswer":{"@type":"Answer","text":"We recommend booking at least 2-3 weeks in advance, especially for weekends. However, we accept bookings as little as 2 days before your event."}},
-    {"@type":"Question","name":"Is delivery and setup included?","acceptedAnswer":{"@type":"Answer","text":"Yes! Free delivery, professional setup, and takedown are included within 50 miles of Stafford, VA. Orders under $150 have a $25 delivery fee."}},
+    {"@type":"Question","name":"Is delivery and setup included?","acceptedAnswer":{"@type":"Answer","text":"Yes! Free delivery, professional setup, and takedown are included within 25 miles of Stafford, VA. Orders under $150 have a $35 delivery fee. Past 25 miles we charge by distance: $35 up to 50 miles, $75 up to 80 miles, and $250 up to 120 miles. We do not deliver beyond 120 miles."}},
     {"@type":"Question","name":"Do you deliver to parks or public spaces?","acceptedAnswer":{"@type":"Answer","text":"We serve private residences only. This ensures the safest setup conditions and proper power access for our equipment."}},
     {"@type":"Question","name":"What happens if it rains?","acceptedAnswer":{"@type":"Answer","text":"Light rain does not stop us. For severe weather (lightning, storms), we offer free rescheduling at no cost. Your party will happen!"}},
     {"@type":"Question","name":"How much space do I need?","acceptedAnswer":{"@type":"Answer","text":"Standard inflatables need at least 15x15 ft of flat space. Water slides may need more. We will confirm space requirements when you book."}}
@@ -110,9 +110,9 @@
 </script>
 <script type="application/ld+json">
 [
-  {"@context":"https://schema.org","@type":"Service","name":"Bounce House Rental","description":"Bounce house rentals starting at $175/day in Stafford, VA. 7 themed bounce houses (13x13 to 15x15 ft) for ages 2-15. Free delivery, setup, and takedown within 50 miles. No deposit required.","provider":{"@id":"https://pepespartyrentall.com/#business"},"areaServed":{"@type":"State","name":"Virginia"},"offers":{"@type":"Offer","priceCurrency":"USD","price":"175","priceValidUntil":"2027-12-31"}},
+  {"@context":"https://schema.org","@type":"Service","name":"Bounce House Rental","description":"Bounce house rentals starting at $175/day in Stafford, VA. 7 themed bounce houses (13x13 to 15x15 ft) for ages 2-15. Free delivery, setup, and takedown within 25 miles. No deposit required.","provider":{"@id":"https://pepespartyrentall.com/#business"},"areaServed":{"@type":"State","name":"Virginia"},"offers":{"@type":"Offer","priceCurrency":"USD","price":"175","priceValidUntil":"2027-12-31"}},
   {"@context":"https://schema.org","@type":"Service","name":"Combo Bounce House with Slide Rental","description":"Combo bounce houses with slides from $190-$280/day. Bounce area plus single or dual slides. 8 themed combos up to 14x32 ft for ages 3-12. Free delivery and setup in Northern Virginia.","provider":{"@id":"https://pepespartyrentall.com/#business"},"areaServed":{"@type":"State","name":"Virginia"},"offers":{"@type":"Offer","priceCurrency":"USD","price":"190","priceValidUntil":"2027-12-31"}},
-  {"@context":"https://schema.org","@type":"Service","name":"Water Slide Rental","description":"Inflatable water slide rentals from $450-$480/day in Stafford, VA. 5 themed water slides with splash pools. Requires garden hose hookup. Free delivery and setup within 50 miles.","provider":{"@id":"https://pepespartyrentall.com/#business"},"areaServed":{"@type":"State","name":"Virginia"},"offers":{"@type":"Offer","priceCurrency":"USD","price":"449","priceValidUntil":"2027-12-31"}},
+  {"@context":"https://schema.org","@type":"Service","name":"Water Slide Rental","description":"Inflatable water slide rentals from $450-$480/day in Stafford, VA. 5 themed water slides with splash pools. Requires garden hose hookup. Free delivery and setup within 25 miles.","provider":{"@id":"https://pepespartyrentall.com/#business"},"areaServed":{"@type":"State","name":"Virginia"},"offers":{"@type":"Offer","priceCurrency":"USD","price":"449","priceValidUntil":"2027-12-31"}},
   {"@context":"https://schema.org","@type":"Service","name":"Mechanical Bull Rental","description":"The Beast mechanical bull rental starting at $700 for 3 hours in Stafford, VA. Professional operator included. 16-foot inflatable safety ring. Safe for ages 6 through adults.","provider":{"@id":"https://pepespartyrentall.com/#business"},"areaServed":{"@type":"State","name":"Virginia"},"offers":{"@type":"Offer","priceCurrency":"USD","price":"700","priceValidUntil":"2027-12-31"}},
   {"@context":"https://schema.org","@type":"Service","name":"Event Tent Rental","description":"Event tent rentals from $200-$1,080/day in Stafford, VA. Sizes from 10x20 (20 guests) to 20x80 (200 guests). Frame and high peak styles. Optional sidewalls. Free delivery and professional installation.","provider":{"@id":"https://pepespartyrentall.com/#business"},"areaServed":{"@type":"State","name":"Virginia"},"offers":{"@type":"Offer","priceCurrency":"USD","price":"200","priceValidUntil":"2027-12-31"}},
   {"@context":"https://schema.org","@type":"Service","name":"Table and Chair Rental","description":"Table and chair rentals from $2/each in Stafford, VA. Folding chairs, white resin chairs, chiavari chairs, rectangular tables, round tables, and throne chairs. Free delivery and setup.","provider":{"@id":"https://pepespartyrentall.com/#business"},"areaServed":{"@type":"State","name":"Virginia"},"offers":{"@type":"Offer","priceCurrency":"USD","price":"2","priceValidUntil":"2027-12-31"}}
@@ -1457,6 +1457,14 @@ input, select, textarea { font-family: inherit; font-size: 1rem; }
 .area-tag:hover {
   background: rgba(232,73,15,0.15); border-color: rgba(232,73,15,0.3);
 }
+.delivery-zones{max-width:420px;margin:24px auto 8px;display:flex;flex-direction:column;gap:1px;background:rgba(255,255,255,0.14);border:1px solid rgba(255,255,255,0.16);border-radius:10px;overflow:hidden}
+.zone-row{display:flex;justify-content:space-between;align-items:center;gap:16px;padding:11px 16px;background:rgba(0,0,0,0.28)}
+.zone-miles{font-size:0.9rem;color:rgba(255,255,255,0.82)}
+.zone-fee{font-size:0.95rem;font-weight:700;color:#fff;font-variant-numeric:tabular-nums}
+.zone-fee.zone-free{color:#4ade80;letter-spacing:0.04em}
+.zone-row.zone-out .zone-miles,.zone-row.zone-out .zone-fee{color:rgba(255,255,255,0.45);font-weight:600}
+.area-note-sm{font-size:0.82rem;opacity:0.75;margin-top:10px}
+@media(max-width:480px){.zone-row{padding:10px 13px}.zone-miles{font-size:0.84rem}}
 .area-note {
   text-align: center; color: rgba(255,255,255,0.5); font-size: 0.85rem;
   margin-top: 24px;
@@ -1536,7 +1544,7 @@ input, select, textarea { font-family: inherit; font-size: 1rem; }
         <span data-en="4.8 Stars on Google (121+ Reviews)" data-es="4.8 Estrellas en Google (121+ Resenas)">4.8 Stars on Google (121+ Reviews)</span>
       </div>
       <h1 data-en="Your Kid Deserves The Party They <em>Won't Stop Talking About</em>" data-es="Tu Hijo Merece La Fiesta De La Que <em>No Dejara De Hablar</em>"><span class="sr-only">Pepe's Party Rental:</span> Your Kid Deserves The Party They <em>Won't Stop Talking About</em></h1>
-      <p class="hero-sub" data-en="Bounce houses, water slides, mechanical bull, tents, tables and chairs. Free delivery and setup within 50 miles of Stafford, VA." data-es="Casas de brinco, toboganes de agua, toro mecanico, carpas, mesas y sillas. Entrega y montaje gratis dentro de 50 millas de Stafford, VA.">Bounce houses, water slides, mechanical bull, tents, tables and chairs. Free delivery and setup within 50 miles of Stafford, VA.</p>
+      <p class="hero-sub" data-en="Bounce houses, water slides, mechanical bull, tents, tables and chairs. Free delivery and setup within 25 miles of Stafford, VA." data-es="Casas de brinco, toboganes de agua, toro mecanico, carpas, mesas y sillas. Entrega y montaje gratis dentro de 25 millas de Stafford, VA.">Bounce houses, water slides, mechanical bull, tents, tables and chairs. Free delivery and setup within 25 miles of Stafford, VA.</p>
       <a class="hero-cta" href="#" onclick="showPage('catalog')">
         <span data-en="Browse Party Rentals" data-es="Ver Alquileres de Fiesta">Browse Party Rentals</span>
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
@@ -1876,7 +1884,15 @@ input, select, textarea { font-family: inherit; font-size: 1rem; }
         <span class="area-tag">Warrenton</span>
         <span class="area-tag">Triangle</span>
       </div>
-      <p class="area-note" data-en="Free delivery on orders over $150. $25 delivery fee for smaller orders." data-es="Entrega gratis en pedidos de mas de $150. $25 de envio para pedidos menores.">Free delivery on orders over $150. $25 delivery fee for smaller orders.</p>
+      <p class="area-note" data-en="Free delivery within 25 miles of Stafford on orders over $150. Orders under $150 have a $35 delivery fee. Past 25 miles, delivery is priced by distance. We do not deliver beyond 120 miles." data-es="Entrega gratis dentro de 25 millas de Stafford en pedidos de mas de $150. Pedidos menores de $150 tienen un cargo de entrega de $35. Despues de 25 millas, la entrega se cobra por distancia. No entregamos a mas de 120 millas.">Free delivery within 25 miles of Stafford on orders over $150. Orders under $150 have a $35 delivery fee. Past 25 miles, delivery is priced by distance. We do not deliver beyond 120 miles.</p>
+      <div class="delivery-zones">
+        <div class="zone-row"><span class="zone-miles" data-en="Under 25 miles" data-es="Menos de 25 millas">Under 25 miles</span><span class="zone-fee zone-free" data-en="FREE" data-es="GRATIS">FREE</span></div>
+        <div class="zone-row"><span class="zone-miles" data-en="25 to 50 miles" data-es="25 a 50 millas">25 to 50 miles</span><span class="zone-fee">$35</span></div>
+        <div class="zone-row"><span class="zone-miles" data-en="50 to 80 miles" data-es="50 a 80 millas">50 to 80 miles</span><span class="zone-fee">$75</span></div>
+        <div class="zone-row"><span class="zone-miles" data-en="80 to 120 miles" data-es="80 a 120 millas">80 to 120 miles</span><span class="zone-fee">$250</span></div>
+        <div class="zone-row zone-out"><span class="zone-miles" data-en="Over 120 miles" data-es="Mas de 120 millas">Over 120 miles</span><span class="zone-fee" data-en="Not served" data-es="No servimos">Not served</span></div>
+      </div>
+      <p class="area-note area-note-sm" data-en="Orders under $150 have a $35 delivery fee, including inside the free 25 mile zone." data-es="Los pedidos menores de $150 tienen un cargo de entrega de $35, incluso dentro de la zona gratis de 25 millas.">Orders under $150 have a $35 delivery fee, including inside the free 25 mile zone.</p>
     </div>
   </section>
 
@@ -2422,7 +2438,7 @@ var REVIEWS = [
 var FAQS = [
   {q:"Do I need to pay a deposit?",qEs:"Necesito pagar un deposito?",a:"No deposit required! Book online and pay the full amount at checkout. We accept all major credit cards.",aEs:"No se requiere deposito! Reserva en linea y paga el monto completo al finalizar. Aceptamos todas las tarjetas de credito."},
   {q:"How far in advance should I book?",qEs:"Con cuanta anticipacion debo reservar?",a:"We recommend booking at least 2-3 weeks in advance, especially for weekends. However, we accept bookings as little as 2 days before your event.",aEs:"Recomendamos reservar con al menos 2-3 semanas de anticipacion, especialmente para fines de semana. Sin embargo, aceptamos reservas hasta 2 dias antes de tu evento."},
-  {q:"Is delivery and setup included?",qEs:"La entrega y montaje estan incluidos?",a:"Yes! Free delivery, professional setup, and takedown are included within 50 miles of Stafford, VA. Orders under $150 have a $25 delivery fee.",aEs:"Si! Entrega gratis, montaje profesional y desmontaje incluidos dentro de 50 millas de Stafford, VA. Ordenes menores de $150 tienen un cargo de entrega de $25."},
+  {q:"Is delivery and setup included?",qEs:"La entrega y montaje estan incluidos?",a:"Yes! Free delivery, professional setup, and takedown are included within 25 miles of Stafford, VA. Orders under $150 have a $35 delivery fee. Past 25 miles we charge by distance: $35 up to 50 miles, $75 up to 80 miles, and $250 up to 120 miles. We do not deliver beyond 120 miles.",aEs:"Si! Entrega gratis, montaje profesional y desmontaje incluidos dentro de 25 millas de Stafford, VA. Ordenes menores de $150 tienen un cargo de entrega de $35. Despues de 25 millas cobramos por distancia: $35 hasta 50 millas, $75 hasta 80 millas, y $250 hasta 120 millas. No entregamos a mas de 120 millas."},
   {q:"Do you deliver to parks or public spaces?",qEs:"Entregan a parques o espacios publicos?",a:"We serve private residences only. This ensures the safest setup conditions and proper power access for our equipment.",aEs:"Solo servimos a residencias privadas. Esto asegura las condiciones de montaje mas seguras y acceso adecuado a electricidad."},
   {q:"What happens if it rains?",qEs:"Que pasa si llueve?",a:"Light rain does not stop us. For severe weather (lightning, storms), we offer free rescheduling at no cost. Your party will happen!",aEs:"La lluvia ligera no nos detiene. Para clima severo (rayos, tormentas), ofrecemos reprogramacion gratuita. Tu fiesta se hara!"},
   {q:"How much space do I need?",qEs:"Cuanto espacio necesito?",a:"Standard inflatables need at least 15x15 ft of flat space. Water slides may need more. We will confirm space requirements when you book.",aEs:"Los inflables estandar necesitan al menos 15x15 pies de espacio plano. Los toboganes de agua pueden necesitar mas. Confirmaremos los requisitos de espacio al reservar."}
@@ -2445,6 +2461,38 @@ var POPULAR_IDS = [16,21,50,52];
 var HOT_IDS = [19,14,11];
 var NEW_IDS = [54];
 var FREE_DELIVERY_MIN = 150;
+
+/* ===== DELIVERY POLICY (single source of truth) =====
+   Bands are measured in road miles from 94 Tacketts Mill Rd, Stafford, VA.
+   smallOrderFee applies inside the free band only; past 25 miles the
+   distance fee replaces it rather than stacking on top. */
+var DELIVERY = {
+  freeMinOrder: 150,   // under this subtotal, smallOrderFee applies even inside the free band
+  smallOrderFee: 35,
+  maxMiles: 120,       // beyond this we do not deliver
+  bands: [
+    {upTo: 25,  fee: 0},
+    {upTo: 50,  fee: 35},
+    {upTo: 80,  fee: 75},
+    {upTo: 120, fee: 250}
+  ]
+};
+
+/* Fee for a given distance. Returns null when the address is out of range. */
+function deliveryFeeForMiles(miles){
+  if(miles == null) return null;
+  if(miles > DELIVERY.maxMiles) return null;
+  for(var i=0;i<DELIVERY.bands.length;i++){
+    if(miles <= DELIVERY.bands[i].upTo) return DELIVERY.bands[i].fee;
+  }
+  return null;
+}
+
+/* Cart-side fee. The cart collects no address, so it can only apply the
+   small-order fee. Distance fees are quoted at booking confirmation. */
+function cartDeliveryFee(subtotal){
+  return subtotal < DELIVERY.freeMinOrder ? DELIVERY.smallOrderFee : 0;
+}
 
 var UPSELL_RULES = [
   {if:['tents'],suggest:[42,30,31],label:'Add to your tent setup'},
@@ -2755,7 +2803,7 @@ function renderCart(){
   body.innerHTML+=renderCartUpsells();
 
   var subtotal=cartTotal();
-  var deliveryFee=subtotal<FREE_DELIVERY_MIN?25:0;
+  var deliveryFee=cartDeliveryFee(subtotal);
   var total=subtotal+deliveryFee;
 
   renderDeliveryProgress(subtotal);
@@ -2883,7 +2931,7 @@ function showCheckout(){
   document.getElementById('checkoutView').classList.add('active');
 
   var subtotal=cartTotal();
-  var deliveryFee=subtotal<FREE_DELIVERY_MIN?25:0;
+  var deliveryFee=cartDeliveryFee(subtotal);
   var total=subtotal+deliveryFee;
   var itemCount=cartItemCount();
   var summaryEl=document.getElementById('checkoutSummary');
@@ -2942,7 +2990,7 @@ function completeBooking(){
   localStorage.setItem('ppr_booking',JSON.stringify({name:name,email:email,phone:phone,address:address}));
 
   var subtotal=cartTotal();
-  var deliveryFee=subtotal<FREE_DELIVERY_MIN?25:0;
+  var deliveryFee=cartDeliveryFee(subtotal);
 
   var orderItems=cart.map(function(item){var q=item.qty||1;return (q>1?q+'x ':'')+item.name+' - '+fmtPrice(item.price*q);}).join('\n');
   var orderSummary='ORDER DETAILS\n'
@@ -3686,8 +3734,8 @@ function addUpsells(){
     },
     area:{
       t:['where','deliver','area','miles','location','address','far','distance','stafford','fredericksburg','virginia','va','serve','coverage','donde','entregan','entrega','distancia'],
-      en:"Based in <b>Stafford, VA</b> (94 Tacketts Mill Rd) 📍\n\nWe deliver to <b>private homes within 50 miles</b>:\n• Fredericksburg · Woodbridge · Manassas\n• Culpeper · King George · Spotsylvania\n• Dumfries · Warrenton · Colonial Beach & more!\n\nBeyond 50 miles? Small extra fee.",
-      es:"Ubicados en <b>Stafford, VA</b> (94 Tacketts Mill Rd) 📍\n\nEntregamos a <b>domicilios privados en 50 millas</b>:\n• Fredericksburg · Woodbridge · Manassas\n• Culpeper · King George · Spotsylvania\n• Dumfries · Warrenton · Colonial Beach y mas!\n\nMas de 50 millas? Pequena tarifa extra.",
+      en:"Based in <b>Stafford, VA</b> (94 Tacketts Mill Rd) 📍\n\n<b>Free delivery under 25 miles</b> on orders over $150:\n• Fredericksburg · Stafford · Aquia Harbour\n• Falmouth · Quantico · Triangle\n\nFarther out? We charge by distance:\n• 25 to 50 miles: <b>$35</b>\n• 50 to 80 miles: <b>$75</b>\n• 80 to 120 miles: <b>$250</b>\n\nOrders under $150 have a <b>$35</b> delivery fee. We do not deliver past <b>120 miles</b>.",
+      es:"Ubicados en <b>Stafford, VA</b> (94 Tacketts Mill Rd) 📍\n\n<b>Entrega gratis a menos de 25 millas</b> en pedidos de mas de $150:\n• Fredericksburg · Stafford · Aquia Harbour\n• Falmouth · Quantico · Triangle\n\nMas lejos? Cobramos por distancia:\n• 25 a 50 millas: <b>$35</b>\n• 50 a 80 millas: <b>$75</b>\n• 80 a 120 millas: <b>$250</b>\n\nPedidos menores de $150 tienen un cargo de <b>$35</b>. No entregamos a mas de <b>120 millas</b>.",
       qe:['Book now','Pricing','More questions'],qs:['Reservar ahora','Precios','Mas preguntas']
     },
     parks:{

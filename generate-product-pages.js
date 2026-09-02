@@ -85,7 +85,7 @@ const CAT_KEYWORDS = {
 const GENERAL_FAQS = [
   {q:"Do I need to pay a deposit?",a:"No deposit required! Book online and pay the full amount at checkout. We accept all major credit cards."},
   {q:"How far in advance should I book?",a:"We recommend booking at least 2-3 weeks in advance, especially for weekends. However, we accept bookings as little as 2 days before your event."},
-  {q:"Is delivery and setup included?",a:"Yes! Free delivery, professional setup, and takedown are included within 50 miles of Stafford, VA. Orders under $150 have a $25 delivery fee."},
+  {q:"Is delivery and setup included?",a:"Yes! Free delivery, professional setup, and takedown are included within 25 miles of Stafford, VA. Orders under $150 have a $35 delivery fee. Past 25 miles we charge by distance: $35 up to 50 miles, $75 up to 80 miles, and $250 up to 120 miles. We do not deliver beyond 120 miles."},
   {q:"What happens if it rains?",a:"Light rain does not stop us. For severe weather (lightning, storms), we offer free rescheduling at no cost. Your party will happen!"},
   {q:"How much space do I need?",a:"Standard inflatables need at least 15x15 ft of flat space. Water slides may need more. We will confirm space requirements when you book."},
   {q:"Do you deliver to parks?",a:"We serve private residences only. This ensures the safest setup conditions and proper power access for our equipment."}
@@ -132,7 +132,7 @@ const CAT_FAQS = {
     {q:"What size tables are available?",a:"We have rectangular tables in 6-ft and 8-ft lengths (seats 6-10), and round tables in 48-inch (seats 6) and 60-inch (seats 8-10) diameters. Rectangular tables work well for buffets and casual dining, round tables for formal seated events."},
     {q:"How many tables and chairs do I need?",a:"For seated dining: 1 rectangular table per 6-8 guests, or 1 round table per 8-10 guests. For standing cocktail events, plan 1 table per 10-15 guests for food and drinks. We are happy to help you plan the right quantities for your layout."},
     {q:"Are tablecloths included with table rentals?",a:"Tablecloths are not included in the standard rental. We recommend purchasing disposable tablecloths from a party supply store, or renting linens from a local linen rental company for formal events."},
-    {q:"Do you deliver tables and chairs?",a:"Yes. Free delivery, setup, and pickup are included within 50 miles of Stafford, VA. We set up tables and chairs at your event location. Just tell us your layout preference and we will arrange everything before your guests arrive."}
+    {q:"Do you deliver tables and chairs?",a:"Yes. Free delivery, setup, and pickup are included within 25 miles of Stafford, VA. We set up tables and chairs at your event location. Just tell us your layout preference and we will arrange everything before your guests arrive."}
   ],
   supplies: [
     {q:"Do generators come with fuel?",a:"Yes, our portable generators include a full tank of fuel for the rental period, enough to run 1-2 bounce house blowers for 8+ hours. If you need extended runtime, we can provide additional fuel."},
@@ -144,7 +144,7 @@ const CAT_FAQS = {
   packages: [
     {q:"Can I customize a party package?",a:"Our packages are priced as bundles for maximum savings. If you need to swap items (different tent size, add a bounce house, change chair style), contact us and we will build a custom quote. Package pricing applies to the standard configurations shown."},
     {q:"How much do I save with a package vs. individual rentals?",a:"Packages save you $81 to $801 compared to renting each item individually. The Beast Mode VIP Package offers the biggest savings at $801 off. Package pricing is already applied, no coupon code needed."},
-    {q:"Do packages include delivery and setup?",a:"Yes. Every package includes free delivery, professional setup, and takedown within 50 miles of Stafford, VA. Our crew handles all equipment. For packages with mechanical bull, a trained operator is included for the full rental period."},
+    {q:"Do packages include delivery and setup?",a:"Yes. Every package includes free delivery, professional setup, and takedown within 25 miles of Stafford, VA. Our crew handles all equipment. For packages with mechanical bull, a trained operator is included for the full rental period."},
     {q:"Can I add items to a package?",a:"Absolutely. You can add any individual rental to a package at its regular price. Popular add-ons include LED string lights ($50), extra coolers ($16), heaters for evening events ($150), and dance floor panels (starting at $350)."},
     {q:"Which package is right for my event?",a:"Party Package #1 (tent + tables + chairs, $480) is great for graduations and showers. Summer Splash ($749) adds a water slide. Double Splash ($1,199) is built for 30+ guests. Beast Mode VIP ($1,799) is the ultimate with mechanical bull + 2 water slides."}
   ],
@@ -193,7 +193,7 @@ function buildSeoContent(product) {
   const overview = `<section class="seo-section">
   <div class="container">
     <h2>How Much Does ${esc(nameThe)}${rentalSuffix} Cost in Stafford, VA?</h2>
-    <p>${esc(nameTheUp)} costs ${price}${product.unit ? '' : ' per day'} to rent in Stafford, Virginia. This price includes free delivery, professional setup, and takedown within a 50-mile radius. No deposit is required to book.</p>
+    <p>${esc(nameTheUp)} costs ${price}${product.unit ? '' : ' per day'} to rent in Stafford, Virginia. This price includes free delivery, professional setup, and takedown within a 25-mile radius of Stafford, VA. No deposit is required to book.</p>
     <p>Pepe's Party Rental is a family-owned company that has served 13+ years in Stafford, Fredericksburg, Woodbridge, Manassas, and Northern Virginia. The company holds a 4.8-star rating from 121 verified Google reviews and carries $1 million in liability insurance on every rental. All equipment is commercial-grade, professionally cleaned, and safety-inspected before each event.</p>
     <p class="seo-updated"><time datetime="2026-08-02">Last updated: August 2, 2026</time></p>
   </div>
@@ -205,7 +205,7 @@ function buildSeoContent(product) {
     <p>${esc(product.desc)}</p>
     <h3>Every Rental Includes</h3>
     <ul class="seo-list">
-      <li><strong>Free delivery and pickup</strong> within 50 miles of Stafford, VA (addresses in Fredericksburg, Woodbridge, Manassas, Culpeper, and all of Prince William County)</li>
+      <li><strong>Free delivery and pickup</strong> within 25 miles of Stafford, VA on orders of $150 or more (Fredericksburg, Falmouth, Aquia Harbour, Quantico, and Triangle). Past 25 miles we charge by distance: $35 up to 50 miles, $75 up to 80 miles, $250 up to 120 miles. We do not deliver beyond 120 miles</li>
       <li><strong>Professional setup and takedown</strong> by Pepe's Party Rental crew (13+ years of experience)</li>
       <li><strong>All-day rental</strong> with up to 8 hours of use per booking</li>
       <li><strong>$1 million liability insurance</strong> coverage included on every event at no extra cost</li>
@@ -220,7 +220,7 @@ function buildSeoContent(product) {
   const localArea = `<section class="seo-section">
   <div class="container">
     <h2>Where Does Pepe's Party Rental Deliver ${esc(nameThe)}?</h2>
-    <p>Pepe's Party Rental delivers ${esc(nameThe)} to all communities within a 50-mile radius of Stafford, Virginia. The service area covers 12 cities and counties across Northern Virginia.</p>
+    <p>Pepe's Party Rental delivers ${esc(nameThe)} to communities within 120 miles of Stafford, Virginia. Delivery is free under 25 miles on orders of $150 or more, then $35 up to 50 miles, $75 up to 80 miles, and $250 up to 120 miles. We do not deliver beyond 120 miles.</p>
     <h3>Service Area Cities</h3>
     <ul class="seo-list">
       <li><strong>Stafford, VA</strong> (home base, 94 Tacketts Mill Rd)</li>
@@ -231,7 +231,7 @@ function buildSeoContent(product) {
       <li><strong>Culpeper, VA</strong>, <strong>Dumfries, VA</strong>, <strong>Warrenton, VA</strong>, and <strong>Colonial Beach, VA</strong></li>
       <li>All of <strong>Prince William County</strong> and <strong>Northern Virginia</strong></li>
     </ul>
-    <p>Delivery is free for orders over $150. Orders under $150 include a $25 delivery fee. The crew arrives 1-2 hours before your event starts to complete setup.${product.cat === 'bull' ? ' The Beast mechanical bull is also available for events throughout Virginia, Maryland, and Washington, DC.' : ''}</p>
+    <p>Delivery is free within 25 miles of Stafford for orders over $150. Orders under $150 include a $35 delivery fee, including inside the free zone. Past 25 miles the fee is set by distance: $35 up to 50 miles, $75 up to 80 miles, and $250 up to 120 miles. We do not deliver beyond 120 miles. The crew arrives 1-2 hours before your event starts to complete setup.${product.cat === 'bull' ? ' The Beast mechanical bull is also available for events throughout Virginia, Maryland, and Washington, DC.' : ''}</p>
   </div>
 </section>`;
 
@@ -788,7 +788,7 @@ ol.seo-list li::before { content: counter(seo-counter); background: var(--orange
           </div>
           <div class="product-trust-item">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
-            Serving Stafford, VA & 50-mile radius
+            Serving Stafford, VA & a 120-mile radius
           </div>
           <div class="product-trust-item">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
@@ -879,7 +879,7 @@ ${related.length ? `
 <section class="cta-banner">
   <div class="cta-banner-inner">
     <h2>Ready to Book Your Party?</h2>
-    <p>Free delivery, setup & takedown. No deposit required. Serving Stafford, VA and 50-mile radius.</p>
+    <p>Free delivery, setup & takedown. No deposit required. Serving Stafford, VA and a 120-mile radius.</p>
     <a href="https://pepespartyrentall.com" class="cta-btn" target="_blank" rel="noopener">
       Browse All Rentals
       <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
