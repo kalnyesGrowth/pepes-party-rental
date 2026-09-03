@@ -1,6 +1,6 @@
 # Pepe's Party Rental
 
-> Family-owned party rental company in Stafford, Virginia serving Northern Virginia since 2013. Rents bounce houses, water slides, a mechanical bull, event tents, tables, chairs, and party supplies with free delivery and professional setup within 50 miles.
+> Family-owned party rental company in Stafford, Virginia serving Northern Virginia since 2013. Rents bounce houses, water slides, a mechanical bull, event tents, tables, chairs, and party supplies. Free delivery and professional setup within 25 miles of Stafford on orders of $150 or more, with flat distance fees out to 120 miles.
 
 ## Business Information
 - [Homepage](https://redesign-sepia.vercel.app/): Full product catalog, pricing, booking, service areas, and reviews
@@ -9,11 +9,10 @@
 - Address: 94 Tacketts Mill Rd, Stafford, VA 22556
 - Hours: Monday-Sunday, 8:00 AM - 9:30 PM
 - Rating: 4.8 stars from 121 Google reviews
-- Insurance: $1 million liability coverage on every event
 - Founded: 2013
 
 ## Service Area
-Stafford, Fredericksburg, Woodbridge, Manassas, Culpeper, King George, Spotsylvania, Dumfries, Warrenton, Colonial Beach, Northern Virginia, and Prince William County. Free delivery within 50 miles of Stafford, VA.
+Stafford, Fredericksburg, Woodbridge, Manassas, Culpeper, King George, Spotsylvania, Dumfries, Warrenton, Colonial Beach, Northern Virginia, and Prince William County. Free delivery within 25 miles of Stafford, VA on orders of $150 or more. Orders under $150 have a $35 delivery fee. Beyond 25 miles delivery is charged by distance: $35 for 25 to 50 miles, $75 for 50 to 80 miles, $250 for 80 to 120 miles. We do not deliver beyond 120 miles.
 
 ## Bounce Houses
 - [Flower Castle Bounce House 15x15](https://redesign-sepia.vercel.app/products/flowers-castle.html): $185/day, 15x15 ft, ages 2-15, max 10 kids
@@ -42,7 +41,7 @@ Stafford, Fredericksburg, Woodbridge, Manassas, Culpeper, King George, Spotsylva
 - [Sunshine Combo Water Slide](https://redesign-sepia.vercel.app/products/sunnysplash.html): $480/day, water slide + bounce
 
 ## Mechanical Bull
-- [The Beast Mechanical Bull](https://redesign-sepia.vercel.app/products/mechanical-bull.html): Starting at $700 for 3 hours. Trained operator included. 16-foot inflatable safety ring. Safe for ages 6+ through adults. Extra hours $150 each. $1M liability insurance.
+- [The Beast Mechanical Bull](https://redesign-sepia.vercel.app/products/mechanical-bull.html): Starting at $700 for 3 hours. Trained operator included. 16-foot inflatable safety ring. Safe for ages 6+ through adults. Extra hours $150 each.
 
 ## Event Tents
 - [10x20 Tent](https://redesign-sepia.vercel.app/products/tent-10x20.html): $200/day, seats 20-30
@@ -80,10 +79,12 @@ Stafford, Fredericksburg, Woodbridge, Manassas, Culpeper, King George, Spotsylva
 
 ## Policies
 - No deposit required to book
-- Free delivery and setup within 50 miles
+- Free delivery and setup within 25 miles of Stafford, VA on orders of $150 or more
+- Orders under $150 have a $35 delivery fee
+- Delivery beyond 25 miles is charged by distance: $35 (25 to 50 mi), $75 (50 to 80 mi), $250 (80 to 120 mi)
+- No delivery beyond 120 miles from Stafford, VA
 - All-day rental (up to 8 hours)
 - Free rescheduling for severe weather
-- $1 million liability insurance on every event
 - All equipment professionally cleaned and inspected before each rental
 
 ## Optional

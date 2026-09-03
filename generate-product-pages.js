@@ -22,7 +22,7 @@ const PRODUCTS = [
   {id:18,name:"Tropical Water Slide",handle:"tropical",price:449,cat:"waterslides",img:"https://pepespartyrentall.com/cdn/shop/files/hf_20260223_042554_5dd471ad-ea2f-48e8-8a31-74403277b5e8.jpg?v=1771820190&width=600",desc:"Tropical paradise water slide with palm tree and island graphics. Brings the vacation vibes to your backyard. Features a tall, fast slide with water sprayers for maximum splash action. Perfect for luau parties, summer cookouts, and pool party alternatives.",specs:["14x37 ft total footprint","Tall water slide","Splash landing pool","Ages 5-14","Tropical island theme","Requires garden hose hookup"]},
   {id:19,name:"WaveSplash Water Slide & Bounce",handle:"wavesplush",price:480,cat:"waterslides",img:"https://pepespartyrentall.com/cdn/shop/files/hf_20260222_060241_1ed946ac-4324-4466-8e3f-c4aa204444e1.jpg?v=1771820190&width=600",desc:"The WaveSplash combines a water slide AND a bounce area in one mega unit. Kids can bounce dry or slide wet. Dual-purpose design means double the fun. Ocean wave theme with vibrant blue and white graphics. Our premium water combo for parties that want it all.",specs:["Large combination footprint","Water slide + bounce area","Splash landing pool","Ages 5-14","Ocean wave theme","Requires garden hose hookup"]},
   {id:20,name:"Sunshine Combo Water Slide",handle:"sunnysplash",price:480,cat:"waterslides",img:"https://pepespartyrentall.com/cdn/shop/files/hf_20260222_060319_e03602ef-62c5-46ad-96a2-c4a8562b04c1.jpg?v=1771820190&width=600",desc:"Our Sunshine Combo water slide is the ultimate summer party machine. Combines a bouncing area with a tall water slide and splash pool. Sunny yellow and blue theme that screams summer fun. Perfect for large birthday parties, family reunions, and community events.",specs:["Large combination footprint","Water slide + bounce area","Splash landing pool","Ages 5-14","Sunshine yellow theme","Requires garden hose hookup"]},
-  {id:21,name:"The Beast™ Mechanical Bull",handle:"mechanical-bull",price:700,cat:"bull",img:"https://pepespartyrentall.com/cdn/shop/files/hf_20260211_164148_a44ffa5a-fdd2-4004-9c21-06cc7131b35a_1.png?v=1771822665&width=600",desc:"The Beast is our #1 most popular rental and the highlight of every event. Professional mechanical bull with a trained operator included. Safe for kids AND adults. The operator adjusts the speed from gentle (kids) to full rodeo (adults). Sits inside a 16-foot inflatable safety ring with professional mats. $1M liability insurance on every event. The single most memorable attraction you can add to any party, wedding, corporate event, or community gathering.",specs:["16 ft inflatable safety ring","Professional operator included","Adjustable speed (kids to adults)","Ages 6+","3-hour minimum rental","Extra hours: $150/hr"],variants:[{t:"3 Hours (Min)",p:700},{t:"4 Hours",p:850},{t:"5 Hours",p:1000}]},
+  {id:21,name:"The Beast™ Mechanical Bull",handle:"mechanical-bull",price:700,cat:"bull",img:"https://pepespartyrentall.com/cdn/shop/files/hf_20260211_164148_a44ffa5a-fdd2-4004-9c21-06cc7131b35a_1.png?v=1771822665&width=600",desc:"The Beast is our #1 most popular rental and the highlight of every event. Professional mechanical bull with a trained operator included. Safe for kids AND adults. The operator adjusts the speed from gentle (kids) to full rodeo (adults). Sits inside a 16-foot inflatable safety ring with professional mats. The single most memorable attraction you can add to any party, wedding, corporate event, or community gathering.",specs:["16 ft inflatable safety ring","Professional operator included","Adjustable speed (kids to adults)","Ages 6+","3-hour minimum rental","Extra hours: $150/hr"],variants:[{t:"3 Hours (Min)",p:700},{t:"4 Hours",p:850},{t:"5 Hours",p:1000}]},
   {id:22,name:"Event Tent 10x20",handle:"tent-10x20",price:200,cat:"tents",img:"https://cdn.shopify.com/s/files/1/1005/0879/5163/files/10x20_1.jpg?width=600",desc:"Our 10x20 event tent comfortably covers 20-30 guests. Commercial-grade white vinyl canopy with a heavy-duty steel frame built to withstand wind and light rain. Perfect for intimate gatherings, backyard BBQs, and small receptions. Add sidewalls for weather protection and privacy.",specs:["10x20 ft coverage area","Seats 20-30 guests","Commercial-grade white vinyl","Heavy-duty steel frame","Wind and rain rated","Optional sidewalls available"]},
   {id:23,name:"Event Tent 15x15",handle:"tent-15x15",price:200,cat:"tents",img:"https://cdn.shopify.com/s/files/1/1005/0879/5163/files/15x15_1.jpg?width=600",desc:"Square 15x15 tent provides extra-wide coverage perfect for square setups like dance floors, food stations, or ceremony areas. Commercial-grade PVC vinyl top with steel frame. Great for small weddings, quinceañeras, and community events.",specs:["15x15 ft coverage area","Seats 20-30 guests","Commercial-grade PVC vinyl","Heavy-duty steel frame","Perfect for square setups","Optional sidewalls available"]},
   {id:24,name:"Event Tent 20x20",handle:"tent-20x20",price:330,cat:"tents",img:"https://cdn.shopify.com/s/files/1/1005/0879/5163/files/20x20_1.jpg?width=600",desc:"The 20x20 is our most popular mid-size tent. Covers 30-40 guests comfortably. Professional frame design that handles wind and rain. Perfect for medium birthday parties, graduation celebrations, and outdoor receptions. Big enough for tables, chairs, and a dance area.",specs:["20x20 ft coverage area","Seats 30-40 guests","Professional frame design","Wind and rain rated","Room for tables + dance area","Optional sidewalls available"]},
@@ -97,7 +97,7 @@ const CAT_FAQS = {
     {q:"Do I need a power outlet for the bounce house?",a:"Yes, bounce houses require a standard 110V electrical outlet within 100 feet. If your venue does not have power access, we rent portable generators for $65/day that will keep the blower running all day."},
     {q:"How long does setup take?",a:"Our team arrives 1-2 hours before your event to set up. Bounce house setup takes approximately 15-20 minutes. We handle everything from unloading to inflation to safety checks."},
     {q:"Can bounce houses be set up on any surface?",a:"Bounce houses work best on flat grass or dirt surfaces. We can also set up on concrete or asphalt with additional anchoring. We cannot set up on slopes, rocky ground, or near pools, fences, or overhead wires."},
-    {q:"What is included with every bounce house rental?",a:"Every rental includes free delivery, professional setup, safety inspection, all-day use (up to 8 hours), and takedown. We also provide stakes, sandbags, and a blower. No hidden fees."}
+    {q:"What is included with every bounce house rental?",a:"Every rental includes free delivery within 25 miles, professional setup, safety inspection, all-day use (up to 8 hours), and takedown. We also provide stakes, sandbags, and a blower. No hidden fees."}
   ],
   combos: [
     {q:"What is a combo bounce house?",a:"A combo bounce house combines a jumping area with one or more slides in a single inflatable unit. Kids get the best of both worlds: bouncing AND sliding. Our combos range from 13x22 ft to 14x32 ft and accommodate 8-15 kids at once."},
@@ -114,7 +114,7 @@ const CAT_FAQS = {
     {q:"What about water slides in cooler weather?",a:"Water slides are seasonal rentals, best enjoyed May through September in Virginia. For cooler months, consider our bounce houses, combo slides (dry use), or mechanical bull for the same excitement without the splash."}
   ],
   bull: [
-    {q:"Is the mechanical bull safe?",a:"Absolutely. The Beast sits inside a 16-foot inflatable safety ring with professional-grade padding. A trained operator controls speed and direction for every rider. Speed is adjusted from gentle (kids age 6+) to full rodeo (adults). $1M liability insurance coverage on every event."},
+    {q:"Is the mechanical bull safe?",a:"Absolutely. The Beast sits inside a 16-foot inflatable safety ring with professional-grade padding. A trained operator controls speed and direction for every rider. Speed is adjusted from gentle (kids age 6+) to full rodeo (adults)."},
     {q:"Does the mechanical bull come with an operator?",a:"Yes, a professionally trained operator is included with every mechanical bull rental. The operator controls the bull's speed, direction, and intensity based on each rider's age and comfort level. You never need to operate the equipment yourself."},
     {q:"How much space does the mechanical bull need?",a:"The Beast requires a flat area of at least 20x20 feet. The 16-foot inflatable safety ring needs clearance on all sides. We can set up on grass, dirt, or concrete. Indoor venues need a minimum ceiling height of 12 feet."},
     {q:"Can children ride the mechanical bull?",a:"Yes. Children ages 6 and up can ride. Our operator sets the bull to a gentle, slow speed for younger riders, like a rocking horse. As riders get more confident, the operator can gradually increase the challenge. Adults get the full rodeo experience."},
@@ -194,7 +194,7 @@ function buildSeoContent(product) {
   <div class="container">
     <h2>How Much Does ${esc(nameThe)}${rentalSuffix} Cost in Stafford, VA?</h2>
     <p>${esc(nameTheUp)} costs ${price}${product.unit ? '' : ' per day'} to rent in Stafford, Virginia. This price includes free delivery, professional setup, and takedown within a 25-mile radius of Stafford, VA. No deposit is required to book.</p>
-    <p>Pepe's Party Rental is a family-owned company that has served 13+ years in Stafford, Fredericksburg, Woodbridge, Manassas, and Northern Virginia. The company holds a 4.8-star rating from 121 verified Google reviews and carries $1 million in liability insurance on every rental. All equipment is commercial-grade, professionally cleaned, and safety-inspected before each event.</p>
+    <p>Pepe's Party Rental is a family-owned company that has served 13+ years in Stafford, Fredericksburg, Woodbridge, Manassas, and Northern Virginia. The company holds a 4.8-star rating from 121 verified Google reviews. All equipment is commercial-grade, professionally cleaned, and safety-inspected before each event.</p>
     <p class="seo-updated"><time datetime="2026-08-02">Last updated: August 2, 2026</time></p>
   </div>
 </section>`;
@@ -208,7 +208,6 @@ function buildSeoContent(product) {
       <li><strong>Free delivery and pickup</strong> within 25 miles of Stafford, VA on orders of $150 or more (Fredericksburg, Falmouth, Aquia Harbour, Quantico, and Triangle). Past 25 miles we charge by distance: $35 up to 50 miles, $75 up to 80 miles, $250 up to 120 miles. We do not deliver beyond 120 miles</li>
       <li><strong>Professional setup and takedown</strong> by Pepe's Party Rental crew (13+ years of experience)</li>
       <li><strong>All-day rental</strong> with up to 8 hours of use per booking</li>
-      <li><strong>$1 million liability insurance</strong> coverage included on every event at no extra cost</li>
       <li><strong>Sanitized equipment</strong> professionally cleaned and safety-inspected before each rental</li>
       <li><strong>No deposit required</strong> to reserve your date</li>
     </ul>
@@ -780,7 +779,7 @@ ol.seo-list li::before { content: counter(seo-counter); background: var(--orange
         <div class="product-trust">
           <div class="product-trust-item">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
-            Free delivery, setup & takedown included
+            Free delivery & setup within 25 miles on $150+ orders
           </div>
           <div class="product-trust-item">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
@@ -879,7 +878,7 @@ ${related.length ? `
 <section class="cta-banner">
   <div class="cta-banner-inner">
     <h2>Ready to Book Your Party?</h2>
-    <p>Free delivery, setup & takedown. No deposit required. Serving Stafford, VA and a 120-mile radius.</p>
+    <p>Free delivery within 25 miles on orders over $150, plus setup and takedown. No deposit required. We deliver up to 120 miles for a flat distance fee.</p>
     <a href="https://pepespartyrentall.com" class="cta-btn" target="_blank" rel="noopener">
       Browse All Rentals
       <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
@@ -919,7 +918,7 @@ ${related.length ? `
         <p>Woodbridge</p>
         <p>Manassas</p>
         <p>Spotsylvania</p>
-        <p>+ 50 mile radius</p>
+        <p>+ 120 mile radius</p>
       </div>
     </div>
     <div class="footer-bottom">
