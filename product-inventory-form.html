@@ -1,0 +1,632 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Pepe's Party Rental - Product Inventory Form</title>
+<style>
+:root {
+  --bg: #FAF9F7;
+  --surface: #FFFFFF;
+  --text: #1C1917;
+  --text-2: #57534E;
+  --border: #E7E5E4;
+  --accent: #EA580C;
+  --accent-light: #FFF7ED;
+  --green: #16A34A;
+  --cat-bounce: #3B82F6;
+  --cat-combo: #8B5CF6;
+  --cat-water: #0EA5E9;
+  --cat-bull: #DC2626;
+  --cat-tent: #059669;
+  --cat-table: #D97706;
+  --cat-supply: #6366F1;
+  --cat-pkg: #EC4899;
+  --radius: 8px;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+html, body { overflow-x: hidden; }
+
+body {
+  font-family: -apple-system, 'Segoe UI', system-ui, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+
+.page {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 40px 24px 100px;
+}
+
+.header {
+  text-align: center;
+  margin-bottom: 48px;
+  padding-bottom: 32px;
+  border-bottom: 2px solid var(--accent);
+}
+.header h1 {
+  font-size: 1.75rem;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  margin-bottom: 4px;
+}
+.header .sub {
+  font-size: 1rem;
+  color: var(--text-2);
+  margin-bottom: 16px;
+}
+.header .instructions {
+  background: var(--accent-light);
+  border: 1px solid var(--accent);
+  border-radius: var(--radius);
+  padding: 16px 20px;
+  text-align: left;
+  font-size: 0.9rem;
+  line-height: 1.7;
+  max-width: 700px;
+  margin: 0 auto;
+}
+.header .instructions strong { color: var(--accent); }
+
+.cat-section { margin-bottom: 40px; }
+.cat-header {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 16px;
+  padding: 10px 16px;
+  border-radius: var(--radius);
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: #fff;
+}
+.cat-header.bouncehouses { background: var(--cat-bounce); }
+.cat-header.combos { background: var(--cat-combo); }
+.cat-header.waterslides { background: var(--cat-water); }
+.cat-header.bull { background: var(--cat-bull); }
+.cat-header.tents { background: var(--cat-tent); }
+.cat-header.tables { background: var(--cat-table); }
+.cat-header.supplies { background: var(--cat-supply); }
+.cat-header.packages { background: var(--cat-pkg); }
+
+.product-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  margin-bottom: 12px;
+  overflow: hidden;
+}
+.product-top {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 16px 20px;
+  cursor: pointer;
+  user-select: none;
+}
+.product-top:hover { background: var(--accent-light); }
+.product-num {
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: var(--text-2);
+  background: var(--bg);
+  border: 1px solid var(--border);
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+.product-name {
+  flex: 1;
+  font-weight: 700;
+  font-size: 0.95rem;
+}
+.product-price {
+  font-size: 0.85rem;
+  color: var(--accent);
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+}
+.product-toggle {
+  width: 20px;
+  height: 20px;
+  transition: transform 0.2s;
+  color: var(--text-2);
+}
+.product-card.open .product-toggle { transform: rotate(180deg); }
+
+.product-fields {
+  display: none;
+  padding: 0 20px 20px;
+  border-top: 1px solid var(--border);
+}
+.product-card.open .product-fields { display: block; }
+
+.field-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+  margin-top: 16px;
+}
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+.field.full { grid-column: 1 / -1; }
+.field label {
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: var(--text-2);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+.field label .es { color: var(--accent); font-weight: 400; font-style: italic; text-transform: none; }
+.field input, .field textarea, .field select {
+  padding: 8px 12px;
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  font-size: 0.9rem;
+  font-family: inherit;
+  background: var(--bg);
+  color: var(--text);
+}
+.field input:focus, .field textarea:focus, .field select:focus {
+  outline: 2px solid var(--accent);
+  outline-offset: -1px;
+  border-color: var(--accent);
+}
+.field textarea { resize: vertical; min-height: 60px; }
+.field input::placeholder, .field textarea::placeholder {
+  color: var(--text-2);
+  opacity: 0.6;
+}
+
+.progress-bar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: var(--border);
+  z-index: 100;
+}
+.progress-fill {
+  height: 100%;
+  background: var(--accent);
+  width: 0%;
+  transition: width 0.3s;
+}
+
+.sticky-bottom {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: var(--surface);
+  border-top: 1px solid var(--border);
+  padding: 12px 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  z-index: 100;
+  box-shadow: 0 -4px 12px rgba(0,0,0,0.08);
+}
+.sticky-bottom .counter {
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: var(--text-2);
+  font-variant-numeric: tabular-nums;
+}
+.btn {
+  padding: 10px 20px;
+  border: none;
+  border-radius: 50px;
+  font-size: 0.85rem;
+  font-weight: 700;
+  cursor: pointer;
+  font-family: inherit;
+  transition: opacity 0.2s;
+}
+.btn:hover { opacity: 0.85; }
+.btn-primary {
+  background: var(--accent);
+  color: #fff;
+}
+.btn-secondary {
+  background: var(--green);
+  color: #fff;
+}
+.btn-outline {
+  background: transparent;
+  color: var(--accent);
+  border: 2px solid var(--accent);
+}
+
+.toast {
+  position: fixed;
+  top: 20px;
+  left: 50%;
+  transform: translateX(-50%) translateY(-100px);
+  background: var(--green);
+  color: #fff;
+  padding: 12px 24px;
+  border-radius: 8px;
+  font-weight: 700;
+  font-size: 0.9rem;
+  z-index: 200;
+  transition: transform 0.3s;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+}
+.toast.show { transform: translateX(-50%) translateY(0); }
+
+.save-notice {
+  text-align: center;
+  background: #FEF3C7;
+  border: 1px solid #F59E0B;
+  border-radius: var(--radius);
+  padding: 12px 16px;
+  font-size: 0.85rem;
+  color: #92400E;
+  margin-bottom: 24px;
+}
+
+@media (max-width: 600px) {
+  .field-grid { grid-template-columns: 1fr; }
+  .page { padding: 24px 16px 100px; }
+  .header h1 { font-size: 1.4rem; }
+  .sticky-bottom { flex-wrap: wrap; gap: 8px; padding: 10px 16px; }
+  .btn { padding: 8px 14px; font-size: 0.8rem; }
+}
+
+@media print {
+  .progress-bar, .sticky-bottom, .save-notice { display: none; }
+  .product-fields { display: block !important; }
+  .product-card { break-inside: avoid; }
+}
+</style>
+</head>
+<body>
+
+<div class="progress-bar"><div class="progress-fill" id="progressFill"></div></div>
+<div class="toast" id="toast"></div>
+
+<div class="page">
+  <div class="header">
+    <h1>Pepe's Party Rental</h1>
+    <p class="sub">Product Inventory Form / Formulario de Inventario</p>
+    <div class="instructions">
+      <strong>Instructions / Instrucciones:</strong><br>
+      Click each product to expand it. Fill in the information you know. Leave blank anything you are not sure about.<br>
+      When you are done, click the green <strong>"Download Answers"</strong> button at the bottom to save your answers.<br><br>
+      <span style="color:var(--text-2)">Haga clic en cada producto para expandirlo. Llene la informacion que usted sepa. Deje en blanco lo que no este seguro.<br>
+      Cuando termine, haga clic en el boton verde <strong>"Download Answers"</strong> abajo para guardar sus respuestas.</span>
+    </div>
+  </div>
+
+  <div class="save-notice">
+    Your answers are saved automatically in your browser. You can close and come back later.<br>
+    <span style="color:#92400E">Sus respuestas se guardan automaticamente. Puede cerrar y volver despues.</span>
+  </div>
+
+  <div id="formContent"></div>
+</div>
+
+<div class="sticky-bottom">
+  <span class="counter" id="counter">0 / 47 products filled</span>
+  <button class="btn btn-primary" onclick="expandAll()">Expand All</button>
+  <button class="btn btn-secondary" onclick="downloadAnswers()">Download Answers</button>
+  <button class="btn btn-outline" onclick="copyAnswers()">Copy to Clipboard</button>
+</div>
+
+<script>
+var PRODUCTS = [
+  {id:1,name:"Flower Castle Bounce House 15x15",cat:"bouncehouses",price:"$170/day",fields:["qty","dimensions","age_range","max_kids","weight_limit","blower_included","condition","notes"]},
+  {id:2,name:"Sports Bounce House 13x13",cat:"bouncehouses",price:"$170/day",fields:["qty","dimensions","age_range","max_kids","weight_limit","blower_included","condition","notes"]},
+  {id:3,name:"Unisex Castle Bounce House",cat:"bouncehouses",price:"$170/day",fields:["qty","dimensions","age_range","max_kids","weight_limit","blower_included","condition","notes"]},
+  {id:4,name:"Girly Panel Bounce House 13x13",cat:"bouncehouses",price:"$170/day",fields:["qty","dimensions","age_range","max_kids","weight_limit","blower_included","condition","notes"]},
+  {id:5,name:"Crayon Bounce House 15x15",cat:"bouncehouses",price:"$170/day",fields:["qty","dimensions","age_range","max_kids","weight_limit","blower_included","condition","notes"]},
+  {id:6,name:"Blue Castle Bounce House 13x13",cat:"bouncehouses",price:"$170/day",fields:["qty","dimensions","age_range","max_kids","weight_limit","blower_included","condition","notes"]},
+  {id:7,name:"Sports 'P' Bounce House 13x13",cat:"bouncehouses",price:"$170/day",fields:["qty","dimensions","age_range","max_kids","weight_limit","blower_included","condition","notes"]},
+  {id:8,name:"Sports Double Slide Combo",cat:"combos",price:"$190/day",fields:["qty","dimensions","age_range","max_kids","weight_limit","blower_included","condition","notes"]},
+  {id:9,name:"Pink Combo Bounce House 15x27",cat:"combos",price:"$210/day",fields:["qty","dimensions","age_range","max_kids","weight_limit","blower_included","condition","notes"]},
+  {id:10,name:"Flower Slide Combo Bounce House",cat:"combos",price:"$210/day",fields:["qty","dimensions","age_range","max_kids","weight_limit","blower_included","condition","notes"]},
+  {id:11,name:"Pink Double Slide Combo",cat:"combos",price:"$220/day",fields:["qty","dimensions","age_range","max_kids","weight_limit","blower_included","condition","notes"]},
+  {id:12,name:"Orange Slide Combo Bounce House",cat:"combos",price:"$190/day",fields:["qty","dimensions","age_range","max_kids","weight_limit","blower_included","condition","notes"]},
+  {id:13,name:"Palm Tree Double Slide Combo",cat:"combos",price:"$190/day",fields:["qty","dimensions","age_range","max_kids","weight_limit","blower_included","condition","notes"]},
+  {id:14,name:"Red Combo Bounce House 14x32",cat:"combos",price:"$260/day",fields:["qty","dimensions","age_range","max_kids","weight_limit","blower_included","condition","notes"]},
+  {id:15,name:"Orange Combo Bounce House 14x32",cat:"combos",price:"$280/day",fields:["qty","dimensions","age_range","max_kids","weight_limit","blower_included","condition","notes"]},
+  {id:16,name:"NASA Water Slide",cat:"waterslides",price:"$450/day",fields:["qty","dimensions","slide_height","age_range","max_kids","weight_limit","blower_included","condition","notes"]},
+  {id:17,name:"T-Rex Water Slide",cat:"waterslides",price:"$450/day",fields:["qty","dimensions","slide_height","age_range","max_kids","weight_limit","blower_included","condition","notes"]},
+  {id:18,name:"Tropical Water Slide",cat:"waterslides",price:"$449/day",fields:["qty","dimensions","slide_height","age_range","max_kids","weight_limit","blower_included","condition","notes"]},
+  {id:19,name:"WaveSplash Water Slide & Bounce",cat:"waterslides",price:"$480/day",fields:["qty","dimensions","slide_height","age_range","max_kids","weight_limit","blower_included","condition","notes"]},
+  {id:20,name:"Sunshine Combo Water Slide",cat:"waterslides",price:"$480/day",fields:["qty","dimensions","slide_height","age_range","max_kids","weight_limit","blower_included","condition","notes"]},
+  {id:21,name:"The Beast Mechanical Bull",cat:"bull",price:"$700/3hr",fields:["qty","ring_diameter","min_age","max_weight","operator_name","condition","notes"]},
+  {id:22,name:"Event Tent 10x20",cat:"tents",price:"$200/day",fields:["qty","dimensions_exact","tent_style","sidewall_panels","window_panels","max_guests_seated","max_guests_standing","pole_type","can_concrete","stakes_included","weights_included","condition","notes"]},
+  {id:23,name:"Event Tent 15x15",cat:"tents",price:"$200/day",fields:["qty","dimensions_exact","tent_style","sidewall_panels","window_panels","max_guests_seated","max_guests_standing","pole_type","can_concrete","stakes_included","weights_included","condition","notes"]},
+  {id:24,name:"Event Tent 20x20",cat:"tents",price:"$330/day",fields:["qty","dimensions_exact","tent_style","sidewall_panels","window_panels","max_guests_seated","max_guests_standing","pole_type","can_concrete","stakes_included","weights_included","condition","notes"]},
+  {id:25,name:"Event Tent 20x30",cat:"tents",price:"$420/day",fields:["qty","dimensions_exact","tent_style","sidewall_panels","window_panels","max_guests_seated","max_guests_standing","pole_type","can_concrete","stakes_included","weights_included","condition","notes"]},
+  {id:26,name:"High Peak Tent 20x40",cat:"tents",price:"$530/day",fields:["qty","dimensions_exact","tent_style","sidewall_panels","window_panels","max_guests_seated","max_guests_standing","pole_type","can_concrete","stakes_included","weights_included","condition","notes"]},
+  {id:27,name:"Event Tent 20x60",cat:"tents",price:"$830/day",fields:["qty","dimensions_exact","tent_style","sidewall_panels","window_panels","max_guests_seated","max_guests_standing","pole_type","can_concrete","stakes_included","weights_included","condition","notes"]},
+  {id:28,name:"Event Tent 20x80",cat:"tents",price:"$1,080/day",fields:["qty","dimensions_exact","tent_style","sidewall_panels","window_panels","max_guests_seated","max_guests_standing","pole_type","can_concrete","stakes_included","weights_included","condition","notes"]},
+  {id:29,name:"High Peak Tent 30x30",cat:"tents",price:"$680/day",fields:["qty","dimensions_exact","tent_style","sidewall_panels","window_panels","max_guests_seated","max_guests_standing","pole_type","can_concrete","stakes_included","weights_included","condition","notes"]},
+  {id:30,name:"Folding Chair",cat:"tables",price:"$2/each",fields:["qty_total","weight_capacity","colors","condition","notes"]},
+  {id:31,name:"White Resin Folding Chair",cat:"tables",price:"$4.50/each",fields:["qty_total","weight_capacity","colors","condition","notes"]},
+  {id:32,name:"Premium Chiavari Chair",cat:"tables",price:"$4.50/each",fields:["qty_total","weight_capacity","colors","cushion_included","condition","notes"]},
+  {id:33,name:"Rectangular Table 6ft/8ft",cat:"tables",price:"$8/each",fields:["qty_6ft","qty_8ft","weight_capacity","condition","notes"]},
+  {id:34,name:'Round Table 48"/60"',cat:"tables",price:"$10-$12/each",fields:["qty_48","qty_60","weight_capacity","condition","notes"]},
+  {id:35,name:"Throne Chair",cat:"tables",price:"$175/day",fields:["qty_gold","qty_silver","condition","notes"]},
+  {id:36,name:"Bluetooth Speaker",cat:"supplies",price:"$65/day",fields:["qty","brand_model","battery_hours","condition","notes"]},
+  {id:37,name:"Party Cooler",cat:"supplies",price:"$16/day",fields:["qty","capacity_cans","has_wheels","condition","notes"]},
+  {id:38,name:"Portable Generator",cat:"supplies",price:"$65/day",fields:["qty","wattage","fuel_type","blowers_powered","condition","notes"]},
+  {id:39,name:"Outdoor Heater",cat:"supplies",price:"$149.99/day",fields:["qty","heat_radius","propane_included","condition","notes"]},
+  {id:40,name:"Party Barrel",cat:"supplies",price:"$49.99/day",fields:["qty","material","condition","notes"]},
+  {id:41,name:"LED String Lights 120ft",cat:"supplies",price:"$50/day",fields:["qty_sets","total_length","bulb_type","condition","notes"]},
+  {id:42,name:"Tent Sidewall 20ft Panel",cat:"supplies",price:"$25/each",fields:["qty_window","qty_solid","condition","notes"]},
+  {id:43,name:"Dance Floor",cat:"supplies",price:"$350-$500",fields:["qty_panels","sizes_available","surface_material","condition","notes"]},
+  {id:50,name:"Summer Splash Party Package",cat:"packages",price:"$749",fields:["still_offered","notes"]},
+  {id:51,name:"Double Splash Fiesta Package",cat:"packages",price:"$1,199",fields:["still_offered","notes"]},
+  {id:52,name:"Beast Mode VIP Package",cat:"packages",price:"$1,799",fields:["still_offered","notes"]},
+  {id:53,name:"Party Package #1",cat:"packages",price:"$480",fields:["still_offered","notes"]}
+];
+
+var CATS_ORDER = ["bouncehouses","combos","waterslides","bull","tents","tables","supplies","packages"];
+var CAT_NAMES = {
+  bouncehouses: "Bounce Houses / Casas de Brinco",
+  combos: "Combo Slides / Combos con Tobogan",
+  waterslides: "Water Slides / Toboganes de Agua",
+  bull: "Mechanical Bull / Toro Mecanico",
+  tents: "Event Tents / Carpas",
+  tables: "Tables & Chairs / Mesas y Sillas",
+  supplies: "Party Supplies / Accesorios",
+  packages: "Party Packages / Paquetes"
+};
+
+var FIELD_DEFS = {
+  qty: {label:"Quantity in stock",es:"Cantidad en inventario",type:"number",placeholder:"e.g. 1"},
+  qty_total: {label:"Total quantity",es:"Cantidad total",type:"number",placeholder:"e.g. 50"},
+  qty_6ft: {label:"Qty 6ft tables",es:"Cantidad mesas 6ft",type:"number",placeholder:"e.g. 10"},
+  qty_8ft: {label:"Qty 8ft tables",es:"Cantidad mesas 8ft",type:"number",placeholder:"e.g. 5"},
+  qty_48: {label:'Qty 48" round',es:'Cantidad redondas 48"',type:"number",placeholder:"e.g. 5"},
+  qty_60: {label:'Qty 60" round',es:'Cantidad redondas 60"',type:"number",placeholder:"e.g. 5"},
+  qty_gold: {label:"Qty Gold thrones",es:"Cantidad dorados",type:"number",placeholder:"e.g. 1"},
+  qty_silver: {label:"Qty Silver thrones",es:"Cantidad plateados",type:"number",placeholder:"e.g. 1"},
+  qty_sets: {label:"Qty light sets",es:"Cantidad de juegos",type:"number",placeholder:"e.g. 2"},
+  qty_window: {label:"Qty window panels",es:"Cantidad paneles ventana",type:"number",placeholder:"e.g. 4"},
+  qty_solid: {label:"Qty solid panels",es:"Cantidad paneles solidos",type:"number",placeholder:"e.g. 4"},
+  qty_panels: {label:"Total panels owned",es:"Total paneles",type:"number",placeholder:"e.g. 20"},
+  dimensions: {label:"Exact dimensions (LxWxH)",es:"Dimensiones exactas",type:"text",placeholder:"e.g. 15x15x12 ft"},
+  dimensions_exact: {label:"Exact dimensions",es:"Dimensiones exactas",type:"text",placeholder:"e.g. 20x30 ft, 10 ft peak height"},
+  slide_height: {label:"Slide height",es:"Altura del tobogan",type:"text",placeholder:"e.g. 18 ft"},
+  age_range: {label:"Age range",es:"Rango de edad",type:"text",placeholder:"e.g. 3-12"},
+  max_kids: {label:"Max kids at once",es:"Max ninos a la vez",type:"number",placeholder:"e.g. 8"},
+  weight_limit: {label:"Weight limit (lbs)",es:"Limite de peso (lbs)",type:"text",placeholder:"e.g. 300 lbs total"},
+  blower_included: {label:"Blower included?",es:"Incluye soplador?",type:"select",options:["Yes / Si","No"]},
+  ring_diameter: {label:"Safety ring diameter",es:"Diametro del anillo",type:"text",placeholder:"e.g. 16 ft"},
+  min_age: {label:"Minimum rider age",es:"Edad minima",type:"number",placeholder:"e.g. 6"},
+  max_weight: {label:"Max rider weight (lbs)",es:"Peso maximo (lbs)",type:"number",placeholder:"e.g. 250"},
+  operator_name: {label:"Operator name(s)",es:"Nombre(s) del operador",type:"text",placeholder:"Who operates the bull?"},
+  tent_style: {label:"Tent style",es:"Estilo de carpa",type:"select",options:["Frame / Marco","High Peak / Pico Alto","Both / Ambos"]},
+  sidewall_panels: {label:"# sidewall panels available",es:"# paneles laterales",type:"number",placeholder:"e.g. 4"},
+  window_panels: {label:"# window panels available",es:"# paneles ventana",type:"number",placeholder:"e.g. 2"},
+  max_guests_seated: {label:"Max guests seated",es:"Max invitados sentados",type:"number",placeholder:"e.g. 40"},
+  max_guests_standing: {label:"Max guests standing",es:"Max invitados de pie",type:"number",placeholder:"e.g. 60"},
+  pole_type: {label:"Pole type",es:"Tipo de poste",type:"select",options:["Center pole / Poste central","Frame / Marco","Tension / Tension"]},
+  can_concrete: {label:"Can setup on concrete?",es:"Se puede montar en concreto?",type:"select",options:["Yes / Si","No","With weights / Con pesas"]},
+  stakes_included: {label:"Stakes included?",es:"Estacas incluidas?",type:"select",options:["Yes / Si","No"]},
+  weights_included: {label:"Weights included?",es:"Pesas incluidas?",type:"select",options:["Yes / Si","No"]},
+  colors: {label:"Colors available",es:"Colores disponibles",type:"text",placeholder:"e.g. White, Black"},
+  cushion_included: {label:"Cushion included?",es:"Cojin incluido?",type:"select",options:["Yes / Si","No"]},
+  weight_capacity: {label:"Weight capacity per unit",es:"Capacidad de peso por unidad",type:"text",placeholder:"e.g. 300 lbs"},
+  brand_model: {label:"Brand/Model",es:"Marca/Modelo",type:"text",placeholder:"e.g. JBL PartyBox 310"},
+  battery_hours: {label:"Battery life (hours)",es:"Duracion bateria (horas)",type:"number",placeholder:"e.g. 8"},
+  capacity_cans: {label:"Capacity (cans)",es:"Capacidad (latas)",type:"number",placeholder:"e.g. 100"},
+  has_wheels: {label:"Has wheels?",es:"Tiene ruedas?",type:"select",options:["Yes / Si","No"]},
+  wattage: {label:"Wattage",es:"Vatios",type:"text",placeholder:"e.g. 3500W"},
+  fuel_type: {label:"Fuel type",es:"Tipo de combustible",type:"text",placeholder:"e.g. Gasoline"},
+  blowers_powered: {label:"# blowers it can power",es:"# sopladores que alimenta",type:"number",placeholder:"e.g. 2"},
+  heat_radius: {label:"Heat radius (ft)",es:"Radio de calor (pies)",type:"text",placeholder:"e.g. 10-15 ft"},
+  propane_included: {label:"Propane included?",es:"Propano incluido?",type:"select",options:["Yes / Si","No"]},
+  material: {label:"Material",es:"Material",type:"text",placeholder:"e.g. Oak wood"},
+  total_length: {label:"Total length",es:"Longitud total",type:"text",placeholder:"e.g. 120 ft"},
+  bulb_type: {label:"Bulb type",es:"Tipo de bombilla",type:"text",placeholder:"e.g. LED Edison"},
+  sizes_available: {label:"Sizes you can build",es:"Tamanos que puede armar",type:"text",placeholder:"e.g. 12x12, 15x15, 18x18, 21x21"},
+  surface_material: {label:"Surface material",es:"Material de superficie",type:"text",placeholder:"e.g. Vinyl, Wood"},
+  still_offered: {label:"Still offering this package?",es:"Aun ofrece este paquete?",type:"select",options:["Yes / Si","No","Modified / Modificado"]},
+  condition: {label:"Condition",es:"Condicion",type:"select",options:["New / Nuevo","Good / Bueno","Fair / Regular","Needs repair / Necesita reparacion"]},
+  notes: {label:"Additional notes",es:"Notas adicionales",type:"textarea",placeholder:"Anything else about this product / Algo mas sobre este producto",full:true}
+};
+
+var STORAGE_KEY = 'pepes_inventory_v1';
+
+function renderField(key, productId) {
+  var d = FIELD_DEFS[key];
+  if (!d) return '';
+  var cls = d.full ? ' full' : '';
+  var dataAttr = 'data-product="'+productId+'" data-field="'+key+'"';
+  var inner = '';
+  if (d.type === 'select') {
+    inner = '<select '+dataAttr+'><option value="">-- Select --</option>' + d.options.map(function(o) {
+      return '<option value="'+o+'">'+o+'</option>';
+    }).join('') + '</select>';
+  } else if (d.type === 'textarea') {
+    inner = '<textarea '+dataAttr+' placeholder="'+d.placeholder+'"></textarea>';
+  } else {
+    inner = '<input type="'+(d.type||'text')+'" '+dataAttr+' placeholder="'+(d.placeholder||'')+'">';
+  }
+  return '<div class="field'+cls+'"><label>'+d.label+' <span class="es">'+d.es+'</span></label>'+inner+'</div>';
+}
+
+function render() {
+  var html = '';
+  var num = 0;
+  CATS_ORDER.forEach(function(cat) {
+    var items = PRODUCTS.filter(function(p) { return p.cat === cat; });
+    if (!items.length) return;
+    html += '<div class="cat-section">';
+    html += '<div class="cat-header '+cat+'">'+CAT_NAMES[cat]+' ('+items.length+')</div>';
+    items.forEach(function(p) {
+      num++;
+      html += '<div class="product-card" data-id="'+p.id+'">';
+      html += '<div class="product-top" onclick="toggleCard(this)">';
+      html += '<span class="product-num">'+num+'</span>';
+      html += '<span class="product-name">'+p.name+'</span>';
+      html += '<span class="product-price">'+p.price+'</span>';
+      html += '<svg class="product-toggle" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg>';
+      html += '</div>';
+      html += '<div class="product-fields">';
+      html += '<div class="field-grid">';
+      p.fields.forEach(function(f) { html += renderField(f, p.id); });
+      html += '</div></div></div>';
+    });
+    html += '</div>';
+  });
+  document.getElementById('formContent').innerHTML = html;
+}
+
+function toggleCard(el) {
+  el.parentElement.classList.toggle('open');
+}
+
+function expandAll() {
+  var cards = document.querySelectorAll('.product-card');
+  var allOpen = true;
+  cards.forEach(function(c) { if (!c.classList.contains('open')) allOpen = false; });
+  cards.forEach(function(c) {
+    if (allOpen) c.classList.remove('open');
+    else c.classList.add('open');
+  });
+}
+
+function updateProgress() {
+  var cards = document.querySelectorAll('.product-card');
+  var filled = 0;
+  cards.forEach(function(card) {
+    var inputs = card.querySelectorAll('input, textarea, select');
+    var hasFill = false;
+    inputs.forEach(function(inp) {
+      if (inp.value && inp.value !== '') hasFill = true;
+    });
+    if (hasFill) filled++;
+  });
+  document.getElementById('counter').textContent = filled + ' / ' + cards.length + ' products filled';
+  document.getElementById('progressFill').style.width = (filled / cards.length * 100) + '%';
+}
+
+function saveToStorage() {
+  var data = {};
+  var inputs = document.querySelectorAll('[data-product]');
+  inputs.forEach(function(inp) {
+    var pid = inp.getAttribute('data-product');
+    var field = inp.getAttribute('data-field');
+    if (inp.value && inp.value !== '') {
+      if (!data[pid]) data[pid] = {};
+      data[pid][field] = inp.value;
+    }
+  });
+  try { localStorage.setItem(STORAGE_KEY, JSON.stringify(data)); } catch(e) {}
+}
+
+function loadFromStorage() {
+  try {
+    var raw = localStorage.getItem(STORAGE_KEY);
+    if (!raw) return;
+    var data = JSON.parse(raw);
+    Object.keys(data).forEach(function(pid) {
+      Object.keys(data[pid]).forEach(function(field) {
+        var el = document.querySelector('[data-product="'+pid+'"][data-field="'+field+'"]');
+        if (el) el.value = data[pid][field];
+      });
+    });
+  } catch(e) {}
+}
+
+function collectAnswers() {
+  var lines = [];
+  lines.push('PEPE\'S PARTY RENTAL - PRODUCT INVENTORY');
+  lines.push('========================================');
+  lines.push('');
+  CATS_ORDER.forEach(function(cat) {
+    var items = PRODUCTS.filter(function(p) { return p.cat === cat; });
+    if (!items.length) return;
+    lines.push('--- ' + CAT_NAMES[cat].split('/')[0].trim() + ' ---');
+    lines.push('');
+    items.forEach(function(p) {
+      var hasData = false;
+      var productLines = [];
+      p.fields.forEach(function(f) {
+        var el = document.querySelector('[data-product="'+p.id+'"][data-field="'+f+'"]');
+        if (el && el.value && el.value !== '') {
+          hasData = true;
+          var d = FIELD_DEFS[f];
+          productLines.push('  ' + d.label + ': ' + el.value);
+        }
+      });
+      if (hasData) {
+        lines.push(p.name + ' (' + p.price + ')');
+        lines = lines.concat(productLines);
+        lines.push('');
+      } else {
+        lines.push(p.name + ' (' + p.price + ') - NO DATA ENTERED');
+      }
+    });
+    lines.push('');
+  });
+  return lines.join('\n');
+}
+
+function downloadAnswers() {
+  var text = collectAnswers();
+  var blob = new Blob([text], {type: 'text/plain'});
+  var a = document.createElement('a');
+  a.href = URL.createObjectURL(blob);
+  a.download = 'pepes-inventory-answers.txt';
+  a.click();
+  URL.revokeObjectURL(a.href);
+  showToast('Downloaded! / Descargado!');
+}
+
+function copyAnswers() {
+  var text = collectAnswers();
+  if (navigator.clipboard) {
+    navigator.clipboard.writeText(text).then(function() {
+      showToast('Copied! / Copiado!');
+    });
+  } else {
+    var ta = document.createElement('textarea');
+    ta.value = text;
+    document.body.appendChild(ta);
+    ta.select();
+    document.execCommand('copy');
+    document.body.removeChild(ta);
+    showToast('Copied! / Copiado!');
+  }
+}
+
+function showToast(msg) {
+  var t = document.getElementById('toast');
+  t.textContent = msg;
+  t.classList.add('show');
+  setTimeout(function() { t.classList.remove('show'); }, 2500);
+}
+
+render();
+loadFromStorage();
+updateProgress();
+
+document.addEventListener('input', function() {
+  updateProgress();
+  saveToStorage();
+});
+</script>
+</body>
+</html>
