@@ -996,6 +996,26 @@ input, select, textarea { font-family: inherit; font-size: 1rem; }
 }
 .checkout-field select:focus { outline: none; border-color: var(--orange); }
 .checkout-field label .opt { color: var(--text-secondary); font-weight: 400; }
+.addr-wrap { position: relative; }
+.addr-list {
+  position: absolute; top: calc(100% + 4px); left: 0; right: 0; z-index: 30;
+  margin: 0; padding: 4px; list-style: none; background: var(--bg);
+  border: 1px solid var(--border); border-radius: 8px; box-shadow: 0 8px 24px rgba(0,0,0,0.12);
+  max-height: 220px; overflow-y: auto;
+}
+.addr-list li {
+  padding: 9px 10px; font-size: 0.86rem; border-radius: 6px; cursor: pointer;
+  line-height: 1.35;
+}
+.addr-list li:hover, .addr-list li.active { background: var(--orange-glow); color: var(--text); }
+.addr-quote {
+  margin: -8px 0 16px; padding: 9px 11px; border-radius: 7px; font-size: 0.83rem;
+  background: var(--surface); border: 1px solid var(--border); line-height: 1.45;
+}
+.addr-quote.ok    { border-color: var(--success); color: var(--success); }
+.addr-quote.warn  { border-color: var(--orange); color: var(--text-secondary); }
+.addr-quote.bad   { border-color: #dc2626; color: #dc2626; }
+.addr-quote b { color: var(--text); }
 .btn-complete[disabled] { opacity: 0.6; cursor: not-allowed; }
 .checkout-summary {
   background: var(--orange-subtle); border-radius: 12px; padding: 16px;
@@ -2287,7 +2307,11 @@ input, select, textarea { font-family: inherit; font-size: 1rem; }
       </div>
       <div class="checkout-field">
         <label data-en="Delivery Address" data-es="Direccion de Entrega">Delivery Address <span class="req">*</span></label>
-        <input type="text" id="cAddress" placeholder="Full delivery address" required autocomplete="street-address" maxlength="200">
+        <div class="addr-wrap">
+          <input type="text" id="cAddress" placeholder="Start typing your address" required autocomplete="off" maxlength="200" role="combobox" aria-expanded="false" aria-autocomplete="list" aria-controls="addrList">
+          <ul class="addr-list" id="addrList" role="listbox" hidden></ul>
+        </div>
+        <div class="addr-quote" id="addrQuote" hidden></div>
       </div>
       <div class="checkout-field">
         <label data-en="How did you hear about us?" data-es="Como supo de nosotros?">How did you hear about us? <span class="opt" data-en="(optional)" data-es="(opcional)">(optional)</span></label>
@@ -2975,20 +2999,24 @@ function showCheckout(){
   document.getElementById('cartView').classList.add('hidden');
   document.getElementById('checkoutView').classList.add('active');
 
-  var subtotal=cartTotal();
-  var deliveryFee=cartDeliveryFee(subtotal);
-  var total=subtotal+deliveryFee;
-  var itemCount=cartItemCount();
-  var summaryEl=document.getElementById('checkoutSummary');
-  summaryEl.innerHTML='<div class="row"><span>'+itemCount+' '+(lang==='es'?'articulos':'items')+'</span><span>'+fmtPrice(subtotal)+'</span></div>'
-    +(deliveryFee?'<div class="row"><span>'+(lang==='es'?'Entrega':'Delivery')+'</span><span>'+fmtPrice(deliveryFee)+'</span></div>':'')
-    +'<div class="row total"><span>Total</span><span>'+fmtPrice(total)+'</span></div>';
+  refreshCheckoutSummary();
+
+  var addrInput=document.getElementById('cAddress');
+  if(addrInput && !addrInput.dataset.wired){
+    addrInput.dataset.wired='1';
+    addrInput.addEventListener('input',onAddrInput);
+    addrInput.addEventListener('keydown',onAddrKey);
+    addrInput.addEventListener('blur',function(){ setTimeout(hideAddrList,120); });
+  }
 
   var saved=JSON.parse(localStorage.getItem('ppr_booking')||'{}');
   if(saved.name)document.getElementById('cName').value=saved.name;
   if(saved.email)document.getElementById('cEmail').value=saved.email;
   if(saved.phone)document.getElementById('cPhone').value=saved.phone;
   if(saved.address)document.getElementById('cAddress').value=saved.address;
+  /* A remembered address is plain text, not a picked place. Force a re-pick so the
+     quote is always measured against something Google actually resolved. */
+  deliveryPlaceId=null; deliveryQuote=null; setQuoteBox(''); hideAddrList();
 
   var d=new Date();d.setDate(d.getDate()+2);
   document.getElementById('cDate').min=d.toISOString().split('T')[0];
@@ -2999,7 +3027,142 @@ function showCartView(){
   document.getElementById('cartView').classList.remove('hidden');
 }
 
-var BOOKING_API = 'https://booking-system-phi-two.vercel.app/api/bookings';
+var API_BASE = 'https://booking-system-phi-two.vercel.app';
+var BOOKING_API = API_BASE + '/api/bookings';
+
+/* ===== DELIVERY ADDRESS AUTOCOMPLETE =====
+   The address must be PICKED, not typed. A typed address that fails to geocode is how
+   the old Shopify setup silently charged nothing for delivery. Picking yields a
+   place_id, and the server measures driving miles from that.
+   If the customer types without picking, deliveryPlaceId stays null and the booking is
+   flagged for a manual quote rather than assumed free. */
+var deliveryPlaceId = null;
+var deliveryQuote = null;
+var addrTimer = null;
+var addrActive = -1;
+
+function addrEls(){
+  return {
+    input: document.getElementById('cAddress'),
+    list: document.getElementById('addrList'),
+    quote: document.getElementById('addrQuote')
+  };
+}
+
+function hideAddrList(){
+  var e=addrEls();
+  if(!e.list) return;
+  e.list.hidden=true; e.list.innerHTML=''; addrActive=-1;
+  e.input.setAttribute('aria-expanded','false');
+}
+
+function setQuoteBox(html, cls){
+  var e=addrEls();
+  if(!e.quote) return;
+  if(!html){ e.quote.hidden=true; e.quote.innerHTML=''; return; }
+  e.quote.hidden=false; e.quote.className='addr-quote '+(cls||''); e.quote.innerHTML=html;
+}
+
+function onAddrInput(){
+  var e=addrEls();
+  /* Any edit invalidates a previous selection. Never quote against a stale place_id. */
+  deliveryPlaceId=null; deliveryQuote=null;
+  setQuoteBox('');
+  refreshCheckoutSummary();
+  var q=e.input.value.trim();
+  clearTimeout(addrTimer);
+  if(q.length<4){ hideAddrList(); return; }
+  addrTimer=setTimeout(function(){ fetchAddr(q); }, 350);
+}
+
+function fetchAddr(q){
+  fetch(API_BASE+'/api/address-suggest?q='+encodeURIComponent(q))
+    .then(function(r){ return r.json(); })
+    .then(function(d){
+      var e=addrEls();
+      var items=(d && d.suggestions) || [];
+      if(!items.length){ hideAddrList(); return; }
+      e.list.innerHTML=items.map(function(s,i){
+        return '<li role="option" data-place="'+esc(s.place_id)+'" data-i="'+i+'">'+esc(s.description)+'</li>';
+      }).join('');
+      e.list.hidden=false;
+      e.input.setAttribute('aria-expanded','true');
+      addrActive=-1;
+      Array.prototype.forEach.call(e.list.children,function(li){
+        li.addEventListener('mousedown',function(ev){
+          ev.preventDefault();
+          pickAddr(li.getAttribute('data-place'), li.textContent);
+        });
+      });
+    })
+    .catch(function(){ hideAddrList(); });
+}
+
+function pickAddr(placeId, description){
+  var e=addrEls();
+  e.input.value=description;
+  deliveryPlaceId=placeId;
+  hideAddrList();
+  setQuoteBox(lang==='es'?'Calculando la entrega...':'Checking delivery...','');
+  fetch(API_BASE+'/api/quote-delivery',{
+    method:'POST', headers:{'Content-Type':'application/json'},
+    body:JSON.stringify({place_id:placeId, subtotal:cartTotal()})
+  }).then(function(r){ return r.json(); }).then(function(d){
+    deliveryQuote=d;
+    if(!d.served){
+      deliveryPlaceId=null;
+      setQuoteBox(lang==='es'
+        ? 'Lo sentimos, no entregamos a esa direccion. Esta a <b>'+d.miles+' millas</b> y nuestro limite es 120.'
+        : 'Sorry, we do not deliver to that address. It is <b>'+d.miles+' miles</b> away and our limit is 120.','bad');
+    } else if(d.fee===null){
+      setQuoteBox(lang==='es'
+        ? 'Confirmaremos el costo de entrega por telefono.'
+        : 'We will confirm the delivery cost by phone.','warn');
+    } else if(d.fee===0){
+      setQuoteBox(lang==='es'
+        ? '<b>Entrega gratis.</b> Estas a '+d.miles+' millas.'
+        : '<b>Free delivery.</b> You are '+d.miles+' miles away.','ok');
+    } else {
+      setQuoteBox(lang==='es'
+        ? 'Entrega: <b>'+fmtPrice(d.fee)+'</b> ('+d.miles+' millas).'
+        : 'Delivery: <b>'+fmtPrice(d.fee)+'</b> ('+d.miles+' miles).','ok');
+    }
+    refreshCheckoutSummary();
+  }).catch(function(){
+    setQuoteBox(lang==='es'?'Confirmaremos la entrega por telefono.':'We will confirm delivery by phone.','warn');
+  });
+}
+
+function onAddrKey(ev){
+  var e=addrEls();
+  if(e.list.hidden) return;
+  var items=e.list.children;
+  if(ev.key==='ArrowDown'||ev.key==='ArrowUp'){
+    ev.preventDefault();
+    addrActive+= (ev.key==='ArrowDown'?1:-1);
+    if(addrActive<0)addrActive=items.length-1;
+    if(addrActive>=items.length)addrActive=0;
+    Array.prototype.forEach.call(items,function(li,i){ li.classList.toggle('active',i===addrActive); });
+  } else if(ev.key==='Enter'){
+    if(addrActive>-1){ ev.preventDefault(); var li=items[addrActive]; pickAddr(li.getAttribute('data-place'), li.textContent); }
+  } else if(ev.key==='Escape'){ hideAddrList(); }
+}
+
+/* The summary uses the measured fee once we have one, and falls back to the
+   small-order rule while the address is still unknown. */
+function refreshCheckoutSummary(){
+  var el=document.getElementById('checkoutSummary');
+  if(!el) return;
+  var subtotal=cartTotal();
+  var known = deliveryQuote && deliveryQuote.served && deliveryQuote.fee!==null;
+  var fee = known ? deliveryQuote.fee : cartDeliveryFee(subtotal);
+  var pendingQuote = deliveryQuote && deliveryQuote.fee===null;
+  el.innerHTML='<div class="row"><span>'+cartItemCount()+' '+(lang==='es'?'articulos':'items')+'</span><span>'+fmtPrice(subtotal)+'</span></div>'
+    +(pendingQuote
+        ? '<div class="row"><span>'+(lang==='es'?'Entrega':'Delivery')+'</span><span>'+(lang==='es'?'por confirmar':'to be confirmed')+'</span></div>'
+        : (fee?'<div class="row"><span>'+(lang==='es'?'Entrega':'Delivery')+'</span><span>'+fmtPrice(fee)+'</span></div>':''))
+    +'<div class="row total"><span>Total</span><span>'+(pendingQuote?fmtPrice(subtotal)+'+':fmtPrice(subtotal+fee))+'</span></div>';
+}
 /* The chatbot's PPR_PHONE lives inside its own IIFE in a separate script block and
    is not reachable here. Declared locally so the failure path can always tell the
    customer how to reach us. */
@@ -3079,6 +3242,7 @@ function completeBooking(){
       customer_email:email,
       customer_phone:phone,
       delivery_address:address,
+      delivery_place_id:deliveryPlaceId,
       start_date:date,
       end_date:date,
       how_heard:howHeard||null,
