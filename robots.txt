@@ -3,6 +3,8 @@ User-agent: *
 Allow: /
 Disallow: /.vercel/
 Disallow: /.playwright-mcp/
+Disallow: /product-inventory-form.html
+Disallow: /directory-signup-form.html
 
 # OpenAI crawlers
 User-agent: GPTBot
@@ -31,6 +33,10 @@ Allow: /
 User-agent: Perplexity-User
 Allow: /
 
+# Common Crawl (feeds many AI training sets)
+User-agent: CCBot
+Allow: /
+
 # Apple Intelligence
 User-agent: Applebot-Extended
 Allow: /
@@ -45,6 +51,10 @@ Allow: /
 
 # Microsoft/Bing AI
 User-agent: Bingbot
+Allow: /
+
+
+User-agent: Bytespider
 Allow: /
 
 Sitemap: https://redesign-sepia.vercel.app/sitemap.xml

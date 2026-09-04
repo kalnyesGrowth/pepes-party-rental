@@ -958,7 +958,8 @@ input, select, textarea { font-family: inherit; font-size: 1rem; }
 
 /* ===== CART CHECKOUT FORM ===== */
 .cart-checkout { display: none; flex-direction: column; }
-.cart-checkout.active { display: flex; }
+.cart-checkout.active { display: flex; flex: 1; min-height: 0; }
+.cart-view { display: flex; flex-direction: column; flex: 1; min-height: 0; }
 .cart-view.hidden { display: none; }
 .checkout-header {
   padding: 20px 24px; border-bottom: 1px solid var(--border);
@@ -972,7 +973,7 @@ input, select, textarea { font-family: inherit; font-size: 1rem; }
 }
 .checkout-back:hover { color: var(--orange); }
 .checkout-back svg { width: 16px; height: 16px; }
-.checkout-body { flex: 1; overflow-y: auto; padding: 20px 24px; }
+.checkout-body { flex: 1; min-height: 0; overflow-y: auto; overscroll-behavior: contain; padding: 20px 24px; }
 .checkout-field { margin-bottom: 16px; }
 .checkout-field label {
   display: block; font-size: 0.82rem; font-weight: 700;
@@ -996,6 +997,33 @@ input, select, textarea { font-family: inherit; font-size: 1rem; }
 }
 .checkout-field select:focus { outline: none; border-color: var(--orange); }
 .checkout-field label .opt { color: var(--text-secondary); font-weight: 400; }
+.co-group { border-top: 1px solid var(--border); margin: 22px 0 16px; padding-top: 16px; }
+.co-group-title { font-size: 0.78rem; font-weight: 800; letter-spacing: 0.06em;
+  text-transform: uppercase; color: var(--orange); margin-bottom: 4px; }
+.co-group-note { font-size: 0.78rem; color: var(--text-secondary); margin-bottom: 14px; line-height: 1.45; }
+.co-row { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+.checkout-field textarea {
+  width: 100%; padding: 11px 12px; border: 1px solid var(--border); border-radius: 8px;
+  font-size: 0.92rem; font-family: inherit; background: var(--bg); color: var(--text);
+  resize: vertical; min-height: 62px;
+}
+.checkout-field textarea:focus { outline: none; border-color: var(--orange); }
+.co-hint { font-size: 0.76rem; color: var(--text-secondary); margin-top: 5px; line-height: 1.4; }
+.co-hint.warn { color: var(--orange); font-weight: 600; }
+.tip-row { display: flex; gap: 7px; flex-wrap: wrap; }
+.tip-btn {
+  flex: 1; min-width: 58px; padding: 9px 6px; border: 1px solid var(--border);
+  background: var(--bg); color: var(--text); border-radius: 8px; cursor: pointer;
+  font-size: 0.86rem; font-weight: 700; font-family: inherit; transition: .15s;
+}
+.tip-btn:hover { border-color: var(--orange); }
+.tip-btn.active { background: var(--orange); border-color: var(--orange); color: #fff; }
+.sum-line { display: flex; gap: 9px; align-items: center; padding: 5px 0; }
+.sum-thumb { width: 34px; height: 34px; border-radius: 6px; overflow: hidden;
+  background: var(--orange-glow); flex-shrink: 0; }
+.sum-thumb img { width: 100%; height: 100%; object-fit: cover; }
+.sum-name { flex: 1; font-size: 0.82rem; line-height: 1.3; }
+.sum-amt { font-size: 0.82rem; font-weight: 700; white-space: nowrap; }
 .addr-wrap { position: relative; }
 .addr-list {
   position: absolute; top: calc(100% + 4px); left: 0; right: 0; z-index: 30;
@@ -2313,6 +2341,95 @@ input, select, textarea { font-family: inherit; font-size: 1rem; }
         </div>
         <div class="addr-quote" id="addrQuote" hidden></div>
       </div>
+      <div class="co-group">
+        <div class="co-group-title" data-en="About your event" data-es="Sobre tu evento">About your event</div>
+        <div class="co-group-note" data-en="This tells our crew what to bring and how to set up safely." data-es="Esto le dice a nuestro equipo que traer y como instalar de forma segura.">This tells our crew what to bring and how to set up safely.</div>
+      </div>
+      <div class="co-row">
+        <div class="checkout-field">
+          <label data-en="Type of event" data-es="Tipo de evento">Type of event <span class="req">*</span></label>
+          <select id="cEventType" required>
+            <option value="" data-en="Select one" data-es="Seleccione una">Select one</option>
+            <option value="birthday" data-en="Birthday party" data-es="Fiesta de cumpleanos">Birthday party</option>
+            <option value="quinceanera" data-en="Quinceanera" data-es="Quinceanera">Quinceanera</option>
+            <option value="wedding" data-en="Wedding" data-es="Boda">Wedding</option>
+            <option value="baby-shower" data-en="Baby shower" data-es="Baby shower">Baby shower</option>
+            <option value="graduation" data-en="Graduation" data-es="Graduacion">Graduation</option>
+            <option value="church" data-en="Church or community event" data-es="Evento de iglesia o comunidad">Church or community event</option>
+            <option value="school" data-en="School event" data-es="Evento escolar">School event</option>
+            <option value="corporate" data-en="Corporate event" data-es="Evento corporativo">Corporate event</option>
+            <option value="block-party" data-en="Block party" data-es="Fiesta del vecindario">Block party</option>
+            <option value="other" data-en="Other" data-es="Otro">Other</option>
+          </select>
+        </div>
+        <div class="checkout-field">
+          <label data-en="Party start time" data-es="Hora de inicio">Party start time <span class="req">*</span></label>
+          <input type="time" id="cStartTime" required>
+          <div class="co-hint" data-en="We arrive before this to set up." data-es="Llegamos antes de esta hora para instalar.">We arrive before this to set up.</div>
+        </div>
+      </div>
+      <div class="checkout-field">
+        <label data-en="What surface are we setting up on?" data-es="Sobre que superficie instalamos?">What surface are we setting up on? <span class="req">*</span></label>
+        <select id="cSurface" required onchange="onSurfaceChange()">
+          <option value="" data-en="Select one" data-es="Seleccione una">Select one</option>
+          <option value="grass" data-en="Grass" data-es="Cesped">Grass</option>
+          <option value="concrete" data-en="Concrete or asphalt" data-es="Concreto o asfalto">Concrete or asphalt</option>
+          <option value="both" data-en="Both grass and concrete" data-es="Cesped y concreto">Both grass and concrete</option>
+          <option value="turf" data-en="Artificial turf" data-es="Cesped artificial">Artificial turf</option>
+          <option value="indoor" data-en="Indoors" data-es="Bajo techo">Indoors</option>
+          <option value="dirt" data-en="Dirt or gravel" data-es="Tierra o grava">Dirt or gravel</option>
+        </select>
+        <div class="co-hint" id="surfaceHint" hidden></div>
+      </div>
+      <div class="co-row">
+        <div class="checkout-field">
+          <label data-en="Power outlet within 100 ft?" data-es="Toma de corriente a 100 pies?">Power outlet within 100 ft? <span class="req">*</span></label>
+          <select id="cPower" required>
+            <option value="" data-en="Select one" data-es="Seleccione una">Select one</option>
+            <option value="yes" data-en="Yes" data-es="Si">Yes</option>
+            <option value="no-generator" data-en="No, I need a generator" data-es="No, necesito un generador">No, I need a generator</option>
+            <option value="unsure" data-en="Not sure" data-es="No estoy seguro">Not sure</option>
+          </select>
+        </div>
+        <div class="checkout-field">
+          <label data-en="Approximate guests" data-es="Invitados aproximados">Approximate guests</label>
+          <input type="number" id="cGuests" min="1" max="1000" placeholder="50">
+        </div>
+      </div>
+      <div class="checkout-field" id="waterField" hidden>
+        <label data-en="Garden hose and spigot available?" data-es="Hay manguera y llave de agua?">Garden hose and spigot available? <span class="req">*</span></label>
+        <select id="cWater">
+          <option value="" data-en="Select one" data-es="Seleccione una">Select one</option>
+          <option value="yes" data-en="Yes, both" data-es="Si, ambos">Yes, both</option>
+          <option value="spigot-only" data-en="Spigot but no hose" data-es="Llave pero no manguera">Spigot but no hose</option>
+          <option value="no" data-en="Neither" data-es="Ninguno">Neither</option>
+        </select>
+        <div class="co-hint warn" data-en="Water slides need a hose. We do not provide one." data-es="Los toboganes de agua necesitan manguera. Nosotros no la proveemos.">Water slides need a hose. We do not provide one.</div>
+      </div>
+      <div class="checkout-field">
+        <label data-en="Access to the setup area" data-es="Acceso al area de instalacion">Access to the setup area <span class="req">*</span></label>
+        <select id="cAccess" required>
+          <option value="" data-en="Select one" data-es="Seleccione una">Select one</option>
+          <option value="clear" data-en="Clear path, gate 3 ft or wider" data-es="Camino libre, puerta de 3 pies o mas">Clear path, gate 3 ft or wider</option>
+          <option value="narrow" data-en="Narrow gate, under 3 ft" data-es="Puerta angosta, menos de 3 pies">Narrow gate, under 3 ft</option>
+          <option value="stairs" data-en="Stairs on the way" data-es="Hay escaleras en el camino">Stairs on the way</option>
+          <option value="unsure" data-en="Not sure" data-es="No estoy seguro">Not sure</option>
+        </select>
+        <div class="co-hint" data-en="Our equipment has to fit through. Tell us now, not on the day." data-es="Nuestro equipo tiene que pasar. Diganos ahora, no el dia del evento.">Our equipment has to fit through. Tell us now, not on the day.</div>
+      </div>
+      <div class="checkout-field">
+        <label data-en="Anything overhead or underground we should know about?" data-es="Algo arriba o bajo tierra que debamos saber?">Anything overhead or underground we should know about?</label>
+        <textarea id="cHazards" maxlength="500" placeholder="Power lines, low branches, sprinklers, septic, pets in the yard"></textarea>
+        <div class="co-hint" data-en="We stake into the ground on grass, so sprinklers and utility lines matter." data-es="Clavamos estacas en el cesped, asi que los aspersores y las lineas de servicio importan.">We stake into the ground on grass, so sprinklers and utility lines matter.</div>
+      </div>
+      <div class="co-group">
+        <div class="co-group-title" data-en="Tip the setup crew" data-es="Propina para el equipo">Tip the setup crew</div>
+        <div class="co-group-note" data-en="Optional, and it goes to the crew who deliver and set up your event." data-es="Opcional, y va directo al equipo que entrega e instala tu evento.">Optional, and it goes to the crew who deliver and set up your event.</div>
+        <div class="tip-row" id="tipRow"><!--PRERENDER:tipRow--><button type="button" class="tip-btn active" data-amt="0">No tip</button><button type="button" class="tip-btn active" data-amt="0">10%<br><span style="font-size:.72rem;font-weight:500;opacity:.75">$0</span></button><button type="button" class="tip-btn active" data-amt="0">15%<br><span style="font-size:.72rem;font-weight:500;opacity:.75">$0</span></button><button type="button" class="tip-btn active" data-amt="0">20%<br><span style="font-size:.72rem;font-weight:500;opacity:.75">$0</span></button><button type="button" class="tip-btn" data-custom="1">Other</button><!--/PRERENDER:tipRow--></div>
+        <div class="checkout-field" id="tipCustomWrap" hidden style="margin-top:10px">
+          <input type="number" id="cTipCustom" min="0" max="2000" step="1" placeholder="Tip amount" oninput="onCustomTip()">
+        </div>
+      </div>
       <div class="checkout-field">
         <label data-en="How did you hear about us?" data-es="Como supo de nosotros?">How did you hear about us? <span class="opt" data-en="(optional)" data-es="(opcional)">(optional)</span></label>
         <select id="cHowHeard">
@@ -2718,6 +2835,18 @@ function showToast(msg){
   el._timer=setTimeout(function(){el.classList.remove('show');},2500);
 }
 
+/* Product pages link here as /?product=<handle> so a visitor who lands on a marketing
+   page can actually book. Before this they were sent to the Shopify store, which is the
+   store being closed. */
+function openProductFromUrl(){
+  var h=new URLSearchParams(window.location.search).get('product');
+  if(!h) return;
+  var p=P.find(function(x){return x.handle===h});
+  if(!p) return;
+  showPage('catalog');
+  setTimeout(function(){ openProduct(p.id); }, 60);
+}
+
 /* ===== PRODUCT MODAL ===== */
 function openProduct(id){
   var p=P.find(function(x){return x.id===id});
@@ -2983,6 +3112,7 @@ function renderDeliveryProgress(subtotal){
 
 /* ===== CART OPEN/CLOSE ===== */
 function openCart(){
+  document.body.classList.add('cart-open');
   showCartView();
   renderCart();
   document.getElementById('cartDrawer').classList.add('open');
@@ -2990,6 +3120,7 @@ function openCart(){
   document.body.style.overflow='hidden';
 }
 function closeCart(){
+  document.body.classList.remove('cart-open');
   document.getElementById('cartDrawer').classList.remove('open');
   document.getElementById('cartBackdrop').classList.remove('open');
   document.body.style.overflow='';
@@ -3018,6 +3149,12 @@ function showCheckout(){
   /* A remembered address is plain text, not a picked place. Force a re-pick so the
      quote is always measured against something Google actually resolved. */
   deliveryPlaceId=null; deliveryQuote=null; setQuoteBox(''); hideAddrList();
+  var wf=document.getElementById('waterField');
+  if(wf){ wf.hidden=!cartHasWaterSlide(); }
+  tipAmount=0; tipCustomActive=false;
+  var tcw=document.getElementById('tipCustomWrap'); if(tcw)tcw.hidden=true;
+  renderTips();
+  onSurfaceChange();
 
   var d=new Date();d.setDate(d.getDate()+2);
   document.getElementById('cDate').min=d.toISOString().split('T')[0];
@@ -3038,6 +3175,69 @@ var BOOKING_API = API_BASE + '/api/bookings';
    If the customer types without picking, deliveryPlaceId stays null and the booking is
    flagged for a manual quote rather than assumed free. */
 var deliveryPlaceId = null;
+var tipAmount = 0;
+var TIP_PCTS = [0, 10, 15, 20];
+
+/* Concrete cannot be staked, so it needs weighted barrels. Pepe charges $8 each and the
+   count depends on tent size, so this warns rather than silently adding a charge. */
+function onSurfaceChange(){
+  var v=(document.getElementById('cSurface')||{}).value;
+  var h=document.getElementById('surfaceHint');
+  if(!h) return;
+  if(v==='concrete'||v==='both'){
+    h.hidden=false; h.className='co-hint warn';
+    h.textContent=lang==='es'
+      ? 'En concreto no podemos clavar estacas. Usamos barriles con peso, $8 cada uno. Te confirmamos cuantos necesitas.'
+      : 'We cannot stake into concrete. We use weighted barrels at $8 each. We will confirm how many you need.';
+  } else if(v==='indoor'){
+    h.hidden=false; h.className='co-hint';
+    h.textContent=lang==='es'
+      ? 'Confirma la altura del techo. Muchos inflables miden 15 pies.'
+      : 'Please confirm the ceiling height. Many of our inflatables are 15 ft tall.';
+  } else { h.hidden=true; h.textContent=''; }
+}
+
+/* The hose question only matters if a water slide is in the cart. Pepe's own notes say
+   repeatedly that no hose is included. */
+function cartHasWaterSlide(){
+  return cart.some(function(it){
+    var prod=P.find(function(x){return x.handle===it.handle});
+    return prod && (prod.cat==='waterslides' || /water slide|splash/i.test(it.name||''));
+  });
+}
+
+function renderTips(){
+  var row=document.getElementById('tipRow');
+  if(!row) return;
+  var base=cartTotal();
+  row.innerHTML=TIP_PCTS.map(function(pct){
+    var amt=Math.round(base*pct/100);
+    var label=pct===0?(lang==='es'?'Sin propina':'No tip'):(pct+'%');
+    var sub=pct===0?'':'<br><span style="font-size:.72rem;font-weight:500;opacity:.75">'+fmtPrice(amt)+'</span>';
+    return '<button type="button" class="tip-btn'+(tipAmount===amt&&!tipCustomActive?' active':'')+'" data-amt="'+amt+'">'+label+sub+'</button>';
+  }).join('')+'<button type="button" class="tip-btn'+(tipCustomActive?' active':'')+'" data-custom="1">'+(lang==='es'?'Otro':'Other')+'</button>';
+  Array.prototype.forEach.call(row.children,function(b){
+    b.addEventListener('click',function(){
+      if(b.getAttribute('data-custom')){
+        tipCustomActive=true;
+        document.getElementById('tipCustomWrap').hidden=false;
+        document.getElementById('cTipCustom').focus();
+      } else {
+        tipCustomActive=false;
+        document.getElementById('tipCustomWrap').hidden=true;
+        tipAmount=parseFloat(b.getAttribute('data-amt'))||0;
+      }
+      renderTips(); refreshCheckoutSummary();
+    });
+  });
+}
+var tipCustomActive=false;
+
+function onCustomTip(){
+  var v=parseFloat((document.getElementById('cTipCustom')||{}).value);
+  tipAmount=(isNaN(v)||v<0)?0:Math.min(v,2000);
+  refreshCheckoutSummary();
+}
 var deliveryQuote = null;
 var addrTimer = null;
 var addrActive = -1;
@@ -3158,11 +3358,20 @@ function refreshCheckoutSummary(){
   var known = deliveryQuote && deliveryQuote.served && deliveryQuote.fee!==null;
   var fee = known ? deliveryQuote.fee : cartDeliveryFee(subtotal);
   var pendingQuote = deliveryQuote && deliveryQuote.fee===null;
-  el.innerHTML='<div class="row"><span>'+cartItemCount()+' '+(lang==='es'?'articulos':'items')+'</span><span>'+fmtPrice(subtotal)+'</span></div>'
+  var thumbs=cart.map(function(it){
+    var q=it.qty||1;
+    return '<div class="sum-line">'
+      +'<div class="sum-thumb">'+(it.img?'<img src="'+esc(it.img)+'" alt="'+esc(it.name)+'">':'')+'</div>'
+      +'<div class="sum-name">'+(q>1?q+'x ':'')+esc(it.name)+'</div>'
+      +'<div class="sum-amt">'+fmtPrice(it.price*q)+'</div></div>';
+  }).join('');
+  el.innerHTML=thumbs
+    +'<div class="row" style="margin-top:8px"><span>'+(lang==='es'?'Subtotal':'Subtotal')+'</span><span>'+fmtPrice(subtotal)+'</span></div>'
     +(pendingQuote
         ? '<div class="row"><span>'+(lang==='es'?'Entrega':'Delivery')+'</span><span>'+(lang==='es'?'por confirmar':'to be confirmed')+'</span></div>'
         : (fee?'<div class="row"><span>'+(lang==='es'?'Entrega':'Delivery')+'</span><span>'+fmtPrice(fee)+'</span></div>':''))
-    +'<div class="row total"><span>Total</span><span>'+(pendingQuote?fmtPrice(subtotal)+'+':fmtPrice(subtotal+fee))+'</span></div>';
+    +(tipAmount?'<div class="row"><span>'+(lang==='es'?'Propina':'Tip')+'</span><span>'+fmtPrice(tipAmount)+'</span></div>':'')
+    +'<div class="row total"><span>Total</span><span>'+(pendingQuote?fmtPrice(subtotal+tipAmount)+'+':fmtPrice(subtotal+fee+tipAmount))+'</span></div>';
 }
 /* The chatbot's PPR_PHONE lives inside its own IIFE in a separate script block and
    is not reachable here. Declared locally so the failure path can always tell the
@@ -3640,6 +3849,11 @@ function addUpsells(){
       if(e.target===overlay) closePopup(overlay.id);
     });
   });
+
+  /* A visitor arriving from a product page lands on /?product=<handle>. Open that
+     product so they can book here rather than being handed off to Shopify. */
+  openProductFromUrl();
+
 })();
 </script>
 
@@ -3754,7 +3968,9 @@ function addUpsells(){
   --ppr-white:#ffffff;--ppr-bg:#f5f7fc;--ppr-radius:20px;
   --ppr-font:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;
 }
-#pprchat{position:fixed;bottom:22px;right:22px;z-index:500;font-family:var(--ppr-font);font-size:15px;line-height:1.5}
+body.cart-open #pprchat{right:auto;left:22px;transition:left .3s ease,right .3s ease}
+body.cart-open .ppr-chat__window{right:auto;left:0}
+#pprchat{position:fixed;bottom:22px;right:22px;z-index:500;transition:left .3s ease,right .3s ease;font-family:var(--ppr-font);font-size:15px;line-height:1.5}
 .ppr-fab-wrap{display:flex;flex-direction:column;align-items:center;position:relative;filter:drop-shadow(0 8px 28px rgba(29,52,97,.35))}
 .ppr-fab-shadow{width:54px;height:14px;border-radius:50%;background:rgba(29,52,97,.25);position:absolute;bottom:-6px;left:50%;transform:translateX(-50%);animation:ppr-shadow 3.8s cubic-bezier(.45,.05,.55,.95) infinite;filter:blur(4px)}
 @keyframes ppr-shadow{0%,100%{transform:translateX(-50%) scaleX(1) scaleY(1);opacity:.22}30%{transform:translateX(-50%) scaleX(.78) scaleY(.7);opacity:.12}60%{transform:translateX(-50%) scaleX(.85) scaleY(.75);opacity:.15}}
