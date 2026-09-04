@@ -2787,6 +2787,7 @@ function addFromModal(){
   addToCart({
     id:currentProduct.id,
     handle:currentProduct.handle,
+    variant:variantName||null,
     name:currentProduct.name+(variantName?' ('+variantName+')':''),
     price:price,
     img:currentProduct.img||'',
@@ -3214,7 +3215,7 @@ function completeBooking(){
   localStorage.setItem('ppr_booking',JSON.stringify({name:name,email:email,phone:phone,address:address}));
 
   var items=cart.map(function(item){
-    return {handle:item.handle,quantity:item.qty||1};
+    return {handle:item.handle,variant:item.variant||null,quantity:item.qty||1};
   });
 
   var unresolved=items.filter(function(i){return !i.handle});
