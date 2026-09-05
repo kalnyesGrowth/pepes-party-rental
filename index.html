@@ -3324,6 +3324,7 @@ function showCartView(){
 
 var API_BASE = 'https://booking-system-phi-two.vercel.app';
 var BOOKING_API = API_BASE + '/api/bookings';
+var CHECKOUT_API = API_BASE + '/api/checkout';
 
 /* ===== DELIVERY ADDRESS AUTOCOMPLETE =====
    The address must be PICKED, not typed. A typed address that fails to geocode is how
@@ -3693,19 +3694,32 @@ function completeBooking(){
       return;
     }
 
-    /* Confirmed written. Only now is it safe to clear the cart. */
-    cart=[];
-    updateCartCount();
-    closeCart();
-    document.getElementById('cDate').value='';
-    if(document.getElementById('cHowHeard'))document.getElementById('cHowHeard').value='';
-    btn.disabled=false;
-    if(label)label.textContent=labelText;
-
+    /* The order exists and holds inventory for 30 minutes, but it is NOT a booking yet.
+       Hand off to Stripe; the signed webhook is what promotes it. The cart is
+       deliberately NOT cleared here, so a customer who abandons payment still has their
+       items when they come back. */
     var ref=r.data.order_ref||'';
-    showToast(lang==='es'
-      ?('Reserva recibida! Referencia '+ref+'. Te confirmamos pronto.')
-      :('Booking received! Reference '+ref+'. We will confirm shortly.'));
+    if(label)label.textContent=(lang==='es'?'Redirigiendo al pago...':'Taking you to payment...');
+
+    fetch(CHECKOUT_API,{
+      method:'POST', headers:{'Content-Type':'application/json'},
+      body:JSON.stringify({order_ref:ref})
+    }).then(function(res){
+      return res.json().then(function(cd){return {ok:res.ok,data:cd};});
+    }).then(function(c){
+      if(c.ok && c.data && c.data.url){
+        localStorage.setItem('ppr_pending_ref',ref);
+        window.location.href=c.data.url;
+        return;
+      }
+      var msg=(c.data && c.data.message) || (lang==='es'
+        ?'No pudimos abrir el pago.':'We could not open the payment page.');
+      fail(msg+' '+(lang==='es'?'Tu referencia es ':'Your reference is ')+ref+'. '
+        +(lang==='es'?'Llamanos al ':'Call us at ')+BOOKING_PHONE+'.');
+    }).catch(function(){
+      fail((lang==='es'?'Problema de conexion al pago. Referencia ':'Connection problem starting payment. Reference ')
+        +ref+'. '+(lang==='es'?'Llamanos al ':'Call us at ')+BOOKING_PHONE+'.');
+    });
   }).catch(function(){
     fail(lang==='es'
       ?'Problema de conexion. Llamanos al '+BOOKING_PHONE
