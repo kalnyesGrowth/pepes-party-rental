@@ -3691,6 +3691,17 @@ function completeBooking(){
       customer_phone:phone,
       delivery_address:address,
       delivery_place_id:deliveryPlaceId,
+      /* Setup answers were collected and then dropped on the floor. These are what tell
+         the crew what to load and how to anchor, so they have to reach Pepe. */
+      event_type:(document.getElementById('cEventType')||{}).value||null,
+      event_start_time:(document.getElementById('cStartTime')||{}).value||null,
+      surface_type:(document.getElementById('cSurface')||{}).value||null,
+      power_access:(document.getElementById('cPower')||{}).value||null,
+      water_access:(document.getElementById('cWater')||{}).value||null,
+      access_notes:(document.getElementById('cAccess')||{}).value||null,
+      hazards:(document.getElementById('cHazards')||{}).value||null,
+      guest_count:parseInt((document.getElementById('cGuests')||{}).value,10)||null,
+      tip_amount:tipAmount||0,
       start_date:date,
       end_date:date,
       how_heard:howHeard||null,
