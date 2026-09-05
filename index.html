@@ -1039,6 +1039,30 @@ input, select, textarea { font-family: inherit; font-size: 1rem; }
 .swap-btn { padding: 7px 12px; border: none; border-radius: 7px; background: var(--orange);
   color: #fff; font-weight: 700; font-size: 0.8rem; cursor: pointer; font-family: inherit;
   white-space: nowrap; }
+.sw-panel { border: 1px solid var(--border); border-radius: 9px; padding: 13px; margin: 12px 0; background: var(--surface); }
+.sw-panel h5 { font-size: 0.85rem; font-weight: 800; margin-bottom: 3px; }
+.sw-panel .sub { font-size: 0.78rem; color: var(--text-secondary); margin-bottom: 11px; line-height: 1.4; }
+.sw-presets { display: flex; gap: 6px; margin-bottom: 11px; flex-wrap: wrap; }
+.sw-preset { flex: 1; min-width: 88px; padding: 8px 6px; border: 1px solid var(--border);
+  background: var(--bg); border-radius: 7px; cursor: pointer; font-size: 0.8rem;
+  font-weight: 700; font-family: inherit; color: var(--text); transition: .15s; }
+.sw-preset:hover { border-color: var(--orange); }
+.sw-preset.active { background: var(--orange); border-color: var(--orange); color: #fff; }
+.sw-stepper { display: flex; align-items: center; gap: 12px; margin-bottom: 11px; }
+.sw-stepper button { width: 32px; height: 32px; border-radius: 7px; border: 1px solid var(--border);
+  background: var(--bg); color: var(--text); font-size: 1.05rem; font-weight: 700; cursor: pointer;
+  font-family: inherit; line-height: 1; }
+.sw-stepper button:disabled { opacity: .35; cursor: not-allowed; }
+.sw-count { font-size: 0.95rem; font-weight: 800; min-width: 118px; }
+.sw-count span { font-weight: 500; color: var(--text-secondary); font-size: 0.82rem; }
+.sw-diagram { display: flex; justify-content: center; margin: 4px 0 10px; }
+.sw-style { display: flex; gap: 6px; margin-bottom: 9px; }
+.sw-style button { flex: 1; padding: 7px; border: 1px solid var(--border); background: var(--bg);
+  color: var(--text); border-radius: 7px; font-size: 0.78rem; font-weight: 700; cursor: pointer;
+  font-family: inherit; }
+.sw-style button.active { background: var(--orange); border-color: var(--orange); color: #fff; }
+.sw-total { font-size: 0.82rem; color: var(--text-secondary); }
+.sw-total b { color: var(--orange); font-size: 0.92rem; }
 .swap-remove { background: none; border: none; color: var(--text-secondary);
   font-size: 0.8rem; text-decoration: underline; cursor: pointer; font-family: inherit; padding: 4px 0; }
 .addr-wrap { position: relative; }
@@ -2281,6 +2305,7 @@ input, select, textarea { font-family: inherit; font-size: 1rem; }
         <div class="modal-price" id="modalPrice"></div>
         <div class="modal-desc" id="modalDesc"></div>
         <div class="modal-variants" id="modalVariants"></div>
+        <div id="modalSidewalls"></div>
         <div style="display:flex;align-items:center;gap:8px;margin:8px 0;font-size:0.82rem;color:var(--success)">
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="flex-shrink:0"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
           <span data-en="Free delivery & setup within 25 miles on $150+ orders" data-es="Entrega y montaje gratis dentro de 25 millas en pedidos de $150+">Free delivery & setup within 25 miles on $150+ orders</span>
@@ -2864,6 +2889,85 @@ function openProductFromUrl(){
   setTimeout(function(){ openProduct(p.id); }, 60);
 }
 
+/* Panels needed to fully close each tent, from Pepe's inventory answers. A customer
+   cannot know a 20x80 takes 10 panels and a 20x30 takes 4, so show it rather than let
+   them guess and arrive with an open tent. */
+var TENT_WALLS={'tent-10x20':4,'tent-15x15':4,'tent-20x20':4,'tent-20x30':4,
+                'tent-20x40':6,'tent-20x60':8,'tent-20x80':10,'tent-30x30':4};
+var SIDEWALL_HANDLE='tent-sidewall-rental-20ft-panel';
+var SIDEWALL_PRICE=25;
+var swCount=0, swStyle='Window Style', swMax=0;
+
+/* Top-down plan. Solid edges are walled, dashed are open, so "3 of 4" is something you
+   can see rather than a number to interpret. */
+function swDiagram(n,max){
+  var W=132,H=84,pad=12,sides=4,per=max/sides,seg=[];
+  for(var i=0;i<sides;i++) seg.push(Math.max(0,Math.min(per,n-i*per))/per);
+  var walls=[{x1:pad,y1:pad,x2:W-pad,y2:pad},{x1:W-pad,y1:pad,x2:W-pad,y2:H-pad},
+             {x1:W-pad,y1:H-pad,x2:pad,y2:H-pad},{x1:pad,y1:H-pad,x2:pad,y2:pad}];
+  var out='<svg width="'+W+'" height="'+H+'" viewBox="0 0 '+W+' '+H+'" role="img" aria-label="'+n+' of '+max+' sides covered">';
+  out+='<rect x="'+pad+'" y="'+pad+'" width="'+(W-pad*2)+'" height="'+(H-pad*2)+'" fill="var(--orange-glow)" opacity="0.5"/>';
+  walls.forEach(function(w,i){
+    out+='<line x1="'+w.x1+'" y1="'+w.y1+'" x2="'+w.x2+'" y2="'+w.y2+'" stroke="var(--border)" stroke-width="3" stroke-dasharray="4 3"/>';
+    if(seg[i]>0){
+      var x2=w.x1+(w.x2-w.x1)*seg[i], y2=w.y1+(w.y2-w.y1)*seg[i];
+      out+='<line x1="'+w.x1+'" y1="'+w.y1+'" x2="'+x2+'" y2="'+y2+'" stroke="var(--orange)" stroke-width="4" stroke-linecap="round"/>';
+    }
+  });
+  return out+'</svg>';
+}
+
+function renderSidewalls(){
+  var host=document.getElementById('swPanel');
+  if(!host) return;
+  var open=swMax-swCount;
+  host.querySelector('.sw-diagram').innerHTML=swDiagram(swCount,swMax);
+  host.querySelector('.sw-count').innerHTML=swCount+' <span>'+(lang==='es'?'de':'of')+' '+swMax+'</span>';
+  host.querySelector('.sw-total').innerHTML = swCount===0
+    ? (lang==='es'?'Carpa abierta por los 4 lados.':'Open on all 4 sides.')
+    : (swCount>=swMax
+        ? (lang==='es'?'Totalmente cerrada. <b>':'Fully enclosed. <b>')+fmtPrice(swCount*SIDEWALL_PRICE)+'</b>'
+        : open+(lang==='es'?' lado(s) abiertos. <b>':' side(s) left open. <b>')+fmtPrice(swCount*SIDEWALL_PRICE)+'</b>');
+  host.querySelector('[data-sw="minus"]').disabled = swCount<=0;
+  host.querySelector('[data-sw="plus"]').disabled  = swCount>=swMax;
+  Array.prototype.forEach.call(host.querySelectorAll('.sw-preset'),function(b){
+    b.classList.toggle('active', parseInt(b.getAttribute('data-n'),10)===swCount); });
+  Array.prototype.forEach.call(host.querySelectorAll('.sw-style button'),function(b){
+    b.classList.toggle('active', b.getAttribute('data-style')===swStyle); });
+}
+
+function buildSidewallPanel(handle){
+  swMax=TENT_WALLS[handle]||0; swCount=0; swStyle='Window Style';
+  if(!swMax) return '';
+  return '<div class="sw-panel" id="swPanel">'
+    +'<h5>'+(lang==='es'?'Paredes laterales':'Add sidewalls')+'</h5>'
+    +'<div class="sub">'+(lang==='es'
+      ?'Esta carpa necesita <b>'+swMax+'</b> paneles para cerrarse. '+fmtPrice(SIDEWALL_PRICE)+' cada uno.'
+      :'This tent takes <b>'+swMax+'</b> panels to fully close. '+fmtPrice(SIDEWALL_PRICE)+' each.')+'</div>'
+    +'<div class="sw-presets">'
+      +'<button type="button" class="sw-preset" data-n="0">'+(lang==='es'?'Sin paredes':'No sidewalls')+'</button>'
+      +'<button type="button" class="sw-preset" data-n="'+swMax+'">'+(lang==='es'?'Cierre total':'Full cover')+'</button></div>'
+    +'<div class="sw-diagram"></div>'
+    +'<div class="sw-stepper"><button type="button" data-sw="minus">&minus;</button>'
+      +'<div class="sw-count"></div><button type="button" data-sw="plus">+</button></div>'
+    +'<div class="sw-style">'
+      +'<button type="button" data-style="Window Style">'+(lang==='es'?'Con ventana':'With windows')+'</button>'
+      +'<button type="button" data-style="Solid White">'+(lang==='es'?'Blanco solido':'Solid white')+'</button></div>'
+    +'<div class="sw-total"></div></div>';
+}
+
+function wireSidewalls(){
+  var host=document.getElementById('swPanel');
+  if(!host) return;
+  host.querySelector('[data-sw="minus"]').addEventListener('click',function(){ if(swCount>0){swCount--;renderSidewalls();} });
+  host.querySelector('[data-sw="plus"]').addEventListener('click',function(){ if(swCount<swMax){swCount++;renderSidewalls();} });
+  Array.prototype.forEach.call(host.querySelectorAll('.sw-preset'),function(b){
+    b.addEventListener('click',function(){ swCount=parseInt(b.getAttribute('data-n'),10); renderSidewalls(); }); });
+  Array.prototype.forEach.call(host.querySelectorAll('.sw-style button'),function(b){
+    b.addEventListener('click',function(){ swStyle=b.getAttribute('data-style'); renderSidewalls(); }); });
+  renderSidewalls();
+}
+
 /* ===== PRODUCT MODAL ===== */
 function openProduct(id){
   var p=P.find(function(x){return x.id===id});
@@ -2871,6 +2975,8 @@ function openProduct(id){
   currentProduct=p;
   document.getElementById('modalTitle').textContent=p.name;
   document.getElementById('modalPrice').innerHTML=fmtPrice(p.price)+(p.cmp?'<span class="compare">'+fmtPrice(p.cmp)+'</span>':'');
+  var swHost=document.getElementById('modalSidewalls');
+  if(swHost){ swHost.innerHTML=buildSidewallPanel(p.handle); wireSidewalls(); }
   document.getElementById('modalDesc').textContent=p.desc||'Free delivery, setup, and takedown within 25 miles on orders over $150. No deposit required.';
   var imgEl=document.getElementById('modalImg');
   var modalSs=srcsetFor(p.img,[400,800]);
@@ -2939,6 +3045,21 @@ function addFromModal(){
     img:currentProduct.img||'',
     qty:1
   });
+
+  /* Sidewalls ride along as their own line, priced per panel, so the tent price stays
+     honest and Pepe sees exactly how many panels to load. */
+  if(swMax && swCount>0){
+    var swProd=P.find(function(x){return x.handle===SIDEWALL_HANDLE});
+    addToCart({
+      id: swProd?swProd.id:0,
+      handle: SIDEWALL_HANDLE,
+      variant: swStyle,
+      name: (lang==='es'?'Paredes laterales':'Tent Sidewalls')+' ('+swStyle+') - '+currentProduct.name,
+      price: SIDEWALL_PRICE,
+      img: swProd?swProd.img:'',
+      qty: swCount
+    });
+  }
 
   pulseCartCount();
   closeModal();
