@@ -3955,11 +3955,17 @@ addFromModal = function(){
   var price=activeV?parseFloat(activeV.textContent.split('$')[1]):prod.price;
   var variantName=activeV?activeV.textContent.split(' - ')[0]:null;
 
-  cart.push({
+  /* Was a raw cart.push, which skipped addToCart and therefore carried no handle.
+     The server resolves products by handle, so those items made checkout refuse the
+     whole order with "please call us to finish this booking". */
+  addToCart({
     id:prod.id,
+    handle:prod.handle,
+    variant:variantName||null,
     name:prod.name+(variantName?' ('+variantName+')':''),
     price:price,
-    img:prod.img||''
+    img:prod.img||'',
+    qty:1
   });
 
   var activeUpsell=document.querySelector('.upsell-option.active');
@@ -3967,11 +3973,17 @@ addFromModal = function(){
     var upsellIdx=parseInt(activeUpsell.dataset.upsellIdx);
     var upsellPrice=parseFloat(activeUpsell.dataset.upsellPrice);
     var u=TENT_UPSELLS[upsellIdx];
-    cart.push({
-      id:Date.now(),
+    /* Tent upsells are real catalog products; look them up so the cart row carries a
+       handle and an image instead of a bare name the server cannot resolve. */
+    var uProd=u.handle?P.find(function(x){return x.handle===u.handle}):null;
+    addToCart({
+      id:uProd?uProd.id:Date.now(),
+      handle:u.handle||null,
+      variant:null,
       name:(lang==='es'?u.nameEs:u.name)+' ('+prod.name+')',
       price:upsellPrice,
-      img:''
+      img:uProd?uProd.img:'',
+      qty:1
     });
   }
 
@@ -4067,7 +4079,19 @@ function addUpsells(){
     var idx=parseInt(el.dataset.idx);
     var u=upsellSelections[idx];
     if(u){
-      cart.push({id:u.id,name:u.name,price:u.price,img:''});
+      /* THE BUG JJ HIT. This is the "You might also like" + Add button. It pushed a
+         bare row with no handle and no image, so the thumbnail was blank AND checkout
+         refused the order. u.id is a real catalog id, so look the product up. */
+      var uP=P.find(function(x){return x.id===u.id});
+      addToCart({
+        id:u.id,
+        handle:uP?uP.handle:null,
+        variant:null,
+        name:u.name,
+        price:u.price,
+        img:uP?uP.img:'',
+        qty:1
+      });
     }
   });
   if(items.length){
@@ -4735,7 +4759,15 @@ body.cart-open .ppr-chat__window{right:auto;left:0}
     if(isNaN(priceNum)) priceNum=0;
 
     if(typeof window.cart!=='undefined'&&Array.isArray(window.cart)){
-      window.cart.push({id:Date.now(),name:name,price:priceNum,img:''});
+      /* Chatbot add. Match by name against the catalog so it carries a handle and an
+         image like any other cart row. */
+      var cP=(typeof P!=='undefined')?P.find(function(x){return x.name===name}):null;
+      if(typeof window.addToCart==='function'){
+        window.addToCart({id:cP?cP.id:Date.now(),handle:cP?cP.handle:null,variant:null,
+          name:name,price:priceNum,img:cP?cP.img:'',qty:1});
+      } else {
+        window.cart.push({id:Date.now(),handle:cP?cP.handle:null,name:name,price:priceNum,img:cP?cP.img:''});
+      }
       if(typeof window.pulseCartCount==='function') window.pulseCartCount();
       if(typeof window.renderCart==='function') window.renderCart();
     }
