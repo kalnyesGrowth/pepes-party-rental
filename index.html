@@ -3119,11 +3119,37 @@ function pulseCartCount(){
   el.classList.add('pulse');
 }
 
+/* The cart was a plain variable, so it died on every navigation. Product pages are
+   separate documents, so browsing one item and coming back emptied the cart with no
+   warning. It now survives navigation, tab closes and revisits. */
+var CART_KEY='ppr_cart_v1';
+var CART_TTL_DAYS=7;
+
+function saveCart(){
+  try{
+    localStorage.setItem(CART_KEY,JSON.stringify({at:Date.now(),items:cart}));
+  }catch(e){ /* private mode or full storage: the cart still works for this visit */ }
+}
+
+function loadCart(){
+  try{
+    var raw=localStorage.getItem(CART_KEY);
+    if(!raw) return;
+    var d=JSON.parse(raw);
+    if(!d||!Array.isArray(d.items)) return;
+    /* Expire old carts. Prices and availability drift, and restoring a month-old cart
+       shows numbers we can no longer honour. */
+    if(!d.at || (Date.now()-d.at) > CART_TTL_DAYS*86400000){ localStorage.removeItem(CART_KEY); return; }
+    cart=d.items.filter(function(i){ return i && i.name && typeof i.price==='number'; });
+  }catch(e){ cart=[]; }
+}
+
 function updateCartCount(){
   var el=document.getElementById('cartCount');
   var count=cartItemCount();
   el.textContent=count;
   el.classList.toggle('show',count>0);
+  saveCart();
 }
 
 /* ===== CART RENDERING ===== */
@@ -3241,6 +3267,7 @@ function onCartQtyInput(idx,el){
   val=Math.max(1,Math.min(999,val));
   el.value=val;
   cart[idx].qty=val;
+  saveCart();
   updateCartCount();
   var subtotal=cartTotal();
   var totalEl=document.getElementById('cartTotal');
@@ -4079,6 +4106,9 @@ function addUpsells(){
 
   /* A visitor arriving from a product page lands on /?product=<handle>. Open that
      product so they can book here rather than being handed off to Shopify. */
+  /* Restore before anything renders, so the badge and drawer are correct on first paint. */
+  loadCart();
+  updateCartCount();
   openProductFromUrl();
   showBookingOutcome();
 
