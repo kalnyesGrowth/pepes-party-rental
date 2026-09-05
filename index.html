@@ -2879,6 +2879,26 @@ function showToast(msg){
 /* Product pages link here as /?product=<handle> so a visitor who lands on a marketing
    page can actually book. Before this they were sent to the Shopify store, which is the
    store being closed. */
+/* Stripe returns the customer to /?booking=confirmed|cancelled&ref=PPR-XXXXXX */
+function showBookingOutcome(){
+  var q=new URLSearchParams(window.location.search);
+  var state=q.get('booking'), ref=q.get('ref')||'';
+  if(!state) return;
+  if(state==='confirmed'){
+    cart=[]; updateCartCount();
+    localStorage.removeItem('ppr_pending_ref');
+    showToast(lang==='es'
+      ?('Pago recibido! Reserva '+ref+'. Te confirmamos pronto.')
+      :('Payment received! Booking '+ref+'. We will confirm shortly.'));
+  } else if(state==='cancelled'){
+    /* Cart intentionally survives so they can retry without rebuilding it. */
+    showToast(lang==='es'
+      ?'Pago cancelado. Tu carrito sigue guardado.'
+      :'Payment cancelled. Your cart is still here.');
+  }
+  history.replaceState({},'',window.location.pathname);
+}
+
 function openProductFromUrl(){
   var h=new URLSearchParams(window.location.search).get('product');
   if(!h) return;
@@ -4046,6 +4066,7 @@ function addUpsells(){
   /* A visitor arriving from a product page lands on /?product=<handle>. Open that
      product so they can book here rather than being handed off to Shopify. */
   openProductFromUrl();
+  showBookingOutcome();
 
 })();
 </script>
