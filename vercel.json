@@ -35,5 +35,24 @@
     }
   ],
   "cleanUrls": true,
-  "trailingSlash": false
+  "trailingSlash": false,
+  "images": {
+    "sizes": [
+      300,
+      400,
+      600,
+      800,
+      1200
+    ],
+    "domains": [],
+    "remotePatterns": [
+      {
+        "protocol": "https",
+        "hostname": "9hfx4wy7icheza3r.public.blob.vercel-storage.com"
+      }
+    ],
+    "formats": [
+      "image/webp"
+    ]
+  }
 }
