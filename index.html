@@ -3140,7 +3140,23 @@ function loadCart(){
     /* Expire old carts. Prices and availability drift, and restoring a month-old cart
        shows numbers we can no longer honour. */
     if(!d.at || (Date.now()-d.at) > CART_TTL_DAYS*86400000){ localStorage.removeItem(CART_KEY); return; }
-    cart=d.items.filter(function(i){ return i && i.name && typeof i.price==='number'; });
+    /* Repair on restore. Carts saved before the addToCart fix hold rows with no handle
+       and no image, and those block checkout entirely with "please call us". Match them
+       back to the catalog by id, then by exact name, then by the base name before a
+       variant suffix. Anything still unresolvable is dropped rather than left to poison
+       the whole order. */
+    var restored=d.items.filter(function(i){ return i && i.name && typeof i.price==='number'; });
+    var repaired=0, dropped=0;
+    cart=restored.map(function(i){
+      if(i.handle) return i;
+      var base=String(i.name).replace(/\s*\([^)]*\)\s*$/,'').trim();
+      var m=P.find(function(x){return x.id===i.id})
+          || P.find(function(x){return x.name===i.name})
+          || P.find(function(x){return x.name===base});
+      if(m){ i.handle=m.handle; if(!i.img) i.img=m.img||''; repaired++; return i; }
+      dropped++; return null;
+    }).filter(Boolean);
+    if(repaired||dropped) console.log('[cart] restored',cart.length,'repaired',repaired,'dropped',dropped);
   }catch(e){ cart=[]; }
 }
 
@@ -3665,11 +3681,28 @@ function completeBooking(){
     return {handle:item.handle,variant:item.variant||null,quantity:item.qty||1};
   });
 
+  /* Last-chance repair before giving up, so a single unrecognised row cannot cost the
+     whole order. Only if something is still unresolvable do we say so, and we name it
+     rather than showing an unexplained "call us". */
+  items.forEach(function(it,idx){
+    if(it.handle) return;
+    var c=cart[idx]; if(!c) return;
+    var base=String(c.name).replace(/\s*\([^)]*\)\s*$/,'').trim();
+    var m=P.find(function(x){return x.id===c.id})
+        || P.find(function(x){return x.name===c.name})
+        || P.find(function(x){return x.name===base});
+    if(m){ c.handle=m.handle; it.handle=m.handle; if(!c.img) c.img=m.img||''; }
+  });
   var unresolved=items.filter(function(i){return !i.handle});
   if(unresolved.length){
-    showToast(lang==='es'?'Llamanos para completar esta reserva':'Please call us to finish this booking');
+    var bad=cart.filter(function(c){return !c.handle}).map(function(c){return c.name}).join(', ');
+    showToast(lang==='es'
+      ?('No pudimos identificar: '+bad+'. Quitalo o llamanos al '+BOOKING_PHONE)
+      :('We could not identify: '+bad+'. Remove it or call us at '+BOOKING_PHONE));
+    saveCart();
     return;
   }
+  saveCart();
 
   btn.disabled=true;
   var label=btn.querySelector('span');
